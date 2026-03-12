@@ -1,0 +1,680 @@
+{
+  "id": "30428b55-a7da-46f6-a4c5-0da9f83683d7",
+  "title": "你好",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "e1d4c21e-5a60-4b33-8961-1a06333565c0",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "ecd24566-fe8e-444e-8e48-1e01cb8f0293",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "a3bd4b0e-84da-4818-ad1c-dab88b329c20",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "id": "a74ef284-15d6-4ebb-a89a-3049b50db57e",
+      "metadata": {
+        "model": {
+          "providerId": "GLM",
+          "providerType": "openai-compatible",
+          "id": "GLM4.7",
+          "model": "4.7",
+          "promptLevel": 1,
+          "enable": true
+        }
+      }
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "f",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\nf\n\n"
+        }
+      ],
+      "id": "df5544ba-01a8-4c70-9e2b-4731817f7e53",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "id": "1fc6d020-34d7-4785-8ffa-1bb02a46c79c",
+      "metadata": {
+        "model": {
+          "providerId": "GLM",
+          "providerType": "openai-compatible",
+          "id": "GLM4.7",
+          "model": "4.7",
+          "promptLevel": 1,
+          "enable": true
+        }
+      }
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "的啊",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n的啊\n\n"
+        }
+      ],
+      "id": "9fc528f1-1558-4527-88b4-75eddcbfa483",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "id": "5cfe628c-4cf3-4931-bac0-09f0983f00e7",
+      "metadata": {
+        "model": {
+          "providerId": "GLM",
+          "providerType": "openai-compatible",
+          "id": "GLM4.7",
+          "model": "4.7",
+          "promptLevel": 1,
+          "enable": true
+        }
+      }
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "对的",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n对的\n\n"
+        }
+      ],
+      "id": "b16a01df-561b-4200-8507-495509ceb686",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "id": "b8a089ba-4fe4-40dc-8b2c-19a64d1b4cff",
+      "metadata": {
+        "model": {
+          "providerId": "GLM",
+          "providerType": "openai-compatible",
+          "id": "GLM4.7",
+          "model": "4.7",
+          "promptLevel": 1,
+          "enable": true
+        }
+      }
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "c05cfb4a-e82a-407e-9a4c-18096780a021",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "20b90d56-1ffe-404a-8189-b1679e8908d2",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "的",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n的\n\n"
+        }
+      ],
+      "id": "867cdd27-23e1-4403-9d0d-733033ebed6a",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "f757c29d-2d63-44ea-a4bb-45bbda63c732",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "e82c48c6-9e9e-488a-aa07-5273261ae979",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你\n\n"
+        }
+      ],
+      "id": "ad876c83-6346-49a1-8de3-b4d22dd3d981",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "v",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\nv\n\n"
+        }
+      ],
+      "id": "474e3b9b-d894-4411-b1ef-396945b9546b",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "欢迎.md"
+        }
+      ]
+    }
+  ],
+  "createdAt": 1767856312760,
+  "updatedAt": 1767857008307,
+  "schemaVersion": 1
+}
