@@ -9,6 +9,7 @@
 
 | 页面 | 描述 |
 |------|------|
+| `运动员的底色` | 耐得住寂寞才是运动员真正的天赋 |
 | `fencing-two-pathways` | 教育系统 vs 体育系统两条路径对比 |
 | `fencing-sports-pathway` | 击剑体育系统升学路径概述 |
 | `fencing-education-pathway` | 击剑教育系统特长生升学路径概述 |
