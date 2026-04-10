@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球热点新闻 2026.04.07</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--black:#0a0a0a;--white:#fafafa;
+--accent:#ff6b35;--cyan:#00c9ff;--gold:#ffc107;--purple:#7c4dff;--red:#ff3366;
+}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--black);color:var(--white);min-height:1200px;overflow:hidden;position:relative}
+.bg-deco{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 15% 5%,rgba(255,107,53,0.2) 0%,transparent 50%),radial-gradient(ellipse at 85% 95%,rgba(0,201,255,0.12) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(124,77,255,0.06) 0%,transparent 60%);pointer-events:none;z-index:0}
+.noise{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.025;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 0 40px 0}
+.top-bar{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 24px 0}
+.year-mark{font-size:88px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;user-select:none}
+.brand{text-align:right}
+.brand-src{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase}
+.brand-name{font-size:16px;font-weight:700;color:var(--accent);margin-top:2px;letter-spacing:1px}
+.hdr{padding:10px 24px 20px;text-align:center}
+.hdr-label{font-size:9px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.hdr-title{font-size:48px;font-weight:900;line-height:1.1;background:linear-gradient(135deg,#fff 0%,#9ca3af 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-date{font-size:13px;color:rgba(255,255,255,0.4);margin-top:6px;letter-spacing:1px}
+.grid{padding:0 16px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.cls{display:flex;flex-direction:column;gap:10px}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;position:relative}
+.accent-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent),var(--cyan));box-shadow:0 0 12px var(--accent)}
+.c-head{padding:10px 14px 8px;display:flex;align-items:center;gap:8px}
+.c-icon{width:28px;height:28px;border-radius:8px;background:rgba(255,107,53,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0}
+.c-icon[data-t="space"]{background:rgba(0,201,255,0.15);color:var(--cyan)}
+.c-icon[data-t="war"]{background:rgba(255,51,102,0.15);color:var(--red)}
+.c-icon[data-t="politics"]{background:rgba(124,77,255,0.15);color:var(--purple)}
+.c-icon[data-t="world"]{background:rgba(255,193,7,0.15);color:var(--gold)}
+.c-title{font-size:14px;font-weight:700;line-height:1.2;flex:1;color:var(--white)}
+.c-rank{position:absolute;top:8px;right:12px;font-size:36px;font-weight:900;color:rgba(255,255,255,0.05);line-height:1;user-select:none}
+.c-body{padding:0 14px 12px;font-size:19px;line-height:1.4;color:rgba(255,255,255,0.7)}
+.c-stat{display:flex;gap:12px;padding:8px 14px 10px}
+.s-item{flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:8px 10px;text-align:center}
+.s-val{font-size:22px;font-weight:900;color:var(--accent)}
+.s-label{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;letter-spacing:0.5px}
+.c-tag{padding:0 14px 12px;display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:9px;padding:3px 8px;border-radius:20px;background:rgba(255,107,53,0.12);color:rgba(255,255,255,0.5);letter-spacing:0.5px;border:1px solid rgba(255,107,53,0.2)}
+.tag.gold{background:rgba(255,193,7,0.1);border-color:rgba(255,193,7,0.2);color:rgba(255,193,7,0.7)}
+.tag.cyan{background:rgba(0,201,255,0.1);border-color:rgba(0,201,255,0.2);color:rgba(0,201,255,0.7)}
+.tag.purple{background:rgba(124,77,255,0.1);border-color:rgba(124,77,255,0.2);color:rgba(124,77,255,0.7)}
+.tag.red{background:rgba(255,51,102,0.1);border-color:rgba(255,51,102,0.2);color:rgba(255,51,102,0.7)}
+.h2{grid-column:span 2}
+.h3{grid-column:span 3}
+.h4{grid-column:span 4}
+.h6{grid-column:span 6}
+.mini-h{grid-column:span 3;min-height:80px}
+.mini-h .c-head{padding:8px 12px}
+.mini-h .c-title{font-size:12px}
+.mini-h .c-body{padding:0 12px 8px;font-size:14px}
+.hot-card{background:linear-gradient(135deg,rgba(255,107,53,0.15),rgba(255,51,102,0.1));border:1px solid rgba(255,107,53,0.25)}
+.hot-card .c-icon{background:rgba(255,107,53,0.25);color:#fff}
+.hot-card .accent-bar{background:var(--accent);box-shadow:0 0 20px var(--accent)}
+.sec-label{grid-column:span 6;padding:16px 4px 6px;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.25);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05)}
+.ai-card{background:linear-gradient(135deg,rgba(124,77,255,0.12),rgba(0,201,255,0.08));border:1px solid rgba(124,77,255,0.25)}
+.ai-card .accent-bar{background:linear-gradient(180deg,var(--purple),var(--cyan));box-shadow:0 0 15px var(--purple)}
+.ai-card .c-icon{background:rgba(124,77,255,0.25);color:#fff}
+.ai-analysis{padding:0 14px 12px;display:flex;flex-direction:column;gap:8px}
+.ai-row{display:flex;gap:8px;align-items:flex-start}
+.ai-label{font-size:9px;padding:3px 7px;border-radius:4px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);white-space:nowrap;min-width:40px;text-align:center}
+.ai-text{font-size:12px;line-height:1.5;color:rgba(255,255,255,0.65)}
+.ai-badge{font-size:8px;padding:2px 6px;border-radius:4px;margin-left:6px;font-weight:700}
+.badge-h{background:rgba(255,51,102,0.2);color:var(--red)}
+.badge-m{background:rgba(255,193,7,0.15);color:var(--gold)}
+.badge-l{background:rgba(0,201,255,0.15);color:var(--cyan)}
+.footer{grid-column:span 6;padding:16px 4px 0;text-align:center;border-top:1px solid rgba(255,255,255,0.05);margin-top:10px}
+.footer-text{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1px}
+.footer-text span{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="bg-deco"></div>
+<div class="noise"></div>
+<div class="wrap">
+  <div class="top-bar">
+    <div class="year-mark">2026</div>
+    <div class="brand">
+      <div class="brand-src">Data Source</div>
+      <div class="brand-name">CBS News / AP</div>
+    </div>
+  </div>
+
+  <div class="hdr">
+    <div class="hdr-label">Global Headlines</div>
+    <div class="hdr-title">全球热点新闻</div>
+    <div class="hdr-date">2026.04.07 · 中东局势 / 月球探测 / 地缘政治</div>
+  </div>
+
+  <div class="grid">
+    <!-- SECTION: TOP STORY -->
+    <div class="sec-label">🔴 头条</div>
+
+    <!-- ARTEMIS II HERO - H4 -->
+    <div class="card h4 hot-card">
+      <div class="accent-bar"></div>
+      <div class="c-rank">01</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="space">[🚀]</div>
+        <div class="c-title">Artemis II 刷新人类最远飞行纪录</div>
+      </div>
+      <div class="c-body"> 宇航员乘组成功环绕月球背面，完成人类史上最远飞行距离纪录，特朗普致电祝贺</div>
+      <div class="c-stat">
+        <div class="s-item"><div class="s-val">140万+</div><div class="s-label">公里地月距离</div></div>
+        <div class="s-item"><div class="s-val">创纪录</div><div class="s-label">人类最远飞行</div></div>
+      </div>
+      <div class="c-tag">
+        <span class="tag cyan">NASA</span><span class="tag gold">月球</span><span class="tag purple">历史性</span>
+      </div>
+    </div>
+
+    <!-- TRUMP IRAN THREAT - H2 -->
+    <div class="card h2 hot-card">
+      <div class="accent-bar"></div>
+      <div class="c-rank">02</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="war">[!]</div>
+        <div class="c-title">特朗普警告伊朗"时间不多了"</div>
+      </div>
+      <div class="c-body"> 特朗普向伊朗发出强硬警告，中东局势持续紧张</div>
+      <div class="c-tag"><span class="tag red">中东</span><span class="tag">美伊关系</span></div>
+    </div>
+
+    <!-- IRAN AIRMAN RESCUE - H2 -->
+    <div class="card h2">
+      <div class="accent-bar"></div>
+      <div class="c-rank">03</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="war">[✈]</div>
+        <div class="c-title">美军飞行员从伊朗获救</div>
+      </div>
+      <div class="c-body"> F-15机组人员从伊朗成功获救，细节曝光</div>
+      <div class="c-tag"><span class="tag red">军事</span><span class="tag">中东</span></div>
+    </div>
+
+    <!-- SECTION: MIDDLE EAST -->
+    <div class="sec-label">🌍 中东局势</div>
+
+    <!-- FLIGHT PRICES - H3 -->
+    <div class="card h3">
+      <div class="accent-bar"></div>
+      <div class="c-rank">04</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="war">[$]</div>
+        <div class="c-title">航班价格暴涨</div>
+      </div>
+      <div class="c-body"> 受中东战争影响，全球航线价格飙升，航空公司紧急调整</div>
+      <div class="c-tag">
+        <span class="tag gold">经济</span><span class="tag">航空</span><span class="tag red">中东</span>
+      </div>
+    </div>
+
+    <!-- POPE LEO EASTER - H3 -->
+    <div class="card h3">
+      <div class="accent-bar"></div>
+      <div class="c-rank">05</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="world">[✝]</div>
+        <div class="c-title">教皇良十四世发表复活节和平呼吁</div>
+      </div>
+      <div class="c-body"> 教皇利奥十四世在复活节讲话中呼吁全球和平，耶路撒冷超正统派因战争限制空旷</div>
+      <div class="c-tag">
+        <span class="tag gold">宗教</span><span class="tag">和平</span>
+      </div>
+    </div>
+
+    <!-- TRUMP IRAN SPEECH - H4 -->
+    <div class="card h4">
+      <div class="accent-bar"></div>
+      <div class="c-rank">06</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="politics">[📢]</div>
+        <div class="c-title">特朗普就伊朗战争发表全国讲话</div>
+      </div>
+      <div class="c-body"> 特朗普就中东局势发表讲话，措辞强硬含糊，信息矛盾引发关注</div>
+      <div class="c-tag">
+        <span class="tag purple">美国政治</span><span class="tag red">中东</span>
+      </div>
+    </div>
+
+    <!-- SECTION: WORLD -->
+    <div class="sec-label">🌐 世界动态</div>
+
+    <!-- H1B VISA - MINI -->
+    <div class="card mini-h">
+      <div class="accent-bar"></div>
+      <div class="c-head">
+        <div class="c-icon" data-t="politics">[H1B]</div>
+        <div class="c-title">H-1B签证政策变化</div>
+      </div>
+      <div class="c-body"> 特朗普对H-1B签证政策调整引发科技界担忧</div>
+      <div class="c-tag"><span class="tag purple">移民</span><span class="tag">科技</span></div>
+    </div>
+
+    <!-- PAM BONDI - MINI -->
+    <div class="card mini-h">
+      <div class="accent-bar"></div>
+      <div class="c-head">
+        <div class="c-icon" data-t="politics">[⚖]</div>
+        <div class="c-title"> Pam Bondi 被解职</div>
+      </div>
+      <div class="c-body"> 司法部长 Pam Bondi 被特朗普解雇</div>
+      <div class="c-tag"><span class="tag purple">美国政治</span></div>
+    </div>
+
+    <!-- 14 YEAR OLD GOVERNOR - H3 -->
+    <div class="card h3">
+      <div class="accent-bar"></div>
+      <div class="c-rank">07</div>
+      <div class="c-head">
+        <div class="c-icon" data-t="world">[?!]</div>
+        <div class="c-title">14岁少年竞选佛蒙特州长</div>
+      </div>
+      <div class="c-body"> 一位年仅14岁的少年宣布参加佛蒙特州州长竞选，成为全美最年轻的候选人之一</div>
+      <div class="c-tag">
+        <span class="tag gold">美国政治</span><span class="tag">趣闻</span>
+      </div>
+    </div>
+
+    <!-- TIGHTER MARKETS -->
+    <div class="card h6">
+      <div class="accent-bar"></div>
+      <div class="c-head">
+        <div class="c-icon" data-t="world">[$]</div>
+        <div class="c-title">全球市场动荡</div>
+      </div>
+      <div class="c-body"> 美联储维持鹰派立场，美股波动加剧，科技股估值压力显现；黄金逼近历史高位；原油因中东局势突破90美元关口</div>
+      <div class="c-tag">
+        <span class="tag gold">金融市场</span><span class="tag">经济</span><span class="tag cyan">黄金</span><span class="tag red">原油</span>
+      </div>
+    </div>
+
+    <!-- SECTION: AI ANALYSIS -->
+    <div class="sec-label">[AI] Jarvis 全球格局评估</div>
+
+    <!-- AI CARD -->
+    <div class="card h6 ai-card">
+      <div class="accent-bar"></div>
+      <div class="c-head">
+        <div class="c-icon">[J]</div>
+        <div class="c-title">本周全球风险与机遇评估</div>
+      </div>
+      <div class="ai-analysis">
+        <div class="ai-row">
+          <span class="ai-label">宏观</span>
+          <span class="ai-text">中东局势是最大黑天鹅，Artemis II成功为太空探索注入强心剂，地缘政治风险整体升高</span>
+          <span class="ai-badge badge-h">高</span>
+        </div>
+        <div class="ai-row">
+          <div class="ai-label">外交</div>
+          <div class="ai-text">美伊对峙升级，欧洲斡旋空间有限；教皇和平呼吁或为外交降温创造窗口</div>
+          <span class="ai-badge badge-h">高</span>
+        </div>
+        <div class="ai-row">
+          <div class="ai-label">内政</div>
+          <div class="ai-text">特朗普政府人事动荡持续，内政优先或暂时压制外交强硬选项</div>
+          <span class="ai-badge badge-m">中</span>
+        </div>
+        <div class="ai-row">
+          <div class="ai-label">亮点</div>
+          <div class="ai-text">Artemis II刷新人类飞行纪录，商业航天进程加速；14岁竞选州长体现美国公民文化</div>
+          <span class="ai-badge badge-l">低</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-text">数据来源：<span>CBS News / AP News</span> · 生成时间 2026-04-07 · Jarvis AI</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结语</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+.top-bar {
+  height: 6px;
+  background: linear-gradient(90deg, #007aff, #5856d6, #af52de, #ff375f);
+  flex-shrink: 0;
+}
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+.content {
+  text-align: center;
+  max-width: 900px;
+}
+.brand {
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #007aff, #5856d6, #af52de);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+.tagline {
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.sub {
+  font-size: clamp(14px, 2vw, 20px);
+  color: #a1a1aa;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-num {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #007aff, #af52de);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 11px;
+  color: #8888aa;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #007aff, #af52de);
+  margin: 0 auto 24px;
+  border-radius: 1px;
+}
+.sources {
+  font-size: 11px;
+  color: #6666aa;
+  letter-spacing: 1px;
+}
+.date {
+  font-size: 12px;
+  color: #8888aa;
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+.bottom-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #007aff, #5856d6, #af52de);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="main">
+    <div class="content">
+      <div class="brand">Jarvis Daily Brief</div>
+      <div class="tagline">一站式全球热点资讯</div>
+      <div class="divider"></div>
+      <div class="sub">覆盖NBA、地缘政治、大宗商品、社交媒体热点<br>每日更新，助力决策</div>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">6</div>
+          <div class="stat-label">内容板块</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">数据来源</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Daily</div>
+          <div class="stat-label">更新频率</div>
+        </div>
+      </div>
+      <div class="sources">Sources: Tavily / Reddit API / Goldman Sachs / NBA Stats / Twitter/X</div>
+      <div class="date">2026年4月5日 · Sunday</div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</body>
+</html>

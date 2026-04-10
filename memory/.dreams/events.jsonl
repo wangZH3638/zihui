@@ -1,0 +1,3 @@
+{"type":"memory.recall.recorded","timestamp":"2026-04-09T14:09:53.393Z","query":"王子辉 记忆","resultCount":1,"results":[{"path":"memory/2026-04-08.md","startLine":1,"endLine":28,"score":0.7596711049373087}]}
+{"type":"memory.recall.recorded","timestamp":"2026-04-09T15:17:04.371Z","query":"懂点心理学 心理学科普 卡片设计","resultCount":2,"results":[{"path":"memory/2026-04-05.md","startLine":76,"endLine":98,"score":0.764055094788116},{"path":"memory/2026-04-03.md","startLine":1,"endLine":38,"score":0.7454143282896581}]}
+{"type":"memory.recall.recorded","timestamp":"2026-04-09T15:17:16.225Z","query":"懂点心理学 辉常心理 你也懂点心理学 第一张","resultCount":1,"results":[{"path":"memory/2026-04-08.md","startLine":1,"endLine":28,"score":0.7596711049373087}]}

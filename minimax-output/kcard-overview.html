@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>击剑升学 — 路径总览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&family=Space+Grotesk:wght@400;700&display=swap');
+
+:root {
+  --black:  #0f0f0f;
+  --white:  #faf9f7;
+  --cream:  #f5f0e8;
+  --accent: #e8c547;
+  --red:    #d94f3d;
+  --blue:   #2d5a8a;
+  --gray:   #6b6b6b;
+  --border: #e0dbd3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #d4d0c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── 顶部：深色标题区 32% ── */
+.hero {
+  height: 32%;
+  background: var(--black);
+  position: relative;
+  padding: 44px 64px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+}
+
+.kicker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+/* 右上角装饰 */
+.year-mark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 160px;
+  overflow: visible;
+}
+.year-num {
+  position: absolute;
+  top: 16px;
+  right: 36px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+}
+.year-text {
+  position: absolute;
+  top: 88px;
+  right: 36px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(232, 197, 71, 0.6);
+  letter-spacing: 0.2em;
+}
+
+/* ── 中部：两条路径 52% ── */
+.body {
+  height: 52%;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 120px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.16;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.divider {
+  background: var(--border);
+}
+
+.path-col {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.path-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.path-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.path-01 .path-num { color: var(--red); }
+.path-02 .path-num { color: var(--blue); }
+
+.path-label {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 0.05em;
+}
+
+.path-tag {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.path-items {
+  flex: 1;
+}
+
+.path-item {
+  margin-bottom: 14px;
+}
+
+.path-item-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.path-item-value {
+  font-size: 13px;
+  color: var(--black);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.path-item-value.large {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.highlight-strip {
+  margin-top: auto;
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+
+.path-01 .highlight-strip {
+  background: rgba(217, 79, 61, 0.08);
+  border-left: 3px solid var(--red);
+}
+
+.path-02 .highlight-strip {
+  background: rgba(45, 90, 138, 0.08);
+  border-left: 3px solid var(--blue);
+}
+
+.highlight-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.path-01 .highlight-label { color: var(--red); }
+.path-02 .highlight-label { color: var(--blue); }
+
+.highlight-text {
+  font-size: 12px;
+  color: var(--black);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ── 底部：金色引言 16% ── */
+.quote {
+  height: 16%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  padding: 0 64px;
+  gap: 20px;
+}
+
+.quote-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.1);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.quote-from {
+  margin-left: auto;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 9px;
+  color: rgba(0,0,0,0.35);
+  font-style: normal;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部 -->
+  <div class="hero">
+    <div class="kicker">Fencing · Education · Pathway</div>
+    <div class="hero-title">击剑升学<br>路径总览</div>
+    <div class="hero-sub">两条通道，不同选择</div>
+    <div class="year-mark">
+      <div class="year-num">2026</div>
+      <div class="year-text">陕西杰森</div>
+    </div>
+  </div>
+
+  <!-- 中部 -->
+  <div class="body">
+    <!-- 路径01：教育系统 -->
+    <div class="path-col path-01">
+      <div class="path-header">
+        <div class="path-num">01</div>
+        <div>
+          <div class="path-label">教育系统</div>
+          <div class="path-tag">特长生通道</div>
+        </div>
+      </div>
+      <div class="path-items">
+        <div class="path-item">
+          <div class="path-item-label">参赛比赛</div>
+          <div class="path-item-value">西安市中小学生击剑比赛</div>
+        </div>
+        <div class="path-item">
+          <div class="path-item-label">主办方</div>
+          <div class="path-item-value">西安市教育局 + 西安市体育局</div>
+        </div>
+        <div class="path-item">
+          <div class="path-item-label">获得资格</div>
+          <div class="path-item-value large">市级比赛前6名</div>
+        </div>
+      </div>
+      <div class="highlight-strip">
+        <div class="highlight-label">升学用途</div>
+        <div class="highlight-text">小升初、初升高<br>最低普高线60%录取</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 路径02：体育系统 -->
+    <div class="path-col path-02">
+      <div class="path-header">
+        <div class="path-num">02</div>
+        <div>
+          <div class="path-label">体育系统</div>
+          <div class="path-tag">运动员等级通道</div>
+        </div>
+      </div>
+      <div class="path-items">
+        <div class="path-item">
+          <div class="path-item-label">参赛比赛</div>
+          <div class="path-item-value">陕西省青少年击剑冠军赛<br>陕西省青少年击剑锦标赛</div>
+        </div>
+        <div class="path-item">
+          <div class="path-item-label">主办方</div>
+          <div class="path-item-value">陕西省体育局</div>
+        </div>
+        <div class="path-item">
+          <div class="path-item-label">获得证书</div>
+          <div class="path-item-value large">一级 / 二级运动员等级证书</div>
+        </div>
+      </div>
+      <div class="highlight-strip">
+        <div class="highlight-label">升学用途</div>
+        <div class="highlight-text">高考体育单招<br>一级文化线可降30分录取</div>
+      </div>
+    </div>
+    <div class="watermark">陕西杰森</div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="quote">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">让热爱与未来，可以兼得</div>
+    <div class="quote-from">— 陕西杰森击剑</div>
+  </div>
+
+</div>
+</body>
+</html>

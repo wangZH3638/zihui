@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识卡片</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --black:  #141414;
+  --white:  #FAFAF8;
+  --accent: #E8C547;
+  --gray-light: #E2DFD6;
+  --gray-mid:  #C4BEA0;
+  --gray-dark: #888888;
+  --text-main: #1a1a1a;
+  --tag-bg: #F0EDE6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #e8e5de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.10);
+}
+
+/* ── 顶部：深黑底 ── */
+.hero {
+  height: 32%;
+  background: var(--black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px 56px 28px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 60px, transparent 60px);
+}
+
+.kicker {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.kicker-year {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.07);
+  line-height: 1;
+  position: absolute;
+  top: 20px;
+  right: 48px;
+  letter-spacing: -0.02em;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--white) 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.50);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  max-width: 520px;
+}
+
+/* ── 中部：白色三栏 ── */
+.body {
+  height: 52%;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  align-items: stretch;
+}
+
+.rule { background: var(--gray-light); }
+
+.col {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 2px;
+  letter-spacing: 0.02em;
+}
+
+.col-label {
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.col-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.col-text {
+  font-size: 17px;
+  color: var(--gray-dark);
+  line-height: 1.75;
+  font-weight: 300;
+  flex: 1;
+}
+
+.col-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.ctag {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--gray-dark);
+  background: var(--tag-bg);
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+
+/* ── 底部：金色引言条 ── */
+.quote-bar {
+  height: 16%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  padding: 0 56px;
+  gap: 20px;
+}
+
+.quote-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.quote-from {
+  margin-left: auto;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  color: rgba(0,0,0,0.38);
+  font-style: normal;
+  font-weight: 400;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部 -->
+  <div class="hero">
+    <div class="kicker">家庭教育 · 亲子关系</div>
+    <div class="hero-title">她和"旧布"<br>还有青春期</div>
+    <div class="hero-sub">当孩子把你推得越远，将来她才能走得越稳。<br>一位母亲记录14岁女儿的成长阵痛</div>
+    <div class="kicker-year">2026</div>
+  </div>
+
+  <!-- 中部三栏 -->
+  <div class="body">
+
+    <div class="col">
+      <div class="col-num">01</div>
+      <div class="col-label">认知重建</div>
+      <div class="col-title">她的"作"，是成长的勋章</div>
+      <div class="col-text">孩子变坏变叛逆，不是教育出了问题。<br>这是十四岁，生物学上人格的转折点。</div>
+      <div class="col-tags">
+        <span class="ctag">青春期</span>
+        <span class="ctag">荷尔蒙</span>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="col">
+      <div class="col-num">02</div>
+      <div class="col-label">关系边界</div>
+      <div class="col-title">她说"滚"，你应该高兴</div>
+      <div class="col-text">和你犟嘴说明她的边界在形成。<br>言听计从才真正值得警惕——自我被压抑了。</div>
+      <div class="col-tags">
+        <span class="ctag">边界感</span>
+        <span class="ctag">自我</span>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="col">
+      <div class="col-num">03</div>
+      <div class="col-label">应对方式</div>
+      <div class="col-title">接住她的爱，用她接受的方式</div>
+      <div class="col-text">她不是不爱你，只是换了一种表达。<br>用她能接受的方式爱她，才是真正的亲密。</div>
+      <div class="col-tags">
+        <span class="ctag">无条件的爱</span>
+        <span class="ctag">非暴力沟通</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部金色引言 -->
+  <div class="quote-bar">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">她现在把你推得越远，将来她才能走得越稳。</div>
+    <div class="quote-from">— 贾维斯 · 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Card B</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f0ede6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.10);
+}
+
+/* ── LAYOUT B: 顶部全出血 + 卡片阵列 ── */
+.b-hero {
+  height: 38%;
+  background: #2D4A3E;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px 48px;
+}
+
+.b-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #C9A84C;
+}
+
+.b-vol {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.b-hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 44px;
+  font-weight: 900;
+  color: #FAFAF8;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.b-hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.b-hero-num {
+  position: absolute;
+  top: 24px;
+  right: 48px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 100px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+}
+
+/* ── 下方三栏 ── */
+.b-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 46%;
+}
+
+.b-col {
+  padding: 28px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.b-col:nth-child(1) { background: #FAFAF8; }
+.b-col:nth-child(2) { background: #F5F0E8; }
+.b-col:nth-child(3) { background: #FAFAF8; }
+
+.b-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: #E0DDD4;
+}
+
+.b-col-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: #C9A84C;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.b-col-label {
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: #bbb;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.b-col-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.b-col-text {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.75;
+  font-weight: 300;
+  flex: 1;
+}
+
+.b-col-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.b-key {
+  font-size: 9px;
+  background: #2D4A3E;
+  color: rgba(255,255,255,0.7);
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* ── 底部引言条 ── */
+.b-quote {
+  height: 16%;
+  background: #C9A84C;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  gap: 16px;
+}
+
+.b-quote-bar {
+  width: 4px;
+  height: 32px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.b-quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.b-quote-from {
+  font-size: 10px;
+  color: rgba(0,0,0,0.4);
+  margin-left: auto;
+  white-space: nowrap;
+  font-style: normal;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部绿底大标题 -->
+  <div class="b-hero">
+    <div class="b-vol">Vol.01 · Intelligence Series · 2026</div>
+    <div class="b-hero-title">AI时代<br>知识工作生存指南</div>
+    <div class="b-hero-sub">不是AI取代你，而是会用AI的人取代你。三张卡片，建立真正的AI竞争力。</div>
+    <div class="b-hero-num">01</div>
+  </div>
+
+  <!-- 三栏 -->
+  <div class="b-grid">
+
+    <div class="b-col">
+      <div class="b-col-num">01</div>
+      <div class="b-col-label">认知重建</div>
+      <div class="b-col-title">把AI当作超级助理，而不是威胁</div>
+      <div class="b-col-text">它能做什么 · 边界在哪里 · 如何协作<br>判断AI的能力边界，是第一步</div>
+      <div class="b-col-keys">
+        <span class="b-key">AI思维</span>
+        <span class="b-key">协作</span>
+      </div>
+    </div>
+
+    <div class="b-col">
+      <div class="b-col-num">02</div>
+      <div class="b-col-label">能力杠杆</div>
+      <div class="b-col-title">Prompt是新时代的编程语言</div>
+      <div class="b-col-text">结构化指令 · 上下文管理 · 迭代优化<br>组合式调用 · 链式推理</div>
+      <div class="b-col-keys">
+        <span class="b-key">Prompt</span>
+        <span class="b-key">工程化</span>
+      </div>
+    </div>
+
+    <div class="b-col">
+      <div class="b-col-num">03</div>
+      <div class="b-col-label">工作流重构</div>
+      <div class="b-col-title">用AI批量生产，人脑判断质量</div>
+      <div class="b-col-text">自动化初稿 · 人工审核 · 持续迭代<br>流程固化 · 规模化生产</div>
+      <div class="b-col-keys">
+        <span class="b-key">自动化</span>
+        <span class="b-key">规模化</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部引言 -->
+  <div class="b-quote">
+    <div class="b-quote-bar"></div>
+    <div class="b-quote-text">"未来属于善用AI的人，而不是与AI竞争的人。"</div>
+    <div class="b-quote-from">— Jarvis</div>
+  </div>
+
+</div>
+</body>
+</html>

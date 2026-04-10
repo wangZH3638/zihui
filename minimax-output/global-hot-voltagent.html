@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球热点 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg: #f5f5f0;
+  --black: #0a0a0a;
+  --red: #e63946;
+  --yellow: #ffd60a;
+  --blue: #4361ee;
+  --shadow: 6px 6px 0 var(--black);
+  --shadow-sm: 3px 3px 0 var(--black);
+}
+
+* { margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 900px;
+  height: 1200px;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── TITLE BAR ─── */
+.titlebar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  z-index: 10;
+}
+
+.titlebar-text {
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.titlebar-date {
+  font-size: 10px;
+  font-weight: 500;
+  color: #888;
+  margin-left: auto;
+}
+
+/* ─── HERO BOX ─── */
+.herobox {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 440px;
+  height: 340px;
+  background: var(--red);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.herobox-num {
+  font-size: 80px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  opacity: 0.3;
+}
+
+.herobox-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.herobox-sub {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.9;
+  margin-top: auto;
+}
+
+.herobox-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 10px;
+  background: #fff;
+  color: var(--red);
+}
+
+/* ─── BODY TEXT BOX ─── */
+.bodybox {
+  position: absolute;
+  top: 380px;
+  left: 20px;
+  width: 440px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+}
+
+.bodybox-text {
+  font-size: 11px;
+  color: var(--black);
+  line-height: 1.6;
+}
+
+/* ─── SIDE STACK ─── */
+.sidestack {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sideitem {
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sideitem-num {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1;
+  min-width: 36px;
+}
+
+.sideitem-num.red { color: var(--red); }
+.sideitem-num.blue { color: var(--blue); }
+.sideitem-num.yellow { color: var(--black); -webkit-text-stroke: 1px var(--black); }
+
+.sideitem-content {
+  flex: 1;
+}
+
+.sideitem-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.sideitem-title.sm { font-size: 12px; font-weight: 600; }
+
+.sideitem-meta {
+  font-size: 8px;
+  color: #888;
+}
+
+.sideitem-body {
+  font-size: 9px;
+  color: #666;
+  line-height: 1.4;
+  margin-top: 3px;
+}
+
+/* ─── BOTTOM GRID ─── */
+.bottomgrid {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.bottombit {
+  background: var(--yellow);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bottombit.blue-bg { background: var(--blue); }
+.bottombit.white-bg { background: #fff; }
+
+.bottombit-num {
+  font-size: 8px;
+  font-weight: 900;
+  color: var(--black);
+  letter-spacing: 0.1em;
+}
+
+.bottombit.white-bg .bottombit-num { color: var(--red); }
+
+.bottombit-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.bottombit.white-bg .bottombit-title { font-size: 11px; font-weight: 600; }
+
+/* ─── BIG WATERMARK ─── */
+.bigyear {
+  position: absolute;
+  bottom: 200px;
+  right: 0;
+  font-size: 280px;
+  font-weight: 900;
+  color: var(--black);
+  opacity: 0.04;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+/* ─── FOOTER ─── */
+.footerbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+.footerbar-text {
+  font-size: 8px;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.08em;
+}
+
+.footerbar-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--red);
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Title Bar -->
+  <div class="titlebar">
+    <div class="titlebar-text">GLOBAL HOT</div>
+    <div class="titlebar-date">Apr 06 2026 · Reuters · AP · WSJ</div>
+  </div>
+
+  <!-- Hero Box - Red with hard shadow -->
+  <div class="herobox">
+    <div class="herobox-num">01</div>
+    <div class="herobox-title">美伊<br>战争</div>
+    <div class="herobox-sub">Breaking · 谈判与冲突并行</div>
+    <div class="herobox-tags">
+      <span class="tag">美伊战争</span>
+      <span class="tag">停火谈判</span>
+      <span class="tag">导弹荒</span>
+    </div>
+  </div>
+
+  <!-- Body text box -->
+  <div class="bodybox">
+    <div class="bodybox-text">
+      美以联合空袭伊朗，导弹能力严重受损。F-15E被击落。45天停火提案谈判中，鲁比奥称看到终战终点线。
+    </div>
+  </div>
+
+  <!-- Side Stack -->
+  <div class="sidestack">
+    <div class="sideitem">
+      <div class="sideitem-num">02</div>
+      <div class="sideitem-content">
+        <div class="sideitem-title">NASA 50年首次载人登月</div>
+        <div class="sideitem-meta">Apr 02 · NASA</div>
+        <div class="sideitem-body">Artemis任务发射，4名宇航员飞往月球</div>
+      </div>
+    </div>
+
+    <div class="sideitem">
+      <div class="sideitem-num blue">03</div>
+      <div class="sideitem-content">
+        <div class="sideitem-title">Anthropic核心代码泄密</div>
+        <div class="sideitem-meta">Apr 04 · WSJ</div>
+        <div class="sideitem-body">AI智能体代码意外泄露</div>
+      </div>
+    </div>
+
+    <div class="sideitem">
+      <div class="sideitem-num">04</div>
+      <div class="sideitem-content">
+        <div class="sideitem-title">敏昂莱当选缅甸总统</div>
+        <div class="sideitem-meta">Apr 03 · Reuters</div>
+      </div>
+    </div>
+
+    <div class="sideitem">
+      <div class="sideitem-num red">05</div>
+      <div class="sideitem-content">
+        <div class="sideitem-title">俄军无人机袭哈尔科夫</div>
+        <div class="sideitem-meta">Reuters</div>
+        <div class="sideitem-body">酒店起火，平民伤亡</div>
+      </div>
+    </div>
+
+    <div class="sideitem">
+      <div class="sideitem-num yellow">06</div>
+      <div class="sideitem-content">
+        <div class="sideitem-title sm">特朗普机场安检私有化</div>
+        <div class="sideitem-meta">Reuters · TSA私有化提案</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big year watermark -->
+  <div class="bigyear">2026</div>
+
+  <!-- Bottom Grid -->
+  <div class="bottomgrid">
+    <div class="bottombit">
+      <div class="bottombit-num">07</div>
+      <div class="bottombit-title">华为增长2.2%</div>
+    </div>
+    <div class="bottombit white-bg">
+      <div class="bottombit-num">08</div>
+      <div class="bottombit-title">Nike销售预警</div>
+    </div>
+    <div class="bottombit blue-bg">
+      <div class="bottombit-num" style="color:#fff;">09</div>
+      <div class="bottombit-title" style="color:#fff;">德国马来貘宝宝</div>
+    </div>
+    <div class="bottombit">
+      <div class="bottombit-num">10</div>
+      <div class="bottombit-title">特朗普最高法院</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footerbar">
+    <div class="footerbar-dot"></div>
+    <div class="footerbar-text">Sources: Reuters · AP News · WSJ · NASA · 2026-04-06</div>
+  </div>
+
+</div>
+</body>
+</html>

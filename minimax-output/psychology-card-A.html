@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你也懂点心理学 - 方案A</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  width: 800px;
+  height: 1067px;
+  background: #1a1a2e;
+  color: #fafafa;
+  overflow: hidden;
+  position: relative;
+}
+.top-accent {
+  height: 342px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #1a1a2e 60%, transparent 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 32px;
+}
+.top-accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #e94560, #ff6b8a);
+}
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.badge {
+  background: rgba(233,69,96,0.2);
+  border: 1px solid #e94560;
+  color: #e94560;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.badge-num {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  font-weight: 600;
+}
+.series-name {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.main-title {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.main-title .highlight {
+  color: #e94560;
+}
+.sub-title {
+  font-size: 22px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, #e94560, transparent);
+  margin: 28px 48px;
+}
+.content {
+  padding: 0 48px;
+}
+.signal-label {
+  font-size: 13px;
+  color: #e94560;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+.cards-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.card {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: #e94560;
+}
+.card-num {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.card-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+.movie-ref {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: rgba(233,69,96,0.08);
+  border-left: 3px solid #e94560;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 24px;
+}
+.movie-icon {
+  width: 36px;
+  height: 36px;
+  background: #e94560;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.movie-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.movie-text strong {
+  color: #fff;
+  font-weight: 600;
+}
+.quote-box {
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.quote-top {
+  font-size: 13px;
+  color: #e94560;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.quote-text {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+.quote-text strong {
+  color: #fff;
+}
+.interact-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(233,69,96,0.1);
+  border-radius: 12px;
+}
+.interact-icon {
+  font-size: 20px;
+}
+.interact-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.brand {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  text-align: right;
+}
+.brand-year {
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(233,69,96,0.06);
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffd700;
+  position: absolute;
+  top: 88px;
+  right: 0;
+}
+</style>
+</head>
+<body>
+<div class="top-accent">
+  <div class="brand">
+    <div class="brand-year">2026</div>
+    <div class="brand-name">陕西杰森</div>
+  </div>
+  <div class="badge-row">
+    <span class="badge">DSM-5 系列 · 02</span>
+    <span class="badge-num">A簇 · 偏执型</span>
+  </div>
+  <div class="series-name">你也懂点心理学</div>
+  <div class="main-title">3个<span class="highlight">"病理性猜疑"</span>信号</div>
+  <div class="sub-title">警惕偏执型伴侣！</div>
+</div>
+<div class="divider"></div>
+<div class="content">
+  <div class="signal-label">HIGH ACCURACY BEHAVIOR SIGNALS</div>
+  <div class="cards-row">
+    <div class="card">
+      <div class="card-num">信号 01</div>
+      <div class="card-title">无证据猜疑出轨</div>
+      <div class="card-body">频繁查手机、定位、翻垃圾桶，甚至伪造"证据"</div>
+    </div>
+    <div class="card">
+      <div class="card-num">信号 02</div>
+      <div class="card-title">解读所有行为为敌意</div>
+      <div class="card-body">你和异性吃饭=想出轨，晚回家=故意躲着</div>
+    </div>
+    <div class="card">
+      <div class="card-num">信号 03</div>
+      <div class="card-title">禁止社交</div>
+      <div class="card-body">限制你见朋友、家人，说"他们都想害你"</div>
+    </div>
+  </div>
+  <div class="movie-ref">
+    <div class="movie-icon">🎬</div>
+    <div class="movie-text">
+      <strong>《消失的爱人》艾米</strong> — 完美契合"对伴侣忠诚的病理性猜疑"
+    </div>
+  </div>
+  <div class="quote-box">
+    <div class="quote-top">小提醒</div>
+    <div class="quote-text">
+      这不是"在乎"，是认知偏差。<br><strong>健康关系不需要"监控式信任"</strong>
+    </div>
+  </div>
+  <div class="interact-box">
+    <div class="interact-icon">💬</div>
+    <div class="interact-text">你经历过"被无理由猜疑到窒息"吗？评论区聊聊！</div>
+  </div>
+</div>
+</body>
+</html>

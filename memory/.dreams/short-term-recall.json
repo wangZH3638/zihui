@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-09T15:17:16.225Z",
+  "entries": {
+    "memory:memory/2026-04-08.md:1:28": {
+      "key": "memory:memory/2026-04-08.md:1:28",
+      "path": "memory/2026-04-08.md",
+      "startLine": 1,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "# 2026-04-08 工作日志 ## 项目：你也懂点心理学 ### 用户偏好（本次沟通沉淀） 1. **视觉风格**：蓝灰分析风（方案B），背景调浅，不要太深 2. **作者名**：「辉常心理」（笔名，用户名里有\"辉\"字） 3. **系列名位置**：要显著突出，「你也懂点心理学」用徽章样式置顶 4. **emoji处理**：一律用文字符号替代（01/02/03、QA、+等） 5. **术语标注**：专业简称（BPD等）旁加小字备注（边缘型人格障碍） 6. **沟通风格**：有不同意见要提，用户不喜欢随声附和，我们是讨论不是确认 7. **卡片比例**：顶部留白不要太多，紧凑但不过挤 8. **术语选择**：\"伴侣行为对照\"→ 改为\"亲密关系对照\"（更准确，包容性更强） ### 制作规范（已确认） - 配色：浅蓝白背景 #f4f7fb + 主色 #00b4dc - 字体：Inter + NotoSansSC - 顶部比例：310px / ~29% - 作者名右上角，系列名徽章置顶 - 每张独立 accent 色（A簇偏执用红，分裂样用灰，边缘型用橙…） - 底部行距宽，内容紧凑 ### 卡片结构 01 开篇引流 → 02-04 A簇 → 05-08 B簇 → 09-11 C簇 → 12 投票结尾 ### 经验总结 - 卡片制作：先出3个方案让用户挑方向，再针对选中方案做细节调整 - 截图发微信先发文字激活通道，成功率更高",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.5193422098746174,
+      "maxScore": 0.7596711049373087,
+      "firstRecalledAt": "2026-04-09T14:09:53.393Z",
+      "lastRecalledAt": "2026-04-09T15:17:16.225Z",
+      "queryHashes": [
+        "6bd0fb81ae97",
+        "23f65a1c7019"
+      ],
+      "recallDays": [
+        "2026-04-09"
+      ],
+      "conceptTags": [
+        "01/02/03",
+        "02-04",
+        "05-08",
+        "09-11",
+        "工作",
+        "日志",
+        "项目",
+        "点心"
+      ]
+    },
+    "memory:memory/2026-04-05.md:76:98": {
+      "key": "memory:memory/2026-04-05.md:76:98",
+      "path": "memory/2026-04-05.md",
+      "startLine": 76,
+      "endLine": 98,
+      "source": "memory",
+      "snippet": "6. **科技新闻**（tech-news-2026-v2.html）- 创意不等宽布局 7. **AI 大新闻**（ai-big-news-2026.html）- 今日AI热点 8. **字体推荐**（font-picks-2026.html）- 字体对比 9. **ClawHub Top 10**（clawhub-top10.html）- 技能市场热门 ### 数据获取方式 | 频道 | 来源 | |------|------| | GitHub Trending | curl + json 解析 | | Reddit | reddit.com/r/popular API | | NBA | web_search + web_fetch | | ClawHub | clawhub.ai 搜索 | ### 知识卡片工具（已建立） - 工具目录：`/home/node/.openclaw/workspace/skills/knowledge-card/` - 标准模板：`kcard-mag-final.html` - 设计：杂志风（深黑顶32% + 白底三栏52% + 金色引言16%） - 方法：标题→三栏（认知/边界/行动）→金句 - 使用：发链接/文章 → 我转知识卡片PNG ## 输出目录 `/home/node/.openclaw/workspace/minimax-output/`",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.764055094788116,
+      "maxScore": 0.764055094788116,
+      "firstRecalledAt": "2026-04-09T15:17:04.371Z",
+      "lastRecalledAt": "2026-04-09T15:17:04.371Z",
+      "queryHashes": [
+        "a4695098a2da"
+      ],
+      "recallDays": [
+        "2026-04-09"
+      ],
+      "conceptTags": [
+        "tech-news-2026-v2.html",
+        "ai-big-news-2026.html",
+        "font-picks-2026.html",
+        "clawhub-top10.html",
+        "reddit.com/r/popular",
+        "web-search",
+        "web-fetch",
+        "clawhub.ai"
+      ]
+    },
+    "memory:memory/2026-04-03.md:1:38": {
+      "key": "memory:memory/2026-04-03.md:1:38",
+      "path": "memory/2026-04-03.md",
+      "startLine": 1,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "# 2026-04-03 日记 ## 信息图生成能力 - 重大突破 ### 1. 技术流程建立 - **HTML生成 + Playwright截图 + PNG发送** 一体化流程 - Playwright Chromium已安装在 `~/.cache/ms-playwright/chromium-1208/` - 截图脚本：`/home/node/.openclaw/workspace/scripts/html_screenshot.py` - 输出目录：`/home/node/.openclaw/workspace/minimax-output/` ### 2. 设计风格（已确定） **首选风格：浅色科技风** - 背景：白色/浅灰渐变 `#faf5ff → #f5f0fa` - 强调色：蓝紫渐变 `#667eea → #764ba2` - 卡片：白色背景 + 左侧4-5px彩色边框 - 圆角：14-16px - 悬浮阴影效果 **文字符号方案（替代emoji）** - 容器无emoji字体，改用文字符号 - [$] = 金钱 | [OIL] = 石油 | [GPU] = 芯片 | [BANK] = 银行 - [SHOP] = 购物 | [HOME] = 房产 | [CARD] = 信用卡 - [WINS] = 胜场 | [PTS] = 得分 | [MVP] = MVP ### 3. 页面布局规范 - 容器最大宽度：1100px - 内边距：35-40px - 标题区 → 对比卡片 → 数据网格 → 新闻网格 → 底部来源 - 字体层级：标题42-48px / 副",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7454143282896581,
+      "maxScore": 0.7454143282896581,
+      "firstRecalledAt": "2026-04-09T15:17:04.371Z",
+      "lastRecalledAt": "2026-04-09T15:17:04.371Z",
+      "queryHashes": [
+        "a4695098a2da"
+      ],
+      "recallDays": [
+        "2026-04-09"
+      ],
+      "conceptTags": [
+        "home/node",
+        "白色/浅灰渐变",
+        "左侧4-5px彩色边框",
+        "14-16px",
+        "35-40px",
+        "标题42-48px",
+        "日记",
+        "信息"
+      ]
+    }
+  }
+}

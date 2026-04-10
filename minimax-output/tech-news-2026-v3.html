@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技头条 2026 V3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsn,wght@0,3..960;1,3..960&family=Geist:wght@300;400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --bg:     #0a0a08;
+  --paper:  #f0ebe0;
+  --red:    #c83025;
+  --yellow: #e8c840;
+  --ink:    #1c1c18;
+  --muted:  #8a8478;
+  --rule:   #d8d3c8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 900px;
+  aspect-ratio: 3/4;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ══ TOP HEADER ══ */
+.header {
+  height: 14%;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 3px solid var(--red);
+}
+
+.header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.header-year {
+  font-family: 'Newsreader', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.header-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-date {
+  font-family: 'Geist', sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header-source {
+  font-family: 'Geist', sans-serif;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+
+/* ══ MAIN GRID ══ */
+.grid {
+  height: 76%;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 55% 45%;
+  gap: 1px;
+  background: #2a2a24;
+}
+
+/* ══ HERO CELL ══ */
+.hero {
+  grid-column: 1;
+  grid-row: 1;
+  background: var(--bg);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -20px;
+  font-family: 'Newsreader', serif;
+  font-size: 280px;
+  font-weight: 900;
+  color: rgba(200,48,37,0.06);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; }
+
+.hero-rank {
+  font-family: 'Geist', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hero-headline {
+  font-family: 'Newsreader', 'Noto Sans SC', serif;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.hero-headline .hl-red {
+  color: var(--red);
+}
+
+.hero-body {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 13px;
+  color: rgba(240,235,224,0.55);
+  line-height: 1.7;
+  font-weight: 300;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+
+.hero-footer {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-tag {
+  font-family: 'Geist', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border: 1px solid rgba(200,48,37,0.4);
+  color: var(--red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ══ STACK RIGHT ══ */
+.stack {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  background: #111009;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.stack-item {
+  flex: 1;
+  background: #141410;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 2px solid var(--red);
+  position: relative;
+  overflow: hidden;
+}
+
+.stack-item::after {
+  content: attr(data-rank);
+  position: absolute;
+  bottom: -8px;
+  right: 8px;
+  font-family: 'Newsreader', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(200,48,37,0.08);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.stack-rank {
+  font-family: 'Geist', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 0.2em;
+}
+
+.stack-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.stack-meta {
+  font-family: 'Geist', sans-serif;
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.stack-stat {
+  font-family: 'Geist', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-top: 2px;
+}
+
+/* ══ BOTTOM ROW ══ */
+.bottom-row {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #2a2a24;
+}
+
+.cell {
+  background: var(--bg);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+}
+
+.cell-rank {
+  font-family: 'Geist', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+.cell-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.cell-body {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  color: rgba(240,235,224,0.45);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.cell-stat {
+  font-family: 'Geist', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.c-r::before { background: var(--red); }
+.c-r .cell-stat { color: var(--red); }
+
+.c-y::before { background: var(--yellow); }
+.c-y .cell-stat { color: var(--yellow); }
+
+.c-g::before { background: #4a9e5b; }
+.c-g .cell-stat { color: #4a9e5b; }
+
+.c-bl::before { background: #5a7a8a; }
+.c-bl .cell-stat { color: #5a7a8a; }
+
+/* ══ ANALYSIS BAR ══ */
+.analysis-bar {
+  height: 10%;
+  background: var(--red);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.analysis-bar::after {
+  content: 'J.A.R.V.I.S.';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-family: 'Newsreader', serif;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.08);
+  letter-spacing: 0.2em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.a-item {
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid rgba(0,0,0,0.12);
+}
+
+.a-item:last-child { border-right: none; }
+
+.a-label {
+  font-family: 'Geist', sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.4);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.a-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #1c1c18;
+  line-height: 1.3;
+}
+
+.a-text {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 8px;
+  color: rgba(0,0,0,0.5);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.a-badge {
+  display: inline-block;
+  font-family: 'Geist', sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+  margin-top: 2px;
+}
+.b-h { background: rgba(0,0,0,0.12); color: #1c1c18; }
+.b-m { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.5); }
+.b-l { background: rgba(0,0,0,0.15); color: #1c1c18; }
+
+/* watermark */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-family: 'Newsreader', serif;
+  font-size: 140px;
+  font-weight: 900;
+  color: var(--red);
+  opacity: 0.04;
+  letter-spacing: 0.2em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="watermark">JARVIS</div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-year">2026</div>
+      <div class="header-title">科技头条</div>
+    </div>
+    <div class="header-right">
+      <div class="header-date">Apr 06 2026</div>
+      <div class="header-source">Sources: Bloomberg · NVIDIA · OpenAI · Microsoft</div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-rank">01 · Breaking</div>
+        <div class="hero-headline">
+          全球芯片荒<br>
+          手机暴跌<span class="hl-red"> 12.9%</span>
+        </div>
+        <div class="hero-body">
+          AI数据中心吞噬2026年70%存储芯片产能，内存告急！全球智能手机出货量创历史最大降幅，马斯克、库克同声警告芯片短缺危机将持续至2027年。
+        </div>
+        <div class="hero-footer">
+          <span class="hero-tag">芯片荒</span>
+          <span class="hero-tag">供应链</span>
+          <span class="hero-tag">AI数据中心</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack right (items 2-7) -->
+    <div class="stack">
+      <div class="stack-item" data-rank="02">
+        <div class="stack-rank">02 · $</div>
+        <div class="stack-title">马斯克Austin建TeraFab芯片工厂</div>
+        <div class="stack-meta">Fox Business · Tesla · SpaceX</div>
+        <div class="stack-stat">$250亿 投资</div>
+      </div>
+      <div class="stack-item" data-rank="03">
+        <div class="stack-rank">03 · GPU</div>
+        <div class="stack-title">NVIDIA GTC 2026发布DLSS 5</div>
+        <div class="stack-meta">NVIDIA · GTC 2026</div>
+        <div class="stack-stat">实时4K光追</div>
+      </div>
+      <div class="stack-item" data-rank="04">
+        <div class="stack-rank">04 · 机器人</div>
+        <div class="stack-title">Physical AI崛起重塑制造业</div>
+        <div class="stack-meta">Microsoft · 机器人</div>
+        <div class="stack-stat">工业自动化</div>
+      </div>
+      <div class="stack-item" data-rank="05">
+        <div class="stack-rank">05 · Fund</div>
+        <div class="stack-title">OpenAI完成1220亿美元融资</div>
+        <div class="stack-meta">OpenAI · 史上最大AI融资</div>
+        <div class="stack-stat">$1220亿</div>
+      </div>
+      <div class="stack-item" data-rank="06">
+        <div class="stack-rank">06 · China</div>
+        <div class="stack-title">中国手机品牌下调出货预期</div>
+        <div class="stack-meta">Digitimes · 供应链</div>
+        <div class="stack-stat">出货缩减</div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="bottom-row">
+      <div class="cell c-y">
+        <div class="cell-rank">07 · AI Model</div>
+        <div class="cell-title">Gemini 3登顶综合评分94.6</div>
+        <div class="cell-body">三大模型差异化竞争</div>
+        <div class="cell-stat">94.6分</div>
+      </div>
+      <div class="cell c-r">
+        <div class="cell-rank">08 · AI Model</div>
+        <div class="cell-title">GPT-5.4创作拔尖 Claude 4编程领先</div>
+        <div class="cell-body">三足鼎立格局初定</div>
+        <div class="cell-stat">三足鼎立</div>
+      </div>
+      <div class="cell c-bl">
+        <div class="cell-rank">09 · China AI</div>
+        <div class="cell-title">DeepSeek发布R2模型</div>
+        <div class="cell-body">推理成本再降90%，性价比极致</div>
+        <div class="cell-stat">成本-90%</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Analysis Bar -->
+  <div class="analysis-bar">
+    <div class="a-item">
+      <div class="a-label">芯片风险</div>
+      <div class="a-title">手机暴跌12.9%只是开始</div>
+      <div class="a-text">AI数据中心吞噬70%产能，芯片荒持续至2027年</div>
+      <div class="a-badge b-l">高风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">太空芯</div>
+      <div class="a-title">马斯克意在打破GPU垄断</div>
+      <div class="a-text">TeraFab 250亿美元建厂，构建第四条路</div>
+      <div class="a-badge b-m">中风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">算力</div>
+      <div class="a-title">NVIDIA GTC巩固霸主地位</div>
+      <div class="a-text">DLSS 5代表光追成熟，推理成本指数级下降</div>
+      <div class="a-badge b-h">高机会</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">趋势</div>
+      <div class="a-title">三条主线清晰</div>
+      <div class="a-text">芯片荒+Physical AI+大模型三足鼎立</div>
+      <div class="a-badge b-m">主线</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

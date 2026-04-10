@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBA季后赛形势 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --accent: #1d4ed8;
+  --blue: #3b82f6;
+  --red: #dc2626;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --purple: #8b5cf6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #09090a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 5%,  rgba(59,130,246,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 95%, rgba(139,92,246,0.14) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(59,130,246,0.5);
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 80px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--blue); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+.i  { --c: #1d4ed8; --c-bg: rgba(29,78,216,0.15); }
+.o  { --c: #f59e0b; --c-bg: rgba(245,158,11,0.15); }
+.g  { --c: #10b981; --c-bg: rgba(16,185,129,0.15); }
+.r  { --c: #dc2626; --c-bg: rgba(220,38,38,0.15); }
+.bl { --c: #6369f1; --c-bg: rgba(99,105,241,0.15); }
+.pk { --c: #8b5cf6; --c-bg: rgba(139,92,246,0.15); }
+.ai { --c: #ec4899; --c-bg: rgba(236,72,153,0.15); }
+
+.accent-bar.i  { background: #1d4ed8; box-shadow: 2px 0 12px rgba(29,78,216,0.5); }
+.accent-bar.o  { background: #f59e0b; box-shadow: 2px 0 12px rgba(245,158,11,0.5); }
+.accent-bar.g  { background: #10b981; box-shadow: 2px 0 12px rgba(16,185,129,0.5); }
+.accent-bar.r  { background: #dc2626; box-shadow: 2px 0 12px rgba(220,38,38,0.5); }
+.accent-bar.bl { background: #6369f1; box-shadow: 2px 0 12px rgba(99,105,241,0.5); }
+.accent-bar.pk { background: #8b5cf6; box-shadow: 2px 0 12px rgba(139,92,246,0.5); }
+.accent-bar.ai { background: #ec4899; box-shadow: 2px 0 12px rgba(236,72,153,0.5); }
+
+.card-icon.i  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+.card-icon.ai { background: var(--c-bg); color: var(--c); }
+
+.card-title.i  { color: #3b82f6; }
+.card-title.o  { color: #f59e0b; }
+.card-title.g  { color: #10b981; }
+.card-title.r  { color: #dc2626; }
+.card-title.bl { color: #6369f1; }
+.card-title.pk { color: #8b5cf6; }
+.card-title.ai { color: #ec4899; }
+
+.stat.i  { color: #3b82f6; }
+.stat.o  { color: #f59e0b; }
+.stat.g  { color: #10b981; }
+.stat.r  { color: #dc2626; }
+.stat.bl { color: #6369f1; }
+.stat.pk { color: #8b5cf6; }
+.stat.ai { color: #ec4899; }
+
+.tag.i  { background: rgba(29,78,216,0.1); color: #3b82f6; border: 1px solid rgba(29,78,216,0.2); }
+.tag.o  { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+.tag.g  { background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
+.tag.r  { background: rgba(220,38,38,0.1); color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
+.tag.bl { background: rgba(99,105,241,0.1); color: #6369f1; border: 1px solid rgba(99,105,241,0.2); }
+.tag.pk { background: rgba(139,92,246,0.1); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.2); }
+.tag.ai { background: rgba(236,72,153,0.1); color: #ec4899; border: 1px solid rgba(236,72,153,0.2); }
+
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+.hero {
+  background: linear-gradient(135deg, rgba(29,78,216,0.16) 0%, rgba(59,105,241,0.12) 100%);
+  border-color: rgba(29,78,216,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 38px;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.analysis-card {
+  background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(139,92,246,0.06) 100%);
+  border-color: rgba(236,72,153,0.2);
+}
+.analysis-card .card-title.ai {
+  background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.analysis-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.analysis-label { font-weight: 700; color: #ec4899; white-space: nowrap; }
+.analysis-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+.analysis-score {
+  display: inline-block; font-size: 15px; font-weight: 800;
+  padding: 1px 6px; border-radius: 4px; margin-left: 4px;
+}
+.score-h { background: rgba(16,185,129,0.2); color: #10b981; }
+.score-m { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.score-l { background: rgba(220,38,38,0.2); color: #dc2626; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo">B</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>NBA季后赛</h1>
+      <p>Eastern · Western · Playoffs</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 06</div>
+      <div class="tagline">Bleacher Report</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 1. HERO -->
+    <div class="card hero h6">
+      <div class="accent-bar left i"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon i">[*]</div>
+        <div class="card-title i">季后赛名额确定 附加赛即将开打</div>
+        <div class="card-sub">Bleacher Report</div>
+      </div>
+      <div class="card-body">常规赛最后一周，季后赛名额基本确定。活塞稳居东部第1，雷霆领跑西部。附加赛对阵：勇士vs开拓者、快艇vs太阳。</div>
+      <div class="stats"><div class="stat i">[*] 东西部前10</div></div>
+      <div class="tags">
+        <span class="tag i">季后赛</span>
+        <span class="tag i">附加赛</span>
+        <span class="tag i">名额确定</span>
+      </div>
+    </div>
+
+    <!-- 2. 东部排名 -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon g">[*]</div>
+        <div class="card-title g">东部排名</div>
+        <div class="card-sub">东部</div>
+      </div>
+      <div class="card-body">活塞锁定第1，塞尔提克/尼克/骑士争2-4号种子。篮网(17胜57负)战绩最差。</div>
+      <div class="stats"><div class="stat g">[*] 活塞第1</div></div>
+      <div class="tags">
+        <span class="tag g">东部</span>
+        <span class="tag g">活塞</span>
+        <span class="tag g">塞尔提克</span>
+      </div>
+    </div>
+
+    <!-- 3. 西部排名 -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon o">[*]</div>
+        <div class="card-title o">西部排名</div>
+        <div class="card-sub">西部</div>
+      </div>
+      <div class="card-body">雷霆第1，马刺第2，湖人第3。掘金/灰狼/火箭三队争4-6号种子。独行侠(24胜50负)已淘汰。</div>
+      <div class="stats"><div class="stat o">[*] 雷霆第1</div></div>
+      <div class="tags">
+        <span class="tag o">西部</span>
+        <span class="tag o">雷霆</span>
+        <span class="tag o">湖人</span>
+      </div>
+    </div>
+
+    <!-- 4. 附加赛对阵 -->
+    <div class="card h4">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!]</div>
+        <div class="card-title pk">附加赛对阵确定</div>
+        <div class="card-sub">Bleacher Report</div>
+      </div>
+      <div class="card-body">西部附加赛：勇士(10)vs开拓者(9)，快艇(8)vs太阳(7)。胜者分别挑战雷霆和马刺。</div>
+      <div class="stats"><div class="stat pk">[!] 附加赛</div></div>
+      <div class="tags">
+        <span class="tag pk">勇士</span>
+        <span class="tag pk">快艇</span>
+        <span class="tag pk">太阳</span>
+        <span class="tag pk">开拓者</span>
+      </div>
+    </div>
+
+    <!-- 5. Luka受伤 -->
+    <div class="card h2">
+      <div class="accent-bar left r"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">Luka腿筋受伤</div>
+        <div class="card-sub">湖人</div>
+      </div>
+      <div class="card-body">Luka Dončić腿筋受伤，在西班牙治疗。湖人季后赛蒙上阴影。</div>
+      <div class="tags">
+        <span class="tag r">Luka</span>
+        <span class="tag r">伤病</span>
+      </div>
+    </div>
+
+    <!-- 6. Giannis -->
+    <div class="card h3">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon bl">[*]</div>
+        <div class="card-title bl">Giannis复出冲纪录</div>
+        <div class="card-sub">公鹿</div>
+      </div>
+      <div class="card-body">Giannis伤愈复出，目标冲击历史纪录。公鹿战绩压力不小。</div>
+      <div class="stats"><div class="stat bl">[*] 复出</div></div>
+      <div class="tags">
+        <span class="tag bl">Giannis</span>
+        <span class="tag bl">公鹿</span>
+      </div>
+    </div>
+
+    <!-- 7. 淘汰球队 -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon o">[x]</div>
+        <div class="card-title o">已淘汰球队</div>
+        <div class="card-sub">战绩</div>
+      </div>
+      <div class="card-body">东部：篮网17胜、巫师17胜、公牛29胜、溜马16胜。西部：独行侠24胜、灰熊24胜。</div>
+      <div class="stats"><div class="stat o">[x] 24-57负</div></div>
+      <div class="tags">
+        <span class="tag o">淘汰</span>
+        <span class="tag o">摆烂</span>
+      </div>
+    </div>
+
+    <!-- 8. Jarvis 分析 -->
+    <div class="card analysis-card h6">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">贾维斯分析</div>
+        <div class="card-sub">Jarvis</div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-item">
+          <span class="analysis-label">西部</span>
+          <span class="analysis-text">雷霆马刺领跑，湖人第3但Luka受伤成隐患，附加赛火药味十足</span>
+          <span class="analysis-score score-h">高关注</span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">东部</span>
+          <span class="analysis-text">活塞强势第1，Embiid回归76人成搅局者，塞尔提克经验更丰富</span>
+          <span class="analysis-score score-h">高关注</span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">X因素</span>
+          <span class="analysis-text">Luka伤病 + Embiid健康程度 + Giannis复出状态将决定冠军归属</span>
+          <span class="analysis-score score-m">变数</span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">预测</span>
+          <span class="analysis-text">西区决赛：雷霆 vs 湖人；东区决赛：塞尔提克 vs 76人</span>
+          <span class="analysis-score score-m">预测</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag ai">Luka伤病</span>
+        <span class="tag ai">Embiid回归</span>
+        <span class="tag ai">冠军预测</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: Bleacher Report · ESPN · NBA.com · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

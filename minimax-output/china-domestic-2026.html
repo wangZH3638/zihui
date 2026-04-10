@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国内头条 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #e84025;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0d0d14;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(232,64,37,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(192,57,43,0.18) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(232,64,37,0.5);
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 88px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+.r  { --c: #e84025; --c-bg: rgba(232,64,37,0.15); }
+.o  { --c: #f39c12; --c-bg: rgba(243,156,18,0.15); }
+.g  { --c: #27ae60; --c-bg: rgba(39,174,96,0.15); }
+.b  { --c: #2980b9; --c-bg: rgba(41,128,185,0.15); }
+.bl { --c: #34495e; --c-bg: rgba(52,73,94,0.20); }
+.ai { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+
+.accent-bar.r  { background: #e84025; box-shadow: 2px 0 12px rgba(232,64,37,0.5); }
+.accent-bar.o  { background: #f39c12; box-shadow: 2px 0 12px rgba(243,156,18,0.5); }
+.accent-bar.g  { background: #27ae60; box-shadow: 2px 0 12px rgba(39,174,96,0.5); }
+.accent-bar.b  { background: #2980b9; box-shadow: 2px 0 12px rgba(41,128,185,0.5); }
+.accent-bar.bl { background: #34495e; box-shadow: 2px 0 12px rgba(52,73,94,0.5); }
+.accent-bar.ai { background: #b06aff; box-shadow: 2px 0 12px rgba(176,106,255,0.5); }
+
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.b  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.ai { background: var(--c-bg); color: var(--c); }
+
+.card-title.r  { color: #e84025; }
+.card-title.o  { color: #f39c12; }
+.card-title.g  { color: #27ae60; }
+.card-title.b  { color: #2980b9; }
+.card-title.bl { color: #5d7a94; }
+.card-title.ai { color: #b06aff; }
+
+.stat.r  { color: #e84025; }
+.stat.o  { color: #f39c12; }
+.stat.g  { color: #27ae60; }
+.stat.b  { color: #2980b9; }
+.stat.bl { color: #5d7a94; }
+.stat.ai { color: #b06aff; }
+
+.tag.r  { background: rgba(232,64,37,0.1); color: #e84025; border: 1px solid rgba(232,64,37,0.2); }
+.tag.o  { background: rgba(243,156,18,0.1); color: #f39c12; border: 1px solid rgba(243,156,18,0.2); }
+.tag.g  { background: rgba(39,174,96,0.1); color: #27ae60; border: 1px solid rgba(39,174,96,0.2); }
+.tag.b  { background: rgba(41,128,185,0.1); color: #2980b9; border: 1px solid rgba(41,128,185,0.2); }
+.tag.bl { background: rgba(52,73,94,0.2); color: #5d7a94; border: 1px solid rgba(52,73,94,0.2); }
+.tag.ai { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.2); }
+
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+.hero {
+  background: linear-gradient(135deg, rgba(232,64,37,0.14) 0%, rgba(192,57,43,0.12) 100%);
+  border-color: rgba(232,64,37,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 40px;
+  background: linear-gradient(135deg, #e84025 0%, #f39c12 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.analysis-card {
+  background: linear-gradient(135deg, rgba(176,106,255,0.08) 0%, rgba(142,68,173,0.06) 100%);
+  border-color: rgba(176,106,255,0.2);
+}
+.analysis-card .card-title.ai {
+  background: linear-gradient(135deg, #b06aff 0%, #8e44ad 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.analysis-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.analysis-label {
+  font-weight: 700;
+  color: #b06aff;
+  white-space: nowrap;
+}
+.analysis-text {
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+.analysis-score {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+.score-h { background: rgba(39,174,96,0.2); color: #27ae60; }
+.score-m { background: rgba(243,156,18,0.2); color: #f39c12; }
+.score-l { background: rgba(231,76,60,0.2); color: #e74c3c; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo">CN</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>国内头条</h1>
+      <p>China · Domestic News</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 06</div>
+      <div class="tagline">Daily</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 1. HERO -->
+    <div class="card hero h6">
+      <div class="accent-bar left r"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon r">[*]</div>
+        <div class="card-title r">前2月贸易顺差创纪录2136亿美元</div>
+        <div class="card-sub">Trading Economics</div>
+      </div>
+      <div class="card-body">中国1-2月贸易顺差达2136.2亿美元，创历史新高，超市场预期1966亿美元；出口动能强劲，电子、高科技和清洁能源产品需求旺盛</div>
+      <div class="stats"><div class="stat r">[*] $2136.2亿 顺差</div></div>
+      <div class="tags">
+        <span class="tag r">贸易</span>
+        <span class="tag r">出口</span>
+        <span class="tag r">创纪录</span>
+      </div>
+    </div>
+
+    <!-- 2. 经济暖意 -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon o">$</div>
+        <div class="card-title o">经济稳步开局</div>
+        <div class="card-sub">WSJ / 新华网</div>
+      </div>
+      <div class="card-body">前2月社零总额+4.0%，工业增加值+6.3%，摩根士丹利、高盛等外资机构纷纷上调中国经济增长预期</div>
+      <div class="stats"><div class="stat o">[*] 超预期</div></div>
+      <div class="tags">
+        <span class="tag o">消费</span>
+        <span class="tag o">工业</span>
+      </div>
+    </div>
+
+    <!-- 3. 人工智能+教育 -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon g">[!]</div>
+        <div class="card-title g">人工智能+教育</div>
+        <div class="card-sub">教育部</div>
+      </div>
+      <div class="card-body">教育部召开国家教育数字化战略行动2026年部署会，全面推动AI与教育融合，培养数字时代人才</div>
+      <div class="stats"><div class="stat g">[*] 战略行动</div></div>
+      <div class="tags">
+        <span class="tag g">AI</span>
+        <span class="tag g">教育</span>
+      </div>
+    </div>
+
+    <!-- 4. 中美经贸 -->
+    <div class="card h4">
+      <div class="accent-bar left b"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon b">[~]</div>
+        <div class="card-title b">中美经贸磋商</div>
+        <div class="card-sub">商务部</div>
+      </div>
+      <div class="card-body">中美在巴黎举行经贸磋商，美关税战持续；中国宣布扩大进口促进贸易平衡，坚持对外开放方向</div>
+      <div class="stats"><div class="stat b">[*] 磋商中</div></div>
+      <div class="tags">
+        <span class="tag b">中美</span>
+        <span class="tag b">贸易</span>
+        <span class="tag b">关税</span>
+      </div>
+    </div>
+
+    <!-- 5. 中越外交 -->
+    <div class="card h2">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon bl">[~]</div>
+        <div class="card-title bl">中越外交</div>
+        <div class="card-sub">外交部</div>
+      </div>
+      <div class="card-body">王毅等赴越南出席"3+3"战略对话首次部长级会议，深化东南亚外交布局</div>
+      <div class="tags">
+        <span class="tag bl">外交</span>
+        <span class="tag bl">越南</span>
+      </div>
+    </div>
+
+    <!-- 6. 西辽河 -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon g">[*]</div>
+        <div class="card-title g">西辽河干流全线贯通</div>
+        <div class="card-sub">水利部</div>
+      </div>
+      <div class="card-body">4月5日13时西辽河干流补水水头到达安乐屯，如期实现全线贯通，生态调度成效巩固提升</div>
+      <div class="stats"><div class="stat g">[*] 2026.04.05</div></div>
+      <div class="tags">
+        <span class="tag g">生态</span>
+        <span class="tag g">水利</span>
+      </div>
+    </div>
+
+    <!-- 7. 国务院全体会 -->
+    <div class="card h3">
+      <div class="accent-bar left r"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">国务院全体会</div>
+        <div class="card-sub">国务院</div>
+      </div>
+      <div class="card-body">李强主持国务院第十一次全体会议，贯彻习近平两会重要讲话，部署"全力拼经济"各项工作</div>
+      <div class="stats"><div class="stat r">[*] 重大部署</div></div>
+      <div class="tags">
+        <span class="tag r">两会</span>
+        <span class="tag r">国务院</span>
+      </div>
+    </div>
+
+    <!-- 8. Jarvis 分析 -->
+    <div class="card analysis-card h6">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">贾维斯分析</div>
+        <div class="card-sub">Jarvis</div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-item">
+          <span class="analysis-label">贸易</span>
+          <span class="analysis-text">2136亿美元顺差创纪录，但主要靠出口而非进口拉动，显示全球对中国制造需求强劲，但顺差过大可能引发贸易摩擦<span class="analysis-score score-h">高</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">宏观</span>
+          <span class="analysis-text">社零+4.0%、工业+6.3%显示内需回暖，外资机构上调预期印证中国经济韧性被低估<span class="analysis-score score-h">高</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">外交</span>
+          <span class="analysis-text">中美谈判持续但分歧仍大；中越"3+3"对话深化东南亚布局，对冲美国"印太战略"压力<span class="analysis-score score-m">中</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">战略</span>
+          <span class="analysis-text">国务院"全力拼经济" + AI教育战略双轮驱动，为"十五五"规划开局定调，政策信号积极<span class="analysis-score score-h">高</span></span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag ai">贸易 强劲</span>
+        <span class="tag ai">宏观 向好</span>
+        <span class="tag ai">外交 拓展</span>
+        <span class="tag ai">政策 积极</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: 水利部 · 新华网 · 教育部 · 商务部 · Trading Economics · WSJ · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

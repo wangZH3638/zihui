@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技头条 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --ink:    #0d0d0b;
+  --paper:  #f2efe8;
+  --cream:  #e8e3d8;
+  --yellow: #f0c820;
+  --red:    #c8392b;
+  --blue:   #1a4b8c;
+  --gray:   #6b6560;
+  --light:  #d4cfc6;
+  --border: #c8c3b8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1814;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+}
+
+.card {
+  width: 900px;
+  aspect-ratio: 3/4;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ═══ TOP HALF: 报纸头版风格 ═══ */
+.top {
+  height: 35%;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 3fr 1px 2fr;
+  position: relative;
+}
+
+.top::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--yellow);
+}
+
+.vert-rule {
+  background: var(--light);
+  opacity: 0.15;
+}
+
+/* 头条区 */
+.hero-zone {
+  padding: 20px 24px 16px 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.hero-zone::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 5px; height: 100%;
+  background: var(--yellow);
+}
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.masthead-date {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+
+.masthead-brand {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+.hero-headline {
+  font-family: 'Instrument Serif', 'Noto Sans SC', serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: var(--paper);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  flex: 1;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--yellow);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  font-weight: 300;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 8px;
+  margin-top: 6px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.h-tag {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.35);
+  border-radius: 2px;
+}
+
+/* 侧栏 */
+.side-zone {
+  padding: 20px 20px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-item {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding-bottom: 8px;
+}
+
+.side-item:last-child {
+  border-bottom: none;
+}
+
+.side-rank {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.side-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.side-meta {
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+}
+
+.side-stat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-top: 2px;
+}
+
+/* ═══ BOTTOM HALF: 网格区 ═══ */
+.bottom {
+  height: 65%;
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  padding: 1px;
+}
+
+.b-cell {
+  background: var(--paper);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.b-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+}
+
+.cell-rank {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  opacity: 0.12;
+  color: var(--ink);
+  line-height: 1;
+  position: absolute;
+  top: 8px; right: 10px;
+}
+
+.cell-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: auto;
+}
+
+.cell-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.cell-sub {
+  font-size: 10px;
+  color: var(--gray);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.cell-stat {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cell-tag {
+  font-size: 8px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* 颜色映射 */
+.c-y .cell-stat { color: #b8860b; }
+.c-y::before { background: #f0c820; }
+.c-y .cell-rank { color: #f0c820; }
+
+.c-r .cell-stat { color: var(--red); }
+.c-r::before { background: var(--red); }
+.c-r .cell-rank { color: var(--red); }
+
+.c-b .cell-stat { color: var(--blue); }
+.c-b::before { background: var(--blue); }
+.c-b .cell-rank { color: var(--blue); }
+
+.c-g .cell-stat { color: #2e7d32; }
+.c-g::before { background: #2e7d32; }
+.c-g .cell-rank { color: #2e7d32; }
+
+.c-bl .cell-stat { color: #455a64; }
+.c-bl::before { background: #455a64; }
+.c-bl .cell-rank { color: #455a64; }
+
+/* 网格布局 */
+.bl-6 { grid-column: span 6; }
+.bl-4 { grid-column: span 4; }
+.bl-3 { grid-column: span 3; }
+.bl-2 { grid-column: span 2; }
+
+.tall .cell-title { font-size: 15px; }
+.tall .cell-sub { font-size: 10px; }
+
+/* 分析区 */
+.analysis {
+  grid-column: span 6;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.analysis::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--yellow);
+}
+
+.analysis-pill {
+  grid-column: span 1;
+  padding: 10px 14px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.analysis-pill:last-child {
+  border-right: none;
+}
+
+.a-label {
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.a-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1.3;
+}
+
+.a-text {
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.a-badge {
+  display: inline-block;
+  font-size: 7px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.badge-h { background: rgba(46,125,50,0.25); color: #66bb6a; }
+.badge-m { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.badge-l { background: rgba(200,57,43,0.2); color: #ef5350; }
+
+/* 水印 */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-family: 'Instrument Serif', serif;
+  font-size: 130px;
+  font-weight: 400;
+  color: var(--yellow);
+  opacity: 0.05;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 上部：报纸头版 -->
+  <div class="top">
+    <div class="hero-zone">
+      <div class="masthead">
+        <div class="masthead-date">Apr 06 2026</div>
+        <div class="masthead-brand">TechDaily</div>
+      </div>
+      <div class="hero-headline">
+        全球<em>芯片荒</em><br>
+        手机暴跌<br>
+        12.9%
+      </div>
+      <div class="hero-sub">
+        AI数据中心吞噬2026年70%存储芯片产能，内存告急。全球智能手机出货量创历史最大降幅，马斯克、库克同声警告芯片短缺危机将持续至2027年。
+      </div>
+      <div class="hero-tags">
+        <span class="h-tag">芯片荒</span>
+        <span class="h-tag">AI数据中心</span>
+        <span class="h-tag">供应链</span>
+        <span class="h-tag">手机下滑</span>
+      </div>
+    </div>
+    <div class="vert-rule"></div>
+    <div class="side-zone">
+      <div class="side-item">
+        <div class="side-rank">02</div>
+        <div class="side-title">马斯克Austin建TeraFab芯片工厂</div>
+        <div class="side-meta">Fox Business · Tesla · SpaceX</div>
+        <div class="side-stat">$250亿 投资</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">03</div>
+        <div class="side-title">NVIDIA GTC 2026发布DLSS 5</div>
+        <div class="side-meta">NVIDIA · GTC 2026</div>
+        <div class="side-stat">实时4K光追</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">04</div>
+        <div class="side-title">Physical AI崛起重塑制造业</div>
+        <div class="side-meta">Microsoft · 机器人</div>
+        <div class="side-stat">工业自动化</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">05</div>
+        <div class="side-title">OpenAI完成1220亿美元融资</div>
+        <div class="side-meta">OpenAI · 史上最大AI融资</div>
+        <div class="side-stat">$1220亿</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下部：网格 -->
+  <div class="bottom">
+    <!-- 第一行 -->
+    <div class="b-cell c-r bl-4 tall">
+      <div class="cell-rank">06</div>
+      <div class="cell-title">中国手机品牌被迫下调出货预期</div>
+      <div class="cell-sub">存储芯片供应紧张成本上涨，高端机型同样受冲击</div>
+      <div class="cell-stat">出货缩减</div>
+      <div class="cell-label">Digitimes</div>
+    </div>
+    <div class="b-cell c-y bl-2">
+      <div class="cell-rank">07</div>
+      <div class="cell-title">Gemini 3登顶综合评分94.6</div>
+      <div class="cell-stat">94.6分</div>
+      <div class="cell-label">太平洋科技</div>
+    </div>
+
+    <!-- 第二行 -->
+    <div class="b-cell c-y bl-3 tall">
+      <div class="cell-rank">08</div>
+      <div class="cell-title">GPT-5.4创作拔尖 Claude 4编程领先</div>
+      <div class="cell-sub">三大模型差异化竞争，市场格局初定</div>
+      <div class="cell-stat">三足鼎立</div>
+    </div>
+    <div class="b-cell c-b bl-3 tall">
+      <div class="cell-rank">09</div>
+      <div class="cell-title">谷歌发布Gemini 3Ultra</div>
+      <div class="cell-sub">多模态能力大幅提升</div>
+      <div class="cell-stat">多模态突破</div>
+    </div>
+    <div class="b-cell c-bl bl-6" style="flex-direction:row; align-items:center; gap:16px; padding:10px 16px;">
+      <div class="cell-rank" style="position:static; opacity:0.1; font-size:36px;">10</div>
+      <div style="flex:1;">
+        <div class="cell-title" style="font-size:11px;">DeepSeek发布R2模型 推理成本再降90%</div>
+        <div class="cell-sub" style="font-size:9px;">中国AI公司继续以极致性价比挑战全球市场</div>
+      </div>
+      <div class="cell-stat" style="font-size:11px; white-space:nowrap;">成本-90%</div>
+    </div>
+
+    <!-- 分析区 -->
+    <div class="analysis">
+      <div class="watermark">Jarvis</div>
+      <div class="analysis-pill">
+        <div class="a-label">芯片</div>
+        <div class="a-title">手机暴跌12.9%只是开始</div>
+        <div class="a-text">AI数据中心吞噬70%产能，芯片荒持续至2027年，手机只是第一张倒下的骨牌</div>
+        <div class="a-badge badge-l">高风险</div>
+      </div>
+      <div class="analysis-pill">
+        <div class="a-label">太空芯</div>
+        <div class="a-title">马斯克意在打破GPU垄断</div>
+        <div class="a-text">TeraFab 250亿美元建厂，构建自研算力，目标英伟达/AMD/英特尔以外第四条路</div>
+        <div class="a-badge badge-m">中风险</div>
+      </div>
+      <div class="analysis-pill">
+        <div class="a-label">算力</div>
+        <div class="a-title">NVIDIA GTC巩固霸主地位</div>
+        <div class="a-text">DLSS 5代表光追技术成熟，AI推理成本正在指数级下降，普及加速</div>
+        <div class="a-badge badge-h">高机会</div>
+      </div>
+      <div class="analysis-pill">
+        <div class="a-label">趋势</div>
+        <div class="a-title">三条主线清晰</div>
+        <div class="a-text">芯片荒 + Physical AI + 大模型三足鼎立 = 2026科技三条主线，DeepSeek搅局</div>
+        <div class="a-badge badge-m">主线清晰</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

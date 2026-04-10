@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2026 设计趋势</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #080810;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 450px;       /* 竖屏宽度约束 */
+  aspect-ratio: 9/16;    /* 核心：9:16竖屏 */
+  min-height: 100vh;
+  background: #0a0a14;
+  background-image:
+    radial-gradient(ellipse at 20% 5%, rgba(120,80,255,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 95%, rgba(0,200,255,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 60%, rgba(255,80,160,0.08) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 16px 16px;
+}
+
+/* noise */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.year {
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #00d4ff, #b06aff, #ff50a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fff, #bbb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.title-block p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.badge {
+  margin-left: auto;
+  padding: 4px 12px;
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 16px;
+  font-size: 10px;
+  color: #00d4ff;
+  letter-spacing: 0.08em;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+.card-bar {
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.card-icon {
+  width: 30px; height: 30px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+.card-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  margin-left: auto;
+}
+.card-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.feats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.feat {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.48);
+}
+.feat-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* color vars */
+.pink   { --c: #ff50a0; --c-bg: rgba(255,80,160,0.15); --c-dim: rgba(255,80,160,0.08); }
+.cyan   { --c: #00d4ff; --c-bg: rgba(0,212,255,0.15); --c-dim: rgba(0,212,255,0.08); }
+.purple { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); --c-dim: rgba(176,106,255,0.08); }
+.yellow { --c: #ffd040; --c-bg: rgba(255,208,64,0.15); --c-dim: rgba(255,208,64,0.08); }
+.green  { --c: #50ffa0; --c-bg: rgba(80,255,160,0.15); --c-dim: rgba(80,255,160,0.08); }
+.orange { --c: #ff9040; --c-bg: rgba(255,144,64,0.15); --c-dim: rgba(255,144,64,0.08); }
+
+.card-bar.pink   { background: #ff50a0; box-shadow: 0 0 10px rgba(255,80,160,0.4); }
+.card-bar.cyan   { background: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.4); }
+.card-bar.purple { background: #b06aff; box-shadow: 0 0 10px rgba(176,106,255,0.4); }
+.card-bar.yellow { background: #ffd040; box-shadow: 0 0 10px rgba(255,208,64,0.4); }
+.card-bar.green  { background: #50ffa0; box-shadow: 0 0 10px rgba(80,255,160,0.4); }
+.card-bar.orange { background: #ff9040; box-shadow: 0 0 10px rgba(255,144,64,0.4); }
+
+.card-icon.pink   { background: var(--c-bg); color: var(--c); }
+.card-icon.cyan   { background: var(--c-bg); color: var(--c); }
+.card-icon.purple { background: var(--c-bg); color: var(--c); }
+.card-icon.yellow { background: var(--c-bg); color: var(--c); }
+.card-icon.green  { background: var(--c-bg); color: var(--c); }
+.card-icon.orange { background: var(--c-bg); color: var(--c); }
+
+.card-title.pink   { color: #ff50a0; }
+.card-title.cyan   { color: #00d4ff; }
+.card-title.purple { color: #b06aff; }
+.card-title.yellow { color: #ffd040; }
+.card-title.green  { color: #50ffa0; }
+.card-title.orange { color: #ff9040; }
+
+.tag.pink   { background: var(--c-dim); color: var(--c); border: 1px solid rgba(255,80,160,0.18); }
+.tag.cyan   { background: var(--c-dim); color: var(--c); border: 1px solid rgba(0,212,255,0.18); }
+.tag.purple { background: var(--c-dim); color: var(--c); border: 1px solid rgba(176,106,255,0.18); }
+.tag.yellow { background: var(--c-dim); color: var(--c); border: 1px solid rgba(255,208,64,0.18); }
+.tag.green  { background: var(--c-dim); color: var(--c); border: 1px solid rgba(80,255,160,0.18); }
+.tag.orange { background: var(--c-dim); color: var(--c); border: 1px solid rgba(255,144,64,0.18); }
+
+.feat-dot.pink   { background: #ff50a0; }
+.feat-dot.cyan   { background: #00d4ff; }
+.feat-dot.purple { background: #b06aff; }
+.feat-dot.yellow { background: #ffd040; }
+.feat-dot.green  { background: #50ffa0; }
+.feat-dot.orange { background: #ff9040; }
+
+.swatches {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.swatch {
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* row of small cards */
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.card-sm {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+.card-sm::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+.card-sm-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+.card-sm-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+.card-sm-icon {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+}
+.card-sm-body {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+.card-sm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 7px;
+}
+.tag-sm {
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 9px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+  padding: 6px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="year">2026</div>
+    <div class="title-block">
+      <h1>设计趋势全景</h1>
+      <p>Design Trends Overview</p>
+    </div>
+    <span class="badge">GLASS + NEO</span>
+  </div>
+
+  <!-- Row: 3 Design Styles -->
+  <div class="card-row">
+
+    <div class="card-sm">
+      <div class="card-bar pink" style="top:10px;bottom:10px;"></div>
+      <div class="card-sm-head">
+        <div class="card-sm-icon pink" style="background:rgba(255,80,160,0.15);color:#ff50a0;">◐</div>
+        <div class="card-sm-title pink">Glassmorphism</div>
+      </div>
+      <div class="card-sm-body">backdrop-filter 模糊核心，半透明卡片叠加层次感，营造现代深度</div>
+      <div class="card-sm-tags">
+        <span class="tag-sm pink" style="background:rgba(255,80,160,0.08);color:#ff50a0;border:1px solid rgba(255,80,160,0.15)">blur</span>
+        <span class="tag-sm pink" style="background:rgba(255,80,160,0.08);color:#ff50a0;border:1px solid rgba(255,80,160,0.15)">半透明</span>
+        <span class="tag-sm pink" style="background:rgba(255,80,160,0.08);color:#ff50a0;border:1px solid rgba(255,80,160,0.15)">Dashboard</span>
+      </div>
+    </div>
+
+    <div class="card-sm">
+      <div class="card-bar purple" style="top:10px;bottom:10px;"></div>
+      <div class="card-sm-head">
+        <div class="card-sm-icon purple" style="background:rgba(176,106,255,0.15);color:#b06aff;">◇</div>
+        <div class="card-sm-title purple">Neumorphism</div>
+      </div>
+      <div class="card-sm-body">柔和双层阴影营造浮雕感，拟物触感，控件与背景融为一体</div>
+      <div class="card-sm-tags">
+        <span class="tag-sm purple" style="background:rgba(176,106,255,0.08);color:#b06aff;border:1px solid rgba(176,106,255,0.15)">box-shadow</span>
+        <span class="tag-sm purple" style="background:rgba(176,106,255,0.08);color:#b06aff;border:1px solid rgba(176,106,255,0.15)">控件</span>
+      </div>
+    </div>
+
+    <div class="card-sm">
+      <div class="card-bar cyan" style="top:10px;bottom:10px;"></div>
+      <div class="card-sm-head">
+        <div class="card-sm-icon cyan" style="background:rgba(0,212,255,0.15);color:#00d4ff;">▣</div>
+        <div class="card-sm-title cyan">Neo-Brutalism</div>
+      </div>
+      <div class="card-sm-body">大胆撞色、粗边框、原始美感，不完美的设计语言，张扬反叛</div>
+      <div class="card-sm-tags">
+        <span class="tag-sm cyan" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.15)">撞色</span>
+        <span class="tag-sm cyan" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.15)">粗边框</span>
+        <span class="tag-sm cyan" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.15)">反叛</span>
+      </div>
+    </div>
+
+    <div class="card-sm">
+      <div class="card-bar yellow" style="top:10px;bottom:10px;"></div>
+      <div class="card-sm-head">
+        <div class="card-sm-icon yellow" style="background:rgba(255,208,64,0.15);color:#ffd040;">▤</div>
+        <div class="card-sm-title yellow">Tactile Max</div>
+      </div>
+      <div class="card-sm-body">层叠质感、3D 深度、物理存在感，每个元素都"可触摸"</div>
+      <div class="card-sm-tags">
+        <span class="tag-sm yellow" style="background:rgba(255,208,64,0.08);color:#ffd040;border:1px solid rgba(255,208,64,0.15)">3D质感</span>
+        <span class="tag-sm yellow" style="background:rgba(255,208,64,0.08);color:#ffd040;border:1px solid rgba(255,208,64,0.15)">落地页</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CSS 新技术 -->
+  <div class="card">
+    <div class="card-bar yellow"></div>
+    <div class="card-head">
+      <div class="card-icon yellow" style="background:rgba(255,208,64,0.15);color:#ffd040;">⚙</div>
+      <div class="card-title yellow">CSS 新技术</div>
+      <div class="card-sub">2026 实用</div>
+    </div>
+    <div class="feats">
+      <div class="feat"><div class="feat-dot yellow"></div>backdrop-filter blur() — 毛玻璃核心</div>
+      <div class="feat"><div class="feat-dot yellow"></div>:has() selector — 父选择器</div>
+      <div class="feat"><div class="feat-dot yellow"></div>oklch() — 更自然的渐变颜色</div>
+      <div class="feat"><div class="feat-dot yellow"></div>CSS Nesting — 原生嵌套</div>
+      <div class="feat"><div class="feat-dot yellow"></div>container queries — 组件级响应式</div>
+      <div class="feat"><div class="feat-dot yellow"></div>scroll-timeline / anchor positioning</div>
+    </div>
+  </div>
+
+  <!-- 排版布局 -->
+  <div class="card">
+    <div class="card-bar orange"></div>
+    <div class="card-head">
+      <div class="card-icon orange" style="background:rgba(255,144,64,0.15);color:#ff9040;">✦</div>
+      <div class="card-title orange">排版 & 布局趋势</div>
+      <div class="card-sub">Typography</div>
+    </div>
+    <div class="feats">
+      <div class="feat"><div class="feat-dot orange"></div>Kinetic Typography — 文字动效抢眼球</div>
+      <div class="feat"><div class="feat-dot orange"></div>Variable Fonts — 动态字重变化</div>
+      <div class="feat"><div class="feat-dot orange"></div>Bento Grid — 豆腐块模块化网格</div>
+      <div class="feat"><div class="feat-dot orange"></div>Anti-Grid — 故意打破网格秩序感</div>
+      <div class="feat"><div class="feat-dot orange"></div>Organic Shapes — 曲线不对称布局</div>
+      <div class="feat"><div class="feat-dot orange"></div>Dark Mode — 深色界面数据产品标配</div>
+    </div>
+  </div>
+
+  <!-- 色彩趋势 -->
+  <div class="card">
+    <div class="card-bar green"></div>
+    <div class="card-head">
+      <div class="card-icon green" style="background:rgba(80,255,160,0.15);color:#50ffa0;">🎨</div>
+      <div class="card-title green">色彩 & 质感趋势</div>
+      <div class="card-sub">Color</div>
+    </div>
+    <div class="feats">
+      <div class="feat"><div class="feat-dot green"></div>Dopamine Colors — 高饱和亮色，激发正向情绪</div>
+      <div class="feat"><div class="feat-dot green"></div>80s Excess — 霓虹复古，荧光撞色</div>
+      <div class="feat"><div class="feat-dot green"></div>纹理噪点 — 叠加增加真实感</div>
+      <div class="feat"><div class="feat-dot green"></div>Dark Mode — 深色界面标配</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#ff50a0"></div>
+      <div class="swatch" style="background:#00d4ff"></div>
+      <div class="swatch" style="background:#ffd040"></div>
+      <div class="swatch" style="background:#b06aff"></div>
+      <div class="swatch" style="background:#50ffa0"></div>
+      <div class="swatch" style="background:#ff9040"></div>
+      <div class="swatch" style="background:linear-gradient(135deg,#ff0080,#00ffff)"></div>
+    </div>
+    <div class="tags">
+      <span class="tag green">多巴胺配色</span>
+      <span class="tag green">霓虹复古</span>
+      <span class="tag green">Dark Mode</span>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    2026 DESIGN TRENDS · Jarvis · 4:3 → 9:16 Full Vertical
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你也懂点心理学 - 分裂型人格障碍</title>
+<style>
+@font-face {
+  font-family: 'NotoSansSC';
+  src: url('file:///home/node/.openclaw/workspace/minimax-output/wqy-microhei.ttc');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'NotoSansSC';
+  src: url('file:///home/node/.openclaw/workspace/minimax-output/wqy-microhei.ttc');
+  font-weight: 700;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'NotoSansSC', 'DejaVu Sans', sans-serif;
+  width: 800px;
+  height: 1067px;
+  background: #f4f7fb;
+  color: #1a2a3a;
+  overflow: hidden;
+  position: relative;
+}
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,180,220,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,220,0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  pointer-events: none;
+}
+.top-section {
+  height: 326px;
+  background: linear-gradient(160deg, #f3e8ff 0%, #e8d5f7 40%, #dcc0f0 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 55px 29px;
+}
+.top-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa, #8b5cf6);
+}
+.top-section::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 368px;
+  height: 368px;
+  background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+}
+.author {
+  position: absolute;
+  top: 29px;
+  right: 46px;
+  text-align: right;
+  z-index: 2;
+}
+.author-year {
+  font-size: 84px;
+  font-weight: 900;
+  color: rgba(139,92,246,0.06);
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.author-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #7c3aed;
+  position: absolute;
+  top: 84px;
+  right: 0;
+  letter-spacing: 1px;
+}
+.series-index {
+  position: absolute;
+  top: 25px;
+  left: 46px;
+  z-index: 2;
+}
+.series-index-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(26,42,58,0.4);
+  letter-spacing: 2px;
+}
+.series-name-wrap {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 19px;
+}
+.series-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(139,92,246,0.12);
+  border: 1.5px solid rgba(139,92,246,0.35);
+  color: #7c3aed;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+.main-eyebrow {
+  font-size: 14px;
+  color: rgba(139,92,246,0.7);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 11px;
+}
+.main-title {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #1a2a3a;
+  margin-bottom: 11px;
+}
+.main-title .accent { color: #8b5cf6; }
+.main-title .pd-wrap { display: inline-flex; align-items: baseline; gap: 6px; }
+.main-title .pd-main { color: #8b5cf6; }
+.main-title .pd-sub { font-size: 15px; font-weight: 400; color: rgba(26,42,58,0.45); }
+.sub-title { font-size: 21px; color: rgba(26,42,58,0.45); font-weight: 400; line-height: 1.4; }
+.divider { height: 1px; background: linear-gradient(90deg, rgba(139,92,246,0.25), transparent); margin: 15px 55px; }
+.content { padding: 0 55px; position: relative; z-index: 1; }
+
+.dsm-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.dsm-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  padding: 4px 12px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+.dsm-sub { font-size: 12px; color: rgba(26,42,58,0.4); font-weight: 400; }
+
+.signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.signal-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(139,92,246,0.12);
+  border-left: 3px solid #8b5cf6;
+  box-shadow: 0 2px 8px rgba(139,92,246,0.06);
+}
+.signal-num { font-size: 10px; font-weight: 700; color: rgba(139,92,246,0.5); letter-spacing: 2px; margin-bottom: 5px; }
+.signal-title { font-size: 14px; font-weight: 700; color: #1a2a3a; margin-bottom: 5px; line-height: 1.3; }
+.signal-desc { font-size: 12px; color: rgba(26,42,58,0.55); line-height: 1.6; margin-bottom: 7px; }
+.signal-dsm { font-size: 10px; color: rgba(139,92,246,0.7); background: rgba(139,92,246,0.08); padding: 3px 8px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; }
+
+.movie-box {
+  background: rgba(139,92,246,0.06);
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.movie-icon {
+  width: 36px; height: 36px;
+  background: rgba(139,92,246,0.12);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #8b5cf6;
+  flex-shrink: 0;
+}
+.movie-content { flex: 1; }
+.movie-label { font-size: 10px; font-weight: 700; color: #7c3aed; letter-spacing: 2px; margin-bottom: 5px; }
+.movie-title { font-size: 14px; font-weight: 700; color: #1a2a3a; margin-bottom: 4px; }
+.movie-symptom { font-size: 12px; color: rgba(26,42,58,0.55); line-height: 1.65; }
+
+.relate-section { margin-bottom: 12px; }
+.relate-title { font-size: 11px; font-weight: 700; color: rgba(26,42,58,0.4); letter-spacing: 2px; margin-bottom: 8px; }
+.relate-grid { display: flex; gap: 8px; }
+.relate-pill { flex: 1; background: #fff; border: 1px solid rgba(139,92,246,0.12); border-radius: 10px; padding: 9px 12px; text-align: center; }
+.relate-pill-icon { font-size: 14px; font-weight: 900; color: #8b5cf6; margin-bottom: 3px; }
+.relate-pill-label { font-size: 11px; color: rgba(26,42,58,0.5); line-height: 1.4; }
+
+.key-diff-box {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(167,139,250,0.05));
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.key-diff-icon { width: 28px; height: 28px; background: rgba(139,92,246,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #8b5cf6; flex-shrink: 0; }
+.key-diff-text { font-size: 13px; color: rgba(26,42,58,0.65); line-height: 1.75; }
+.key-diff-text strong { color: #7c3aed; }
+
+.quote-box {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(167,139,250,0.05));
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.quote-icon { width: 28px; height: 28px; background: rgba(139,92,246,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #8b5cf6; flex-shrink: 0; }
+.quote-text { font-size: 13px; color: rgba(26,42,58,0.65); line-height: 1.75; }
+.quote-text strong { color: #7c3aed; }
+
+.cta-box { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: rgba(139,92,246,0.08); border-radius: 12px; border: 1px solid rgba(139,92,246,0.15); }
+.cta-icon { width: 28px; height: 28px; background: rgba(139,92,246,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #8b5cf6; flex-shrink: 0; }
+.cta-text { font-size: 12.5px; color: rgba(26,42,58,0.6); line-height: 1.75; }
+.cta-text strong { color: #7c3aed; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="top-section">
+  <div class="author">
+    <div class="author-year">2026</div>
+    <div class="author-name">辉常心理</div>
+  </div>
+  <div class="series-index">
+    <div class="series-index-text">系列卡片 · 04</div>
+  </div>
+  <div class="series-name-wrap">
+    <div class="series-badge">你也懂点心理学</div>
+    <div class="main-eyebrow">DSM-5 人格障碍 · A 簇</div>
+    <div class="main-title"><span class="pd-wrap"><span class="pd-main">分裂型</span></span> 人格障碍：<br>古怪思维的本质</div>
+    <div class="sub-title">《禁闭岛》Teddy：感知扭曲不等于精神病</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="content">
+
+  <div class="dsm-label">
+    <div class="dsm-badge">分裂型 PD</div>
+    <div class="dsm-sub"> Schizotypal Personality Disorder — 持续到成年早期</div>
+  </div>
+
+  <div class="signals-grid">
+    <div class="signal-card">
+      <div class="signal-num">信号 01</div>
+      <div class="signal-title">想法与现实混淆，常有奇幻思维</div>
+      <div class="signal-desc">相信读心术、第六感、"注定相遇"等超自然联系</div>
+      <div class="signal-dsm">DSM-5：奇幻思维或感知异常</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 02</div>
+      <div class="signal-title">对人际关系有极端且不现实的认知</div>
+      <div class="signal-desc">初次见面就说"我们是命中注定的朋友"——或完全相反</div>
+      <div class="signal-dsm">DSM-5：人际交往中的社交焦虑</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 03</div>
+      <div class="signal-title">言行古怪、自相矛盾</div>
+      <div class="signal-desc">说一半突然沉默、说些让人摸不着头脑的话、穿着打扮不合常理</div>
+      <div class="signal-dsm">DSM-5：古怪行为或外表</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 04</div>
+      <div class="signal-title">多疑或偏执思维，但没达到妄想程度</div>
+      <div class="signal-desc">总觉得有人在暗中观察或针对自己，但知道这"可能只是感觉"</div>
+      <div class="signal-dsm">DSM-5：轻度偏执思维</div>
+    </div>
+  </div>
+
+  <div class="movie-box">
+    <div class="movie-icon">影视</div>
+    <div class="movie-content">
+      <div class="movie-label">影视原型对照</div>
+      <div class="movie-title">《禁闭岛》Teddy Daniels</div>
+      <div class="movie-symptom">调查"精神病患者失踪案"的过程中，他不断看到幻觉和闪回，相信有人在对自己实施阴谋。随着故事推进，观众发现他的"调查"本身就是他妄想的一部分——但他的推理逻辑自洽，与纯粹的精神分裂症不同。</div>
+    </div>
+  </div>
+
+  <div class="relate-section">
+    <div class="relate-title">亲密关系中的表现</div>
+    <div class="relate-grid">
+      <div class="relate-pill">
+        <div class="relate-pill-icon">01</div>
+        <div class="relate-pill-label">初次见面就把你当成"命定之人"或完全无视</div>
+      </div>
+      <div class="relate-pill">
+        <div class="relate-pill-icon">02</div>
+        <div class="relate-pill-label">说的话经常让人感到困惑，不按逻辑出牌</div>
+      </div>
+      <div class="relate-pill">
+        <div class="relate-pill-icon">03</div>
+        <div class="relate-pill-label">关系进展顺利时突然退缩，觉得"太顺利了有问题"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-diff-box">
+    <div class="key-diff-icon">!</div>
+    <div class="key-diff-text">
+      <strong>分裂型 vs 偏执型 vs 分裂样：</strong>分裂型最核心的区别是<strong>奇幻思维</strong>——他们相信超自然的联系（读心术、命运、第六感），但这不等于精神病性妄想。分裂样是"不需要关系"，偏执型是"不信任关系"，分裂型是<strong>"用奇怪的方式理解关系"</strong>。
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <div class="quote-icon">"</div>
+    <div class="quote-text">
+      分裂型的核心不是"疯"，而是<strong>用不寻常的方式感知世界</strong>——他们生活在自己的"神秘逻辑"里，与现实有缝隙，但缝隙不等于断裂。
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-icon">QA</div>
+    <div class="cta-text">
+      <strong>互动时刻：</strong>三个 A 簇讲完了——偏执、分裂样、分裂型，哪一个最让你觉得"身边的人可能是这个"？下期开始 B 簇，<strong>边缘型人格障碍（BPD）</strong>，敬请期待。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

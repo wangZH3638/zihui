@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Trending 2026</title>
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #ff3366;
+  --gray-400: #9ca3af;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #080810;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0a0a14;
+  background-image:
+    radial-gradient(ellipse at 15% 5%, rgba(120,80,255,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 95%, rgba(0,200,255,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(255,80,160,0.07) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 14px;
+}
+
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+}
+.year {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.title-block p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.badge {
+  margin-left: auto;
+  padding: 5px 14px;
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 16px;
+  font-size: 11px;
+  color: #00d4ff;
+  letter-spacing: 0.08em;
+}
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+/* ── Card base ── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+.accent-bar {
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+.rank {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 20px;
+  font-weight: 900;
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.card-icon {
+  width: 30px; height: 30px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.card-lang {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.4);
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.card-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  flex: 1;
+}
+.stats {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.stat-icon {
+  font-size: 11px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+.tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 9.5px;
+  font-weight: 500;
+}
+
+/* colors */
+.pink   { --c: #ff50a0; --c-bg: rgba(255,80,160,0.15); }
+.cyan   { --c: #00d4ff; --c-bg: rgba(0,212,255,0.15); }
+.purple { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+.yellow { --c: #ffd040; --c-bg: rgba(255,208,64,0.15); }
+.green  { --c: #50ffa0; --c-bg: rgba(80,255,160,0.15); }
+.orange { --c: #ff9040; --c-bg: rgba(255,144,64,0.15); }
+.red    { --c: #ff6060; --c-bg: rgba(255,96,96,0.15); }
+.teal   { --c: #40e0d0; --c-bg: rgba(64,224,208,0.15); }
+
+.accent-bar.pink   { background: #ff50a0; box-shadow: 0 0 10px rgba(255,80,160,0.5); }
+.accent-bar.cyan   { background: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.5); }
+.accent-bar.purple { background: #b06aff; box-shadow: 0 0 10px rgba(176,106,255,0.5); }
+.accent-bar.yellow { background: #ffd040; box-shadow: 0 0 10px rgba(255,208,64,0.5); }
+.accent-bar.green  { background: #50ffa0; box-shadow: 0 0 10px rgba(80,255,160,0.5); }
+.accent-bar.orange { background: #ff9040; box-shadow: 0 0 10px rgba(255,144,64,0.5); }
+.accent-bar.red    { background: #ff6060; box-shadow: 0 0 10px rgba(255,96,96,0.5); }
+.accent-bar.teal   { background: #40e0d0; box-shadow: 0 0 10px rgba(64,224,208,0.5); }
+
+.card-icon.pink   { background: var(--c-bg); color: var(--c); }
+.card-icon.cyan   { background: var(--c-bg); color: var(--c); }
+.card-icon.purple { background: var(--c-bg); color: var(--c); }
+.card-icon.yellow { background: var(--c-bg); color: var(--c); }
+.card-icon.green  { background: var(--c-bg); color: var(--c); }
+.card-icon.orange { background: var(--c-bg); color: var(--c); }
+.card-icon.red    { background: var(--c-bg); color: var(--c); }
+.card-icon.teal   { background: var(--c-bg); color: var(--c); }
+
+.card-title.pink   { color: #ff50a0; }
+.card-title.cyan   { color: #00d4ff; }
+.card-title.purple { color: #b06aff; }
+.card-title.yellow { color: #ffd040; }
+.card-title.green  { color: #50ffa0; }
+.card-title.orange { color: #ff9040; }
+.card-title.red    { color: #ff6060; }
+.card-title.teal   { color: #40e0d0; }
+
+.stat.pink   { color: #ff50a0; }
+.stat.cyan   { color: #00d4ff; }
+.stat.purple { color: #b06aff; }
+.stat.yellow { color: #ffd040; }
+.stat.green  { color: #50ffa0; }
+.stat.orange { color: #ff9040; }
+.stat.red    { color: #ff6060; }
+.stat.teal   { color: #40e0d0; }
+
+.tag.pink   { background: rgba(255,80,160,0.1); color: #ff50a0; border: 1px solid rgba(255,80,160,0.18); }
+.tag.cyan   { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.18); }
+.tag.purple { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.18); }
+.tag.yellow { background: rgba(255,208,64,0.1); color: #ffd040; border: 1px solid rgba(255,208,64,0.18); }
+.tag.green  { background: rgba(80,255,160,0.1); color: #50ffa0; border: 1px solid rgba(80,255,160,0.18); }
+.tag.orange { background: rgba(255,144,64,0.1); color: #ff9040; border: 1px solid rgba(255,144,64,0.18); }
+.tag.red    { background: rgba(255,96,96,0.1); color: #ff6060; border: 1px solid rgba(255,96,96,0.18); }
+.tag.teal   { background: rgba(64,224,208,0.1); color: #40e0d0; border: 1px solid rgba(64,224,208,0.18); }
+
+/* grid spans */
+.c-3 { grid-column: span 3; }
+
+.footer {
+  text-align: center;
+  font-size: 9px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.08em;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="year">2026</div>
+    <div class="title-block">
+      <h1>GitHub 热门项目</h1>
+      <p>Trending Repositories · April</p>
+    </div>
+    <span class="badge">★ TOP 10</span>
+  </div>
+
+  <!-- Main: 6 col x 4 row grid -->
+  <div class="main">
+
+    <!-- 1. AgentHub — ⭐126.6k -->
+    <div class="card c-3">
+      <div class="accent-bar pink"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon pink">[★]</div>
+        <div class="card-title pink">AgentHub</div>
+        <div class="card-lang">JavaScript</div>
+      </div>
+      <div class="card-body">AI Agent Harnes 性能优化系统，支持 Claude Code、Codex、Cursor 等主流编码 Agent</div>
+      <div class="stats">
+        <div class="stat pink">⭐ 126.6k</div>
+        <div class="stat pink">📈 69.5k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag pink">coding-agent</span>
+        <span class="tag pink">skills</span>
+      </div>
+    </div>
+
+    <!-- 2. OpenClaw — ⭐67.4k -->
+    <div class="card c-3">
+      <div class="accent-bar cyan"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon cyan">[◆]</div>
+        <div class="card-title cyan">OpenClaw</div>
+        <div class="card-lang">Shell</div>
+      </div>
+      <div class="card-body">完整的 AI Agency 系统，从前端到 Reddit 社区运营，每个 Agent 都是专业专家</div>
+      <div class="stats">
+        <div class="stat cyan">⭐ 67.4k</div>
+        <div class="stat cyan">📈 66.3k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag cyan">AI-agent</span>
+        <span class="tag cyan">multi-agent</span>
+      </div>
+    </div>
+
+    <!-- 3. OpenCode — ⭐55.2k -->
+    <div class="card c-3">
+      <div class="accent-bar purple"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon purple">[⚙]</div>
+        <div class="card-title purple">OpenCode</div>
+        <div class="card-lang">Python</div>
+      </div>
+      <div class="card-body">开源长时域 SuperAgent，支持研究、编码、创建任务，集成沙箱、记忆、工具、子 Agent</div>
+      <div class="stats">
+        <div class="stat purple">⭐ 55.2k</div>
+        <div class="stat purple">📈 32.8k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag purple">superagent</span>
+        <span class="tag purple">coding</span>
+      </div>
+    </div>
+
+    <!-- 4. swarm — ⭐47k -->
+    <div class="card c-3">
+      <div class="accent-bar green"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon green">[B]</div>
+        <div class="card-title green">swarm</div>
+        <div class="card-lang">Python</div>
+      </div>
+      <div class="card-body">OpenAI 开源的简洁通用群体智能引擎，支持预测万物，多 Agent 协作框架</div>
+      <div class="stats">
+        <div class="stat green">⭐ 47.0k</div>
+        <div class="stat green">📈 42.6k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag green">swarm</span>
+        <span class="tag green">multi-agent</span>
+      </div>
+    </div>
+
+    <!-- 5. OpenViking — ⭐20.2k -->
+    <div class="card c-3">
+      <div class="accent-bar teal"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon teal">[V]</div>
+        <div class="card-title teal">OpenViking</div>
+        <div class="card-lang">Python</div>
+      </div>
+      <div class="card-body">专 为 AI Agent 设计的开源上下文数据库，统一管理记忆、资源和技能，支持文件树范式</div>
+      <div class="stats">
+        <div class="stat teal">⭐ 20.2k</div>
+        <div class="stat teal">📈 16.1k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag teal">context-db</span>
+        <span class="tag teal">AI-agent</span>
+      </div>
+    </div>
+
+    <!-- 6. BashHarness — ⭐45.1k -->
+    <div class="card c-3">
+      <div class="accent-bar orange"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon orange">[T]</div>
+        <div class="card-title orange">BashHarness</div>
+        <div class="card-lang">TypeScript</div>
+      </div>
+      <div class="card-body">Bash 就是一切——从零构建的类 Claude Code 纳米级 Agent Harnes，轻量高效</div>
+      <div class="stats">
+        <div class="stat orange">⭐ 45.1k</div>
+        <div class="stat orange">📈 25.5k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag orange">bash</span>
+        <span class="tag orange">agent</span>
+      </div>
+    </div>
+
+    <!-- 7. gptme — ⭐20.3k -->
+    <div class="card c-3">
+      <div class="accent-bar yellow"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon yellow">[G]</div>
+        <div class="card-title yellow">gptme</div>
+        <div class="card-lang">Python</div>
+      </div>
+      <div class="card-body">与你一同成长的 AI Agent，支持自主学习、代码生成、多步骤复杂任务执行</div>
+      <div class="stats">
+        <div class="stat yellow">⭐ 20.3k</div>
+        <div class="stat yellow">📈 18.6k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag yellow">AI-agent</span>
+        <span class="tag yellow">self-improving</span>
+      </div>
+    </div>
+
+    <!-- 8. practice-claude — ⭐28.6k -->
+    <div class="card c-3">
+      <div class="accent-bar red"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon red">[P]</div>
+        <div class="card-title red">practice-claude</div>
+        <div class="card-lang">HTML</div>
+      </div>
+      <div class="card-body">Claude Code 练习场，通过大量实战项目掌握 AI 辅助编程技能</div>
+      <div class="stats">
+        <div class="stat red">⭐ 28.6k</div>
+        <div class="stat red">📈 21.6k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag red">tutorial</span>
+        <span class="tag red">Claude</span>
+      </div>
+    </div>
+
+    <!-- 9. Lightpanda — ⭐26.3k -->
+    <div class="card c-3">
+      <div class="accent-bar purple"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon purple">[W]</div>
+        <div class="card-title purple">Lightpanda</div>
+        <div class="card-lang">Zig</div>
+      </div>
+      <div class="card-body">专为 AI 和自动化设计的轻量级无头浏览器，Rust/Zig 构建，极速启动</div>
+      <div class="stats">
+        <div class="stat purple">⭐ 26.3k</div>
+        <div class="stat purple">📈 14.4k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag purple">browser</span>
+        <span class="tag purple">automation</span>
+      </div>
+    </div>
+
+    <!-- 10. agent-reach — ⭐16.9k -->
+    <div class="card c-3">
+      <div class="accent-bar green"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon green">[R]</div>
+        <div class="card-title green">agent-reach</div>
+        <div class="card-lang">Python</div>
+      </div>
+      <div class="card-body">AI Agent 搜索技能——横跨 Reddit、X、YouTube、HN、Polymarket 等平台研究并综合摘要</div>
+      <div class="stats">
+        <div class="stat green">⭐ 16.9k</div>
+        <div class="stat green">📈 13.6k/mo</div>
+      </div>
+      <div class="tags">
+        <span class="tag green">research</span>
+        <span class="tag green">agent</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    DATA: github.com/trending · github-rank · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

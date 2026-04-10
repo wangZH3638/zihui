@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Card A</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #e8e5de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+}
+
+/* ── LAYOUT A: 左右分割 ── */
+.la-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 36px;
+}
+
+.la-vol {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+
+.la-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.la-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: #FAFAF8;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.la-line {
+  width: 40px;
+  height: 2px;
+  background: #E8C547;
+  margin-bottom: 20px;
+}
+
+.la-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.la-bottom {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+/* ── 右侧内容 ── */
+.la-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 62%;
+  padding: 48px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.la-tag {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: #E8C547;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #E8C547;
+}
+
+.la-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.la-item-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: #E8E4D8;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.la-item-body {}
+
+.la-item-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.la-item-text {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.la-quote {
+  margin-top: auto;
+  padding: 20px 24px;
+  background: #F5F0E8;
+  border-left: 3px solid #E8C547;
+  position: relative;
+}
+
+.la-quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.la-quote-from {
+  font-size: 10px;
+  color: #aaa;
+  margin-top: 6px 0 0;
+  letter-spacing: 0.05em;
+}
+
+/* 装饰 */
+.la-deco {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.03);
+  line-height: 1;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 左侧黑色区 -->
+  <div class="la-left">
+    <div class="la-vol">Vol.01 · 2026</div>
+    <div class="la-center">
+      <div class="la-title">AI时代<br>知识工作<br>生存指南</div>
+      <div class="la-line"></div>
+      <div class="la-desc">不是AI取代你，而是会用AI的人取代你。<br>三张卡片，建立真正的AI竞争力。</div>
+    </div>
+    <div class="la-bottom">Intelligence Series · Jarvis</div>
+  </div>
+
+  <!-- 右侧白色区 -->
+  <div class="la-right">
+    <div class="la-tag">Key Insights</div>
+
+    <div class="la-item">
+      <div class="la-item-num">01</div>
+      <div class="la-item-body">
+        <div class="la-item-title">把AI当作超级助理</div>
+        <div class="la-item-text">它能做什么 · 边界在哪里 · 如何协作 · 能力边界判断</div>
+      </div>
+    </div>
+
+    <div class="la-item">
+      <div class="la-item-num">02</div>
+      <div class="la-item-body">
+        <div class="la-item-title">Prompt是新时代的编程语言</div>
+        <div class="la-item-text">结构化指令 · 上下文管理 · 迭代优化 · 组合式调用</div>
+      </div>
+    </div>
+
+    <div class="la-item">
+      <div class="la-item-num">03</div>
+      <div class="la-item-body">
+        <div class="la-item-title">用AI批量生产，人脑判断质量</div>
+        <div class="la-item-text">自动化初稿 · 人工审核 · 持续迭代 · 流程固化</div>
+      </div>
+    </div>
+
+    <div class="la-quote">
+      <div class="la-quote-text">"未来属于善用AI的人，而不是与AI竞争的人。"</div>
+      <div class="la-quote-from">— Jarvis · 贾维斯</div>
+    </div>
+
+    <div class="la-deco">01</div>
+  </div>
+
+</div>
+</body>
+</html>

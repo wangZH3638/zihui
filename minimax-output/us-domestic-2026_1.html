@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Headlines 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #1a4db8;
+  --red: #b91c1c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0c0c18;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(26,77,184,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(185,28,28,0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #1a4db8 0%, #b91c1c 100%);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(26,77,184,0.5);
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 88px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+.r  { --c: #b91c1c; --c-bg: rgba(185,28,28,0.15); }
+.o  { --c: #f59e0b; --c-bg: rgba(245,158,11,0.15); }
+.g  { --c: #16a34a; --c-bg: rgba(22,163,74,0.15); }
+.b  { --c: #1a4db8; --c-bg: rgba(26,77,184,0.15); }
+.bl { --c: #34495e; --c-bg: rgba(52,73,94,0.20); }
+.ai { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+
+.accent-bar.r  { background: #b91c1c; box-shadow: 2px 0 12px rgba(185,28,28,0.5); }
+.accent-bar.o  { background: #f59e0b; box-shadow: 2px 0 12px rgba(245,158,11,0.5); }
+.accent-bar.g  { background: #16a34a; box-shadow: 2px 0 12px rgba(22,163,74,0.5); }
+.accent-bar.b  { background: #1a4db8; box-shadow: 2px 0 12px rgba(26,77,184,0.5); }
+.accent-bar.bl { background: #34495e; box-shadow: 2px 0 12px rgba(52,73,94,0.5); }
+.accent-bar.ai { background: #b06aff; box-shadow: 2px 0 12px rgba(176,106,255,0.5); }
+
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.b  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.ai { background: var(--c-bg); color: var(--c); }
+
+.card-title.r  { color: #b91c1c; }
+.card-title.o  { color: #f59e0b; }
+.card-title.g  { color: #16a34a; }
+.card-title.b  { color: #1a4db8; }
+.card-title.bl { color: #5d7a94; }
+.card-title.ai { color: #b06aff; }
+
+.stat.r  { color: #b91c1c; }
+.stat.o  { color: #f59e0b; }
+.stat.g  { color: #16a34a; }
+.stat.b  { color: #1a4db8; }
+.stat.bl { color: #5d7a94; }
+.stat.ai { color: #b06aff; }
+
+.tag.r  { background: rgba(185,28,28,0.1); color: #b91c1c; border: 1px solid rgba(185,28,28,0.2); }
+.tag.o  { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+.tag.g  { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+.tag.b  { background: rgba(26,77,184,0.1); color: #1a4db8; border: 1px solid rgba(26,77,184,0.2); }
+.tag.bl { background: rgba(52,73,94,0.2); color: #5d7a94; border: 1px solid rgba(52,73,94,0.2); }
+.tag.ai { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.2); }
+
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+.hero {
+  background: linear-gradient(135deg, rgba(26,77,184,0.16) 0%, rgba(185,28,28,0.10) 100%);
+  border-color: rgba(26,77,184,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 38px;
+  background: linear-gradient(135deg, #1a4db8 0%, #b91c1c 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.analysis-card {
+  background: linear-gradient(135deg, rgba(176,106,255,0.08) 0%, rgba(142,68,173,0.06) 100%);
+  border-color: rgba(176,106,255,0.2);
+}
+.analysis-card .card-title.ai {
+  background: linear-gradient(135deg, #b06aff 0%, #8e44ad 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.analysis-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.analysis-label {
+  font-weight: 700;
+  color: #b06aff;
+  white-space: nowrap;
+}
+.analysis-text {
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+.analysis-score {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+.score-h { background: rgba(22,163,74,0.2); color: #16a34a; }
+.score-m { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.score-l { background: rgba(185,28,28,0.2); color: #b91c1c; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo">US</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>美国头条</h1>
+      <p>United States · Breaking News</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 06</div>
+      <div class="tagline">Daily</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 1. HERO -->
+    <div class="card hero h6">
+      <div class="accent-bar left r"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon r">[*]</div>
+        <div class="card-title r">霍尔木兹最后期限·今晚截止</div>
+        <div class="card-sub">NY Times</div>
+      </div>
+      <div class="card-body">4月6日晚8点（美东时间）是特朗普设定的最后期限——伊朗须重开霍尔木兹海峡或达成和平协议，否则"全面地狱般轰炸"将降临伊朗能源设施</div>
+      <div class="stats"><div class="stat r">[*] 今晚 8PM ET 截止</div></div>
+      <div class="tags">
+        <span class="tag r">截止日</span>
+        <span class="tag r">霍尔木兹</span>
+        <span class="tag r">核谈判</span>
+      </div>
+    </div>
+
+    <!-- 2. 油价 -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon o">$</div>
+        <div class="card-title o">油价突破114美元</div>
+        <div class="card-sub">The Guardian</div>
+      </div>
+      <div class="card-body">WTI原油价格突破114美元/桶，全球能源市场因美伊战争持续而震荡，地缘政治风险溢价急剧飙升</div>
+      <div class="stats"><div class="stat o">[*] WTI $114+</div></div>
+      <div class="tags">
+        <span class="tag o">油价</span>
+        <span class="tag o">能源</span>
+      </div>
+    </div>
+
+    <!-- 3. 谈判信号 -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon g">[~]</div>
+        <div class="card-title g">特朗普：有很大机会达成协议</div>
+        <div class="card-sub">The Hindu</div>
+      </div>
+      <div class="card-body">特朗普表示美伊谈判"进展良好"，伊朗也释放对话意愿，但伊方同时警告特朗普是"不稳定、精神失常之人"</div>
+      <div class="stats"><div class="stat g">[*] 谈判中</div></div>
+      <div class="tags">
+        <span class="tag g">谈判</span>
+        <span class="tag g">外交</span>
+      </div>
+    </div>
+
+    <!-- 4. 伊朗警告 -->
+    <div class="card h4">
+      <div class="accent-bar left r"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">伊朗警告"重大惊喜"</div>
+        <div class="card-sub">NDTV</div>
+      </div>
+      <div class="card-body">伊朗回击特朗普48小时最后通牒，称其威胁"愚蠢、神经质"，并警告将为美国的行动准备"重大惊喜"回应</div>
+      <div class="stats"><div class="stat r">[*] 对抗升级</div></div>
+      <div class="tags">
+        <span class="tag r">伊朗</span>
+        <span class="tag r">威胁</span>
+        <span class="tag r">战争</span>
+      </div>
+    </div>
+
+    <!-- 5. 防空系统 -->
+    <div class="card h2">
+      <div class="accent-bar left r"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon r">[*]</div>
+        <div class="card-title r">伊防空已不存在</div>
+        <div class="card-sub">BBC</div>
+      </div>
+      <div class="card-body">美以连续四日空袭，特朗普宣称伊朗防空系统、空军、海军及领导层"已不复存在"</div>
+      <div class="tags">
+        <span class="tag r">军事</span>
+        <span class="tag r">空袭</span>
+      </div>
+    </div>
+
+    <!-- 6. 国会反对 -->
+    <div class="card h3">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon bl">[~]</div>
+        <div class="card-title bl">两党反对1.5万亿国防预算</div>
+        <div class="card-sub">NPR</div>
+      </div>
+      <div class="card-body">民主、共和两党罕见共同反对特朗普1.5万亿美元国防预算，指责战争信息披露不足、军费飙升失控</div>
+      <div class="stats"><div class="stat bl">[*] 两党反对</div></div>
+      <div class="tags">
+        <span class="tag bl">国会</span>
+        <span class="tag bl">预算</span>
+      </div>
+    </div>
+
+    <!-- 7. 马克龙批评 -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon o">[!]</div>
+        <div class="card-title o">马克龙批特朗普处理战争方式</div>
+        <div class="card-sub">BBC</div>
+      </div>
+      <div class="card-body">法国总统马克龙公开批评特朗普对伊朗战争的处理方式，称"应严肃一些，不要每天出来讲话"，呼吁外交途径解决</div>
+      <div class="stats"><div class="stat o">[*] 外交施压</div></div>
+      <div class="tags">
+        <span class="tag o">法国</span>
+        <span class="tag o">北约</span>
+      </div>
+    </div>
+
+    <!-- 8. Jarvis 分析 -->
+    <div class="card analysis-card h6">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">贾维斯分析</div>
+        <div class="card-sub">Jarvis</div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-item">
+          <span class="analysis-label">核心</span>
+          <span class="analysis-text">今晚8点是关键转折点——达成协议则油价回落；谈判破裂则全球能源市场遭受"地狱级"冲击<span class="analysis-score score-l">高风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">军事</span>
+          <span class="analysis-text">美以连续空袭已压制伊朗防空，但伊朗"重大惊喜"暗示非对称反击可能，全球股市承压<span class="analysis-score score-l">高风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">外交</span>
+          <span class="analysis-text">马克龙公开批评说明美欧裂缝扩大，北约内部对伊战争分歧加剧，美国传统盟友体系动摇<span class="analysis-score score-m">中</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">经济</span>
+          <span class="analysis-text">油价$114+已是2024年均价的近两倍，若霍尔木兹封锁持续，全球通胀压力将急剧反弹<span class="analysis-score score-l">高风险</span></span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag ai">今晚 截止</span>
+        <span class="tag ai">油价 飙升</span>
+        <span class="tag ai">外交 裂缝</span>
+        <span class="tag ai">全球 风险</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: NY Times · NPR · CNN · Reuters · The Guardian · BBC · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

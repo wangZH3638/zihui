@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI News 2026</title>
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #00d4ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #080810;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #08080f;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(0,212,255,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(168,85,247,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #00d4ff, #b06aff);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0,212,255,0.5);
+  letter-spacing: 0.05em;
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 88px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; }
+.stat { font-size: 18px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+/* colors */
+.c  { --c: #00d4ff; --c-bg: rgba(0,212,255,0.15); }
+.p  { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+.g  { --c: #50ffa0; --c-bg: rgba(80,255,160,0.12); }
+.y  { --c: #ffd040; --c-bg: rgba(255,208,64,0.12); }
+.r  { --c: #ff6060; --c-bg: rgba(255,80,80,0.12); }
+.o  { --c: #ff9040; --c-bg: rgba(255,144,64,0.12); }
+.pk { --c: #ff50a0; --c-bg: rgba(255,80,160,0.12); }
+
+.accent-bar.c  { background: #00d4ff; box-shadow: 2px 0 14px rgba(0,212,255,0.5); }
+.accent-bar.p  { background: #b06aff; box-shadow: 2px 0 14px rgba(176,106,255,0.5); }
+.accent-bar.g  { background: #50ffa0; box-shadow: 2px 0 14px rgba(80,255,160,0.5); }
+.accent-bar.y  { background: #ffd040; box-shadow: 2px 0 14px rgba(255,208,64,0.5); }
+.accent-bar.r  { background: #ff6060; box-shadow: 2px 0 14px rgba(255,80,80,0.5); }
+.accent-bar.o  { background: #ff9040; box-shadow: 2px 0 14px rgba(255,144,64,0.5); }
+.accent-bar.pk { background: #ff50a0; box-shadow: 2px 0 14px rgba(255,80,160,0.5); }
+
+.card-icon.c  { background: var(--c-bg); color: var(--c); }
+.card-icon.p  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.y  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+
+.card-title.c  { color: #00d4ff; }
+.card-title.p  { color: #b06aff; }
+.card-title.g  { color: #50ffa0; }
+.card-title.y  { color: #ffd040; }
+.card-title.r  { color: #ff6060; }
+.card-title.o  { color: #ff9040; }
+.card-title.pk { color: #ff50a0; }
+
+.stat.c  { color: #00d4ff; }
+.stat.p  { color: #b06aff; }
+.stat.g  { color: #50ffa0; }
+.stat.y  { color: #ffd040; }
+.stat.r  { color: #ff6060; }
+.stat.o  { color: #ff9040; }
+.stat.pk { color: #ff50a0; }
+
+.tag.c  { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.2); }
+.tag.p  { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.2); }
+.tag.g  { background: rgba(80,255,160,0.1); color: #50ffa0; border: 1px solid rgba(80,255,160,0.2); }
+.tag.y  { background: rgba(255,208,64,0.1); color: #ffd040; border: 1px solid rgba(255,208,64,0.2); }
+.tag.r  { background: rgba(255,80,80,0.1); color: #ff6060; border: 1px solid rgba(255,80,80,0.2); }
+.tag.o  { background: rgba(255,144,64,0.1); color: #ff9040; border: 1px solid rgba(255,144,64,0.2); }
+.tag.pk { background: rgba(255,80,160,0.1); color: #ff50a0; border: 1px solid rgba(255,80,160,0.2); }
+
+/* grid spans */
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+/* hero */
+.hero {
+  background: linear-gradient(135deg, rgba(0,212,255,0.14) 0%, rgba(176,106,255,0.10) 100%);
+  border-color: rgba(0,212,255,0.22);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 40px;
+  background: linear-gradient(135deg, #00d4ff 0%, #b06aff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 17px; }
+.hero .stat { font-size: 22px; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">AI</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>AI Big News</h1>
+      <p>Artificial Intelligence · Top Stories</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 05</div>
+      <div class="tagline">Daily</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- 1. HERO — Claude Mythos 5 -->
+    <div class="card hero h6">
+      <div class="accent-bar left c"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon c">[*]</div>
+        <div class="card-title c">Anthropic 发布 Claude Mythos 5</div>
+        <div class="card-sub">BREAKING</div>
+      </div>
+      <div class="card-body">Anthropic 发布 10 万亿参数 Claude Mythos 5，史上最大模型之一，推理能力全面刷新 SOTA，震惊业界</div>
+      <div class="stats">
+        <div class="stat c">[*] 10T 参数</div>
+        <div class="stat c">[/] 2026.04</div>
+      </div>
+      <div class="tags">
+        <span class="tag c">大模型</span>
+        <span class="tag c">Anthropic</span>
+        <span class="tag c">SOTA</span>
+      </div>
+    </div>
+
+    <!-- 2. OpenAI revenue -->
+    <div class="card h3">
+      <div class="accent-bar left c"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon c">[$]</div>
+        <div class="card-title c">OpenAI 年化营收</div>
+        <div class="card-sub">$25B+</div>
+      </div>
+      <div class="card-body">OpenAI 年化营收突破 250 亿美元，拟最快 2026 年底前上市，估值飙升</div>
+      <div class="stats">
+        <div class="stat c">[*] 营收</div>
+        <div class="stat c">[*] IPO</div>
+      </div>
+      <div class="tags">
+        <span class="tag c">OpenAI</span>
+        <span class="tag c">商业化</span>
+      </div>
+    </div>
+
+    <!-- 3. GPT-5.4 -->
+    <div class="card h3">
+      <div class="accent-bar left c"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon c">[*]</div>
+        <div class="card-title c">OpenAI GPT-5.4</div>
+        <div class="card-sub">Model</div>
+      </div>
+      <div class="card-body">GPT-5.4 正式上线，参数规模与推理效率双提升，持续领跑大模型赛道</div>
+      <div class="stats">
+        <div class="stat c">[*] OpenAI</div>
+      </div>
+      <div class="tags">
+        <span class="tag c">GPT-5</span>
+        <span class="tag c">大模型</span>
+      </div>
+    </div>
+
+    <!-- 4. SpaceX xAI -->
+    <div class="card h4">
+      <div class="accent-bar left o"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon o">[$]</div>
+        <div class="card-title o">SpaceX 收购 xAI</div>
+        <div class="card-sub">$250B</div>
+      </div>
+      <div class="card-body">SpaceX 以 2500 亿美元完成对 xAI 的收购，AI + 航天超级巨兽合体，马斯克主导新格局</div>
+      <div class="stats">
+        <div class="stat o">[*] 收购</div>
+        <div class="stat o">[*] $2500亿</div>
+      </div>
+      <div class="tags">
+        <span class="tag o">xAI</span>
+        <span class="tag o">SpaceX</span>
+        <span class="tag o">马斯克</span>
+      </div>
+    </div>
+
+    <!-- 5. Gemini 3.1 -->
+    <div class="card h2">
+      <div class="accent-bar left p"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon p">[*]</div>
+        <div class="card-title p">Gemini 3.1</div>
+        <div class="card-sub">Google</div>
+      </div>
+      <div class="card-body">Gemini 3.1 Pro / Flash-Lite 双版本连发</div>
+      <div class="tags">
+        <span class="tag p">Gemini</span>
+        <span class="tag p">Google</span>
+      </div>
+    </div>
+
+    <!-- 6. Anthropic revenue -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon g">[$]</div>
+        <div class="card-title g">Anthropic 营收逼近</div>
+        <div class="card-sub">$19B</div>
+      </div>
+      <div class="card-body">Anthropic 年化营收接近 190 亿美元，投资者纷纷转向，估值创历史新高</div>
+      <div class="stats">
+        <div class="stat g">[*] $190亿</div>
+      </div>
+      <div class="tags">
+        <span class="tag g">Anthropic</span>
+        <span class="tag g">营收</span>
+      </div>
+    </div>
+
+    <!-- 7. Claude policy -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!]</div>
+        <div class="card-title pk">Claude 订阅调整</div>
+        <div class="card-sub">Policy</div>
+      </div>
+      <div class="card-body">Claude 订阅不再覆盖第三方工具，OpenClaw 等平台受波及，4月4日生效</div>
+      <div class="tags">
+        <span class="tag pk">订阅</span>
+        <span class="tag pk">API</span>
+      </div>
+    </div>
+
+    <!-- 8. DOD lawsuit -->
+    <div class="card h3">
+      <div class="accent-bar left y"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon y">[~]</div>
+        <div class="card-title y">Anthropic 诉五角大楼</div>
+        <div class="card-sub">Legal</div>
+      </div>
+      <div class="card-body">OpenAI + Google 30+ 员工联署支持，指 DOD 黑名单威胁整个美国 AI 产业</div>
+      <div class="tags">
+        <span class="tag y">诉讼</span>
+        <span class="tag y">DOD</span>
+      </div>
+    </div>
+
+    <!-- 9. 500+ models -->
+    <div class="card h3">
+      <div class="accent-bar left r"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon r">[+]</div>
+        <div class="card-title r">500+ 模型时代</div>
+        <div class="card-sub">Ecosystem</div>
+      </div>
+      <div class="card-body">LLM 生态爆发：商用 + 开源模型已超 500 个，大模型进入平台期</div>
+      <div class="tags">
+        <span class="tag r">开源</span>
+        <span class="tag r">生态</span>
+      </div>
+    </div>
+
+    <!-- 10. Google TurboQuant -->
+    <div class="card h6">
+      <div class="accent-bar left p"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon p">[*]</div>
+        <div class="card-title p">Google TurboQuant 突破</div>
+        <div class="card-sub">Breakthrough</div>
+      </div>
+      <div class="card-body">Google 发布 TurboQuant 效率突破，大幅降低推理成本，能效比显著提升，挑战 OpenAI 成本优势</div>
+      <div class="stats">
+        <div class="stat p">[*] 效率</div>
+        <div class="stat p">[*] Google</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: Reuters · TechCrunch · LLM Stats · Crescendo · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

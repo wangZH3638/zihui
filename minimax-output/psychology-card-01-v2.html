@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你也懂点心理学 - 开篇引流卡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  width: 800px;
+  height: 1067px;
+  background: #f4f7fb;
+  color: #1a2a3a;
+  overflow: hidden;
+  position: relative;
+}
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0,180,220,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,220,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.top-section {
+  height: 310px;
+  background: linear-gradient(160deg, #e8f4f8 0%, #d0e8f0 40%, #c5e0ea 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 52px 28px;
+}
+.top-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #00b4dc, #0090b0, #00b4dc);
+}
+.top-section::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0,180,220,0.12) 0%, transparent 70%);
+}
+.author {
+  position: absolute;
+  top: 28px;
+  right: 44px;
+  text-align: right;
+  z-index: 2;
+}
+.author-year {
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(0,180,220,0.06);
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.author-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0090b0;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  letter-spacing: 1px;
+}
+.series-index {
+  position: absolute;
+  top: 24px;
+  left: 44px;
+  z-index: 2;
+}
+.series-index-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(26,42,58,0.4);
+  letter-spacing: 2px;
+}
+.series-name-wrap {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 18px;
+}
+.series-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,180,220,0.12);
+  border: 1.5px solid rgba(0,180,220,0.35);
+  color: #0090b0;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.main-eyebrow {
+  font-size: 13px;
+  color: rgba(0,144,176,0.7);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.main-title {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #1a2a3a;
+  margin-bottom: 10px;
+}
+.main-title .accent {
+  color: #00b4dc;
+}
+.sub-title {
+  font-size: 20px;
+  color: rgba(26,42,58,0.45);
+  font-weight: 400;
+  line-height: 1.4;
+}
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,180,220,0.25), transparent);
+  margin: 14px 52px;
+}
+.content {
+  padding: 0 52px;
+  position: relative;
+  z-index: 1;
+}
+.hook-section {
+  margin-bottom: 16px;
+}
+.hook-label {
+  font-size: 11px;
+  color: rgba(0,144,176,0.6);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+.hook-cards {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.hook-card {
+  flex: 1;
+  background: #fff;
+  border: 1px solid rgba(0,180,220,0.15);
+  border-radius: 14px;
+  padding: 13px 11px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,100,140,0.05);
+}
+.hook-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00b4dc, rgba(0,180,220,0.3));
+}
+.hook-card-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.hook-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2a3a;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+.hook-card-body {
+  font-size: 11px;
+  color: rgba(26,42,58,0.55);
+  line-height: 1.5;
+}
+.series-intro {
+  background: rgba(0,180,220,0.05);
+  border: 1px solid rgba(0,180,220,0.12);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+.intro-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0090b0;
+  margin-bottom: 8px;
+}
+.intro-text {
+  font-size: 12px;
+  color: rgba(26,42,58,0.6);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.intro-text:last-child {
+  margin-bottom: 0;
+}
+.intro-text strong {
+  color: #0090b0;
+}
+.series-promise {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(26,42,58,0.6);
+}
+.promise-item .check {
+  color: #00b4dc;
+  font-weight: 700;
+  font-size: 13px;
+}
+.series-info {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.info-pill {
+  flex: 1;
+  background: #fff;
+  border: 1px solid rgba(0,180,220,0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+}
+.info-pill-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: #00b4dc;
+}
+.info-pill-label {
+  font-size: 11px;
+  color: rgba(26,42,58,0.45);
+  margin-top: 2px;
+}
+.cta-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  background: rgba(0,180,220,0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(0,180,220,0.15);
+}
+.cta-icon {
+  font-size: 18px;
+}
+.cta-text {
+  font-size: 12px;
+  color: rgba(26,42,58,0.6);
+  line-height: 1.5;
+}
+.cta-text strong {
+  color: #0090b0;
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="top-section">
+  <div class="author">
+    <div class="author-year">2026</div>
+    <div class="author-name">辉常心理</div>
+  </div>
+  <div class="series-index">
+    <div class="series-index-text">系列预告 · 01</div>
+  </div>
+  <div class="series-name-wrap">
+    <div class="series-badge">你也懂点心理学</div>
+    <div class="main-eyebrow">DSM-5 系列第一弹</div>
+    <div class="main-title">《你》的 Joe 竟是 <span class="accent">BPD</span>？</div>
+    <div class="sub-title">人格障碍 ≠ 性格问题，专业标准帮你精准判断</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="content">
+  <div class="hook-section">
+    <div class="hook-label">JOE 的 3 个 BPD 核心信号</div>
+    <div class="hook-cards">
+      <div class="hook-card">
+        <div class="hook-card-icon">💔</div>
+        <div class="hook-card-title">极端害怕被抛弃</div>
+        <div class="hook-card-body">提分手就跟踪、自残——对应"疯狂努力避免真实或想象的被抛弃"</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-card-icon">🎢</div>
+        <div class="hook-card-title">情绪过山车</div>
+        <div class="hook-card-body">前一天说"为你死"，隔天骂"你背叛我"——对应"情绪反应快速波动"</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-card-icon">🔒</div>
+        <div class="hook-card-title">控制欲爆棚</div>
+        <div class="hook-card-body">查你所有社交账号、限制你和异性接触——对应"人际关系不稳定且强烈"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="series-intro">
+    <div class="intro-title">关于这个系列</div>
+    <div class="intro-text">
+      最近 <strong>DSM-5 人格障碍</strong> 话题刷爆全网！看《你》时觉得 Joe 的偏执、疯狂追爱很窒息？<strong>其实他完美契合边缘性人格障碍（BPD）的核心特征。</strong>
+    </div>
+    <div class="intro-text">
+      但网上信息太杂，分不清"性格问题"还是"人格障碍"？这个系列用<strong>影视案例 + 伴侣行为对照</strong>的方式，帮你精准识别。
+    </div>
+  </div>
+
+  <div class="series-promise">
+    <div class="promise-item"><span class="check">✓</span> 伴侣的"反常行为"是性格问题还是人格障碍？</div>
+    <div class="promise-item"><span class="check">✓</span> 不同人格障碍在亲密关系中的典型表现</div>
+    <div class="promise-item"><span class="check">✓</span> 如何科学应对，保护自己不内耗</div>
+  </div>
+
+  <div class="series-info">
+    <div class="info-pill">
+      <div class="info-pill-num">12</div>
+      <div class="info-pill-label">张系列卡片</div>
+    </div>
+    <div class="info-pill">
+      <div class="info-pill-num">10</div>
+      <div class="info-pill-label">种人格障碍</div>
+    </div>
+    <div class="info-pill">
+      <div class="info-pill-num">A/B/C</div>
+      <div class="info-pill-label">三大簇</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-icon">💬</div>
+    <div class="cta-text">
+      <strong>今日互动：</strong>你觉得《致命女人》里的 Jade 属于哪类人格？评论区聊聊，<strong>点赞最高的类型将获得下期详解</strong>！
+    </div>
+  </div>
+</div>
+</body>
+</html>

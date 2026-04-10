@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>体育到底让孩子得到了什么</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@400;700;900&display=swap');
+
+:root {
+  --gold:      #a3834c;
+  --gold-light: #c4a55a;
+  --black:     #1c1a18;
+  --white:     #faf8f5;
+  --gray-light: #e8e5de;
+  --gray-mid:  #9a9080;
+  --text-main: #2c2c2c;
+  --text-muted: #888888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #e8e5de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.10);
+}
+
+/* ── 顶部：深色底 32% ── */
+.hero {
+  height: 32%;
+  background: var(--black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 44px 72px 36px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 60px, transparent 60px);
+}
+
+.kicker {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.28);
+  font-weight: 400;
+  margin-bottom: 14px;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+.kicker-year {
+  position: absolute;
+  top: 0; right: 0;
+  width: 280px;
+  height: 160px;
+  overflow: visible;
+}
+
+.kicker-year-bg {
+  position: absolute;
+  top: 80px; left: 0; right: 0;
+  height: 80px;
+  background: var(--black);
+  opacity: 0.85;
+}
+
+.kicker-year-num {
+  position: absolute;
+  top: 20px; right: 40px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.06);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  z-index: 1;
+}
+
+.kicker-year-text {
+  position: absolute;
+  top: 90px; right: 40px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  z-index: 2;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 75px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--white) 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* ── 中部：三栏 52% ── */
+.body {
+  height: 52%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: stretch;
+}
+
+.col {
+  padding: 22px 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.col + .col {
+  border-left: 1px solid var(--gray-light);
+}
+
+.col-icon {
+  width: 54px;
+  height: 54px;
+  background: var(--black);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.col-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.1;
+  margin-bottom: 3px;
+}
+
+.col-subtitle {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 14px;
+}
+
+.col-divider {
+  height: 2px;
+  background: var(--gray-light);
+  margin-bottom: 14px;
+}
+
+.col-item {
+  margin-bottom: 10px;
+}
+
+.item-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.item-value {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.item-value.small {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.highlight-box {
+  background: #f0ede8;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: auto;
+}
+
+.highlight-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 5px;
+}
+
+.highlight-text {
+  font-size: 13px;
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.45;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* ── 底部：金色引言条 16% ── */
+.quote-bar {
+  height: 16%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  padding: 0 72px;
+  gap: 24px;
+}
+
+.quote-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.quote-from {
+  margin-left: auto;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  color: rgba(0,0,0,0.38);
+  font-style: normal;
+  font-weight: 400;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部 -->
+  <div class="hero">
+    <div class="kicker">击剑升学 · 家长必读</div>
+    <div class="hero-title">体育到底让<br>孩子得到了什么</div>
+    <div class="hero-sub">练体育的孩子，后来都怎么样了？</div>
+    <div class="kicker-year">
+      <div class="kicker-year-bg"></div>
+      <div class="kicker-year-num">2026</div>
+      <div class="kicker-year-text">陕西杰森</div>
+    </div>
+  </div>
+
+  <!-- 中部三栏 -->
+  <div class="body">
+
+    <!-- 栏1：身体 -->
+    <div class="col">
+      <div class="col-icon">01</div>
+      <div class="col-title">身体</div>
+      <div class="col-subtitle">未来能给孩子什么</div>
+      <div class="col-divider"></div>
+
+      <div class="col-item">
+        <div class="item-value">力量、速度<br>耐力、柔韧</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-label">运动能力</div>
+        <div class="item-value small">受用一生的身体底子</div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-label">长期价值</div>
+        <div class="highlight-text">成年后依然热爱运动<br>比同龄人更有活力</div>
+      </div>
+    </div>
+
+    <!-- 栏2：性格 -->
+    <div class="col">
+      <div class="col-icon">02</div>
+      <div class="col-title">性格</div>
+      <div class="col-subtitle">未来能帮孩子什么</div>
+      <div class="col-divider"></div>
+
+      <div class="col-item">
+        <div class="item-value">抗挫折力<br>忍耐、专注</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-label">团队与个人</div>
+        <div class="item-value small">懂得团队协作，也能独自上场</div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-label">核心锤炼</div>
+        <div class="highlight-text">输了不放弃<br>赢了更想赢</div>
+      </div>
+    </div>
+
+    <!-- 栏3：内驱力 -->
+    <div class="col">
+      <div class="col-icon">03</div>
+      <div class="col-title">内驱力</div>
+      <div class="col-subtitle">未来能赋予孩子什么</div>
+      <div class="col-divider"></div>
+
+      <div class="col-item">
+        <div class="item-value">自我驱动<br>不怕吃苦</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-label">精神层面</div>
+        <div class="item-value small">懂得坚持的意义<br>知道一分耕耘一分收获</div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-label">核心洞见</div>
+        <div class="highlight-text">课本上学不到的<br>成长来自训练场</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部金色引言 -->
+  <div class="quote-bar">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">体育给的，是课本上学不到的</div>
+    <div class="quote-from">— 陕西杰森击剑</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识卡片</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #0a0a0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部装饰条 */
+.top-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #FF6B35 0%, #F7C948 50%, #00D4AA 100%);
+  flex-shrink: 0;
+}
+
+/* 顶部标题区 */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 36px 20px;
+  background: #FFFBF0;
+  border-bottom: 2px solid #F0E6D2;
+}
+
+.tag-box {
+  background: linear-gradient(135deg, #FF6B35, #FF8F5C);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.tag-box.ai { background: linear-gradient(135deg, #00D4AA, #00B894); }
+.tag-box.design { background: linear-gradient(135deg, #7B61FF, #A78BFA); }
+
+.title-group { flex: 1; }
+
+.title {
+  font-size: 34px;
+  font-weight: 900;
+  color: #1a1a2e;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* 主内容区 */
+.content {
+  flex: 1;
+  padding: 20px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* 模块 */
+.module {
+  background: #F9F7F2;
+  border-radius: 16px;
+  padding: 16px 20px;
+  position: relative;
+  border-left: 5px solid transparent;
+}
+
+.module.blue  { background: #EBF5FF; border-left-color: #1890FF; }
+.module.purple { background: #F3EDFF; border-left-color: #722ED1; }
+.module.green { background: #EDFAF3; border-left-color: #52C41A; }
+.module.orange { background: #FFF4EB; border-left-color: #FF6B35; }
+.module.yellow { background: #FFFBEB; border-left-color: #F7C948; }
+
+/* 模块顶部装饰 */
+.module::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.6) 50%);
+  border-radius: 0 16px 0 0;
+}
+
+.module-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.module.blue .module-label { color: #1890FF; }
+.module.purple .module-label { color: #722ED1; }
+.module.green .module-label { color: #52C41A; }
+.module.orange .module-label { color: #FF6B35; }
+.module.yellow .module-label { color: #D4A100; }
+
+.label-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.module-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.module-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.highlight {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FF6B35;
+}
+
+.data-block {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.data-item {
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-align: center;
+  flex: 1;
+}
+
+.data-num {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1a1a2e;
+  line-height: 1;
+}
+
+.data-num.orange { color: #FF6B35; }
+.data-num.blue { color: #1890FF; }
+.data-num.green { color: #52C41A; }
+
+.data-label {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* 底部 */
+.footer {
+  padding: 12px 36px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 0.05em;
+}
+
+.footer-right {
+  display: flex;
+  gap: 8px;
+}
+
+.emoji-tag {
+  font-size: 11px;
+  background: #F5F5F5;
+  color: #888;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* 装饰角标 */
+.corner-deco {
+  position: absolute;
+  font-size: 80px;
+  font-weight: 900;
+  opacity: 0.04;
+  color: #1a1a2e;
+  bottom: -10px;
+  right: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* 右下角来源 */
+.source-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B35, #F7C948, #00D4AA, #7B61FF);
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="top-bar"></div>
+
+  <div class="header">
+    <div class="tag-box">AI 创作</div>
+    <div class="title-group">
+      <h1 class="title">用AI做知识卡片</h1>
+      <p class="subtitle">三步搞定 · 批量生产 · 全平台适配</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- 步骤一 -->
+    <div class="module blue">
+      <div class="module-label"><span class="label-dot"></span>STEP 01</div>
+      <div class="module-title">备内容 · 定张数</div>
+      <div class="module-text">把复杂内容拆解成独立知识点，决定需要几张卡片</div>
+      <div class="data-block">
+        <div class="data-item">
+          <div class="data-num blue">1</div>
+          <div class="data-label">知识点</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num blue">1</div>
+          <div class="data-label">张卡片</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num blue">3</div>
+          <div class="data-label">分钟/张</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 步骤二 -->
+    <div class="module purple">
+      <div class="module-label"><span class="label-dot"></span>STEP 02</div>
+      <div class="module-title">定风格 · 写提示词</div>
+      <div class="module-text">选风格（扁平/新拟态/国潮…），写详细提示词控制AI天马行空</div>
+      <div style="margin-top:8px;">
+        <span class="highlight">提示词框架：</span>
+        <span class="module-text">视觉风格 + 比例 + 配色 + 文字层级 + 视觉元素</span>
+      </div>
+    </div>
+
+    <!-- 步骤三 -->
+    <div class="module green">
+      <div class="module-label"><span class="label-dot"></span>STEP 03</div>
+      <div class="module-title">第一张定风格 · 批量生成</div>
+      <div class="module-text">第一张确认风格后，反推提示词保持系列统一</div>
+      <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">
+        <span style="font-size:12px; background:#EDFAF3; color:#52C41A; padding:3px 10px; border-radius:8px; border:1px solid #B7EB8F;">扁平风</span>
+        <span style="font-size:12px; background:#EDFAF3; color:#52C41A; padding:3px 10px; border-radius:8px; border:1px solid #B7EB8F;">新拟态</span>
+        <span style="font-size:12px; background:#EDFAF3; color:#52C41A; padding:3px 10px; border-radius:8px; border:1px solid #B7EB8F;">卡通风</span>
+        <span style="font-size:12px; background:#EDFAF3; color:#52C41A; padding:3px 10px; border-radius:8px; border:1px solid #B7EB8F;">国潮风</span>
+        <span style="font-size:12px; background:#EDFAF3; color:#52C41A; padding:3px 10px; border-radius:8px; border:1px solid #B7EB8F;">毛玻璃</span>
+      </div>
+    </div>
+
+    <!-- 优势 -->
+    <div class="module orange">
+      <div class="module-label"><span class="label-dot"></span>核心优势</div>
+      <div class="data-block">
+        <div class="data-item">
+          <div class="data-num orange">10x</div>
+          <div class="data-label">效率提升</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num orange">100+</div>
+          <div class="data-label">种风格</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num orange">3:4</div>
+          <div class="data-label">竖版比例</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="corner-deco">★</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">JAVIS · 知识卡片生成系统</div>
+    <div class="footer-right">
+      <span class="emoji-tag">#AI创作</span>
+      <span class="emoji-tag">#知识卡片</span>
+      <span class="emoji-tag">#效率工具</span>
+    </div>
+  </div>
+
+  <div class="source-bar"></div>
+
+</div>
+</body>
+</html>

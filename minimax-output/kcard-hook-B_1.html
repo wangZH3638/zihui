@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钩子B</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --black:  #141414;
+  --white:  #FAFAF8;
+  --accent: #E8C547;
+  --gray-light: #E2DFD6;
+  --gray-mid:  #C4BEA0;
+  --gray-dark: #888888;
+  --text-main: #1a1a1a;
+  --tag-bg: #F0EDE6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #e8e5de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.10);
+}
+
+/* ── 顶部：深黑底 45% ── */
+.hero {
+  height: 45%;
+  background: var(--black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 72px 40px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 60px, transparent 60px);
+}
+
+.kicker {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 75px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--white) 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: rgba(255,255,255,0.50);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  max-width: 560px;
+}
+
+.kicker-year {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 160px;
+  overflow: visible;
+}
+
+.kicker-year-bg {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--black);
+  opacity: 0.85;
+}
+
+.kicker-year-num {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.07);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  z-index: 1;
+}
+
+.kicker-year-text {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: rgba(232, 197, 71, 0.55);
+  letter-spacing: 0.18em;
+  z-index: 2;
+  line-height: 1;
+}
+
+/* ── 中部：预告系列 37% ── */
+.body {
+  height: 37%;
+  background: var(--white);
+  padding: 32px 72px;
+}
+
+.series-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.series-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.series-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.series-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.series-text {
+  font-size: 15px;
+  color: var(--gray-dark);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.series-text strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.hint {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-light);
+  font-size: 12px;
+  color: var(--gray-mid);
+  letter-spacing: 0.05em;
+}
+
+/* ── 底部：金色引言条 18% ── */
+.quote-bar {
+  height: 18%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  padding: 0 72px;
+  gap: 24px;
+}
+
+.quote-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.quote-from {
+  margin-left: auto;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  color: rgba(0,0,0,0.38);
+  font-style: normal;
+  font-weight: 400;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部 -->
+  <div class="hero">
+    <div class="kicker">升学规划 · 西安击剑</div>
+    <div class="hero-title">击剑升学<br>到底是怎么<br>一回事？</div>
+    <div class="hero-sub">西安击剑孩子的升学路径</div>
+    <div class="kicker-year">
+      <div class="kicker-year-bg"></div>
+      <div class="kicker-year-num">2026</div>
+      <div class="kicker-year-text">陕西杰森</div>
+    </div>
+  </div>
+
+  <!-- 中部 -->
+  <div class="body">
+    <div class="series-title">持续关注 · 破解击剑升学密码</div>
+    <div class="series-list">
+      <div class="series-item">
+        <div class="series-num">01</div>
+        <div class="series-text"><strong>路径总览</strong> — 两条升学通道全解析</div>
+      </div>
+      <div class="series-item">
+        <div class="series-num">02</div>
+        <div class="series-text"><strong>教育系统</strong> — 特长生如何小升初、初升高</div>
+      </div>
+      <div class="series-item">
+        <div class="series-num">03</div>
+        <div class="series-text"><strong>体育系统</strong> — 运动员等级证书获取路径</div>
+      </div>
+      <div class="series-item">
+        <div class="series-num">04</div>
+        <div class="series-text"><strong>行动指南</strong> — 俱乐部能提供的帮助</div>
+      </div>
+    </div>
+    <div class="hint">后续系列，将逐一详细讲解</div>
+  </div>
+
+  <!-- 底部金色引言 -->
+  <div class="quote-bar">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">让热爱与未来，可以兼得</div>
+    <div class="quote-from">— 陕西杰森击剑</div>
+  </div>
+
+</div>
+</body>
+</html>

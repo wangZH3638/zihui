@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技头条 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --accent: #6366f1;
+  --indigo: #4f46e5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #09091a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(99,102,241,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(79,70,229,0.18) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(99,102,241,0.5);
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 80px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+.i  { --c: #6366f1; --c-bg: rgba(99,102,241,0.15); }
+.o  { --c: #f59e0b; --c-bg: rgba(245,158,11,0.15); }
+.g  { --c: #10b981; --c-bg: rgba(16,185,129,0.15); }
+.r  { --c: #ef4444; --c-bg: rgba(239,68,68,0.15); }
+.bl { --c: #34495e; --c-bg: rgba(52,73,94,0.20); }
+.pk { --c: #ec4899; --c-bg: rgba(236,72,153,0.15); }
+.ai { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+
+.accent-bar.i  { background: #6366f1; box-shadow: 2px 0 12px rgba(99,102,241,0.5); }
+.accent-bar.o  { background: #f59e0b; box-shadow: 2px 0 12px rgba(245,158,11,0.5); }
+.accent-bar.g  { background: #10b981; box-shadow: 2px 0 12px rgba(16,185,129,0.5); }
+.accent-bar.r  { background: #ef4444; box-shadow: 2px 0 12px rgba(239,68,68,0.5); }
+.accent-bar.bl { background: #34495e; box-shadow: 2px 0 12px rgba(52,73,94,0.5); }
+.accent-bar.pk { background: #ec4899; box-shadow: 2px 0 12px rgba(236,72,153,0.5); }
+.accent-bar.ai { background: #b06aff; box-shadow: 2px 0 12px rgba(176,106,255,0.5); }
+
+.card-icon.i  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+.card-icon.ai { background: var(--c-bg); color: var(--c); }
+
+.card-title.i  { color: #6366f1; }
+.card-title.o  { color: #f59e0b; }
+.card-title.g  { color: #10b981; }
+.card-title.r  { color: #ef4444; }
+.card-title.bl { color: #5d7a94; }
+.card-title.pk { color: #ec4899; }
+.card-title.ai { color: #b06aff; }
+
+.stat.i  { color: #6366f1; }
+.stat.o  { color: #f59e0b; }
+.stat.g  { color: #10b981; }
+.stat.r  { color: #ef4444; }
+.stat.bl { color: #5d7a94; }
+.stat.pk { color: #ec4899; }
+.stat.ai { color: #b06aff; }
+
+.tag.i  { background: rgba(99,102,241,0.1); color: #6366f1; border: 1px solid rgba(99,102,241,0.2); }
+.tag.o  { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+.tag.g  { background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
+.tag.r  { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
+.tag.bl { background: rgba(52,73,94,0.2); color: #5d7a94; border: 1px solid rgba(52,73,94,0.2); }
+.tag.pk { background: rgba(236,72,153,0.1); color: #ec4899; border: 1px solid rgba(236,72,153,0.2); }
+.tag.ai { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.2); }
+
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+.hero {
+  background: linear-gradient(135deg, rgba(99,102,241,0.16) 0%, rgba(79,70,229,0.12) 100%);
+  border-color: rgba(99,102,241,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 38px;
+  background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.analysis-card {
+  background: linear-gradient(135deg, rgba(176,106,255,0.08) 0%, rgba(99,102,241,0.06) 100%);
+  border-color: rgba(176,106,255,0.2);
+}
+.analysis-card .card-title.ai {
+  background: linear-gradient(135deg, #b06aff 0%, #6366f1 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.analysis-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.analysis-label { font-weight: 700; color: #b06aff; white-space: nowrap; }
+.analysis-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+.analysis-score {
+  display: inline-block; font-size: 15px; font-weight: 800;
+  padding: 1px 6px; border-radius: 4px; margin-left: 4px;
+}
+.score-h { background: rgba(16,185,129,0.2); color: #10b981; }
+.score-m { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.score-l { background: rgba(239,68,68,0.2); color: #ef4444; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo">AI</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>科技头条</h1>
+      <p>Tech · Chip · Auto · AI · Space</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 06</div>
+      <div class="tagline">Daily</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 1. HERO: Memory Chip Shortage -->
+    <div class="card hero h6">
+      <div class="accent-bar left i"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon i">[*]</div>
+        <div class="card-title i">全球存储芯片荒：手机暴跌12.9%</div>
+        <div class="card-sub">Bloomberg</div>
+      </div>
+      <div class="card-body">AI数据中心消耗2026年70%存储芯片产能，内存告急！全球智能手机出货量预计暴跌12.9%，创历史最大降幅，马斯克、库克同声警告芯片短缺危机</div>
+      <div class="stats"><div class="stat i">[*] -12.9% 手机</div></div>
+      <div class="tags">
+        <span class="tag i">芯片荒</span>
+        <span class="tag i">手机下滑</span>
+        <span class="tag i">供应链</span>
+      </div>
+    </div>
+
+    <!-- 2. Tesla/SpaceX TeraFab -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon o">$</div>
+        <div class="card-title o">马斯克Austin建芯片工厂</div>
+        <div class="card-sub">Fox Business</div>
+      </div>
+      <div class="card-body">特斯拉与SpaceX宣布在奥斯汀建设TeraFab先进芯片工厂，耗资250亿美元，目标生产AI芯片推动人类迈向"银河文明"</div>
+      <div class="stats"><div class="stat o">[*] $250亿</div></div>
+      <div class="tags">
+        <span class="tag o">Tesla</span>
+        <span class="tag o">SpaceX</span>
+        <span class="tag o">芯片</span>
+      </div>
+    </div>
+
+    <!-- 3. NVIDIA GTC -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon g">[~]</div>
+        <div class="card-title g">NVIDIA GTC 2026</div>
+        <div class="card-sub">NVIDIA</div>
+      </div>
+      <div class="card-body">黄仁勋发布DLSS 5，实时4K照片级渲染在本地硬件实现；宣布与IBM、戴尔、谷歌云、AWS、Azure合作加速计算生态</div>
+      <div class="stats"><div class="stat g">[*] DLSS 5</div></div>
+      <div class="tags">
+        <span class="tag g">NVIDIA</span>
+        <span class="tag g">GTC</span>
+        <span class="tag g">GPU</span>
+      </div>
+    </div>
+
+    <!-- 4. 手机市场 -->
+    <div class="card h4">
+      <div class="accent-bar left r"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">中国手机品牌下调出货预期</div>
+        <div class="card-sub">Digitimes</div>
+      </div>
+      <div class="card-body">存储芯片供应紧张、成本上涨，中国各大手机品牌被迫削减2026年出货预测，高端机型也受到冲击</div>
+      <div class="stats"><div class="stat r">[*] 出货缩减</div></div>
+      <div class="tags">
+        <span class="tag r">手机</span>
+        <span class="tag r">中国品牌</span>
+        <span class="tag r">供应链</span>
+      </div>
+    </div>
+
+    <!-- 5. Physical AI -->
+    <div class="card h2">
+      <div class="accent-bar left g"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon g">[!]</div>
+        <div class="card-title g">Physical AI崛起</div>
+        <div class="card-sub">Microsoft</div>
+      </div>
+      <div class="card-body">AI+机器人结合重塑制造业，微软称将彻底改变物流和工业自动化格局</div>
+      <div class="tags">
+        <span class="tag g">机器人</span>
+        <span class="tag g">工业</span>
+      </div>
+    </div>
+
+    <!-- 6. OpenAI融资 -->
+    <div class="card h3">
+      <div class="accent-bar left i"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon i">$</div>
+        <div class="card-title i">OpenAI完成1220亿融资</div>
+        <div class="card-sub">OpenAI</div>
+      </div>
+      <div class="card-body">OpenAI完成史上最大AI融资1220亿美元，资金规模超越任何科技公司历史记录</div>
+      <div class="stats"><div class="stat i">[*] $1220亿</div></div>
+      <div class="tags">
+        <span class="tag i">OpenAI</span>
+        <span class="tag i">融资</span>
+      </div>
+    </div>
+
+    <!-- 7. 大模型三足鼎立 -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!]</div>
+        <div class="card-title pk">大模型三足鼎立</div>
+        <div class="card-sub">太平洋科技</div>
+      </div>
+      <div class="card-body">Gemini 3综合评分94.6分登顶，GPT-5.4创作拔尖，Claude 4编程领先，三大模型差异化竞争</div>
+      <div class="stats"><div class="stat pk">[*] 94.6分</div></div>
+      <div class="tags">
+        <span class="tag pk">AI大模型</span>
+        <span class="tag pk">竞争</span>
+      </div>
+    </div>
+
+    <!-- 8. Jarvis 分析 -->
+    <div class="card analysis-card h6">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">贾维斯分析</div>
+        <div class="card-sub">Jarvis</div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-item">
+          <span class="analysis-label">芯片</span>
+          <span class="analysis-text">AI数据中心吞噬70%芯片产能，2026年手机暴跌12.9%只是开始，芯片荒将持续至2027年<span class="analysis-score score-l">高风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">太空</span>
+          <span class="analysis-text">马斯克TeraFab 250亿建芯片厂，意在打破英伟达/AMD/英特尔三巨头的GPU垄断，构建自研算力<span class="analysis-score score-m">中</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">算力</span>
+          <span class="analysis-text">NVIDIA GTC巩固霸主地位，DLSS 5代表光追技术成熟，AI推理成本正在指数级下降<span class="analysis-score score-h">高</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">趋势</span>
+          <span class="analysis-text">芯片荒 + Physical AI + 大模型三足鼎立 = 2026科技三条主线，手机只是第一张倒下的骨牌<span class="analysis-score score-l">高风险</span></span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag ai">芯片荒 持续</span>
+        <span class="tag ai">太空芯 崛起</span>
+        <span class="tag ai">算力 下降</span>
+        <span class="tag ai">主线 清晰</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: Bloomberg · Fox Business · NVIDIA · Digitimes · Microsoft · OpenAI · 太平洋科技 · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

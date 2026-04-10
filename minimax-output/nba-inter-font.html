@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CH Top Skills 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #b06aff;
+  --nba-blue: #1d428a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0d0d1a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(245,132,38,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(29,66,138,0.22) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(176,106,255,0.5);
+  letter-spacing: 0.05em;
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 88px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+/* colors */
+.o  { --c: #b06aff; --c-bg: rgba(245,132,38,0.15); }
+.b  { --c: #1d428a; --c-bg: rgba(29,66,138,0.20); }
+.r  { --c: #e84025; --c-bg: rgba(232,64,37,0.15); }
+.g  { --c: #4ade80; --c-bg: rgba(74,222,128,0.12); }
+.p  { --c: #a855f7; --c-bg: rgba(168,85,247,0.12); }
+.bl { --c: #3b82f6; --c-bg: rgba(59,130,246,0.12); }
+.pk { --c: #f472b6; --c-bg: rgba(244,114,182,0.12); }
+
+.accent-bar.o  { background: #b06aff; box-shadow: 2px 0 12px rgba(176,106,255,0.5); }
+.accent-bar.b  { background: #1d428a; box-shadow: 2px 0 12px rgba(29,66,138,0.5); }
+.accent-bar.r  { background: #e84025; box-shadow: 2px 0 12px rgba(232,64,37,0.5); }
+.accent-bar.g  { background: #4ade80; box-shadow: 2px 0 12px rgba(74,222,128,0.5); }
+.accent-bar.p  { background: #a855f7; box-shadow: 2px 0 12px rgba(168,85,247,0.5); }
+.accent-bar.bl { background: #3b82f6; box-shadow: 2px 0 12px rgba(59,130,246,0.5); }
+.accent-bar.pk { background: #f472b6; box-shadow: 2px 0 12px rgba(244,114,182,0.5); }
+
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.b  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.p  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+
+.card-title.o  { color: #b06aff; }
+.card-title.b  { color: #6b9fff; }
+.card-title.r  { color: #e84025; }
+.card-title.g  { color: #4ade80; }
+.card-title.p  { color: #a855f7; }
+.card-title.bl { color: #3b82f6; }
+.card-title.pk { color: #f472b6; }
+
+.stat.o  { color: #b06aff; }
+.stat.b  { color: #6b9fff; }
+.stat.r  { color: #e84025; }
+.stat.g  { color: #4ade80; }
+.stat.p  { color: #a855f7; }
+.stat.bl { color: #3b82f6; }
+.stat.pk { color: #f472b6; }
+
+.tag.o  { background: rgba(245,132,38,0.1); color: #b06aff; border: 1px solid rgba(245,132,38,0.2); }
+.tag.b  { background: rgba(29,66,138,0.2); color: #6b9fff; border: 1px solid rgba(59,130,246,0.2); }
+.tag.r  { background: rgba(232,64,37,0.1); color: #e84025; border: 1px solid rgba(232,64,37,0.2); }
+.tag.g  { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+.tag.p  { background: rgba(168,85,247,0.1); color: #a855f7; border: 1px solid rgba(168,85,247,0.2); }
+.tag.bl { background: rgba(59,130,246,0.1); color: #3b82f6; border: 1px solid rgba(59,130,246,0.2); }
+.tag.pk { background: rgba(244,114,182,0.1); color: #f472b6; border: 1px solid rgba(244,114,182,0.2); }
+
+/* grid spans */
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+/* hero */
+.hero {
+  background: linear-gradient(135deg, rgba(176,106,255,0.14) 0%, rgba(29,66,138,0.16) 100%);
+  border-color: rgba(176,106,255,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 40px;
+  background: linear-gradient(135deg, #b06aff 0%, #b06aff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">CH</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>Top Skills</h1>
+      <p>OpenClaw · ClawHub · Top 10</p>
+    </div>
+    <div class="header-right">
+      <div class="date">2026.04</div>
+      <div class="tagline">Skill Registry</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- 1. HERO -->
+    <div class="card hero h6">
+      <div class="accent-bar left o"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon o">[★]</div>
+        <div class="card-title o">OpenClaw Stars</div>
+        <div class="card-sub">BREAKING</div>
+      </div>
+      <div class="card-body">OpenClaw GitHub 星标突破 33.5 万，成为史上增长最快的开源项目，ClawHub 技能市场超 1.37 万技能</div>
+      <div class="stats">
+        <div class="stat o">[*] 335K</div>
+        <div class="stat o">[*] 历史级</div>
+      </div>
+      <div class="tags">
+        <span class="tag o">50分</span>
+        <span class="tag o">GitHub #1</span>
+        <span class="tag o">增长最快</span>
+      </div>
+    </div>
+
+    <!-- 2. Jokic 能力进化 -->
+    <div class="card h3">
+      <div class="accent-bar left b"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon b">M</div>
+        <div class="card-title b">能力进化竞争激烈</div>
+        <div class="card-sub">Nikola Jokic</div>
+      </div>
+      <div class="card-body">Capability Evolver 以 3.5 万下载量登顶，帮助 AI Agent 自主进化能力</div>
+      <div class="stats"><div class="stat b">[*] 榜首</div></div>
+      <div class="tags">
+        <span class="tag b">能力进化</span>
+        <span class="tag b">Jokic</span>
+      </div>
+    </div>
+
+    <!-- 3. Trade Deadline -->
+    <div class="card h3">
+      <div class="accent-bar left r"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon r">T</div>
+        <div class="card-title r">代码审查</div>
+        <div class="card-sub">Deadline</div>
+      </div>
+      <div class="card-body">Code Review 成为最受开发者欢迎技能，对 PR/Commit 进行自动审查和问题标注</div>
+      <div class="stats"><div class="stat r">[!] 重磅</div></div>
+      <div class="tags">
+        <span class="tag r">Dev</span>
+        <span class="tag r">Harden</span>
+      </div>
+    </div>
+
+    <!-- 4. Browser trade -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon o">W</div>
+        <div class="card-title o">勇士换血</div>
+        <div class="card-sub">Browser</div>
+      </div>
+      <div class="card-body">Browser CDP 无头浏览器自动化技能，Impact Score 9.0</div>
+      <div class="stats"><div class="stat o">[*] Dev</div></div>
+      <div class="tags">
+        <span class="tag o">勇士</span>
+        <span class="tag o">CDP</span>
+      </div>
+    </div>
+
+    <!-- 5. Workspace deal -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon g">P</div>
+        <div class="card-title g">步行者补强</div>
+        <div class="card-sub">Workspace</div>
+      </div>
+      <div class="card-body">gog-workspace Gmail/Calendar 全读写技能，Impact Score 9.5</div>
+      <div class="stats"><div class="stat g">[*] Gmail/Calendar</div></div>
+      <div class="tags">
+        <span class="tag g">步行者</span>
+        <span class="tag g">Zubac</span>
+      </div>
+    </div>
+
+    <!-- 6. Bulls trade -->
+    <div class="card h4">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon bl">C</div>
+        <div class="card-title bl">公牛活塞Dev</div>
+        <div class="card-sub">Bulls</div>
+      </div>
+      <div class="card-body">Data Extraction 单次任务平均节省 45 分钟，领跑效率榜</div>
+      <div class="stats"><div class="stat bl">[*] 45min/次</div></div>
+      <div class="tags">
+        <span class="tag bl">公牛</span>
+        <span class="tag bl">活塞</span>
+        <span class="tag bl">Ivey</span>
+      </div>
+    </div>
+
+    <!-- 7. 邮件 -->
+    <div class="card h2">
+      <div class="accent-bar left r"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon r">V</div>
+        <div class="card-title r">邮件</div>
+        <div class="card-sub">回归</div>
+      </div>
+      <div class="card-body">Email Triage 邮件分类自动化，单次节省 20 分钟</div>
+      <div class="tags"><span class="tag r">20min/次</span></div>
+    </div>
+
+    <!-- 8. Hall of Fame -->
+    <div class="card h3">
+      <div class="accent-bar left p"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon p">H</div>
+        <div class="card-title p">Attio Enhanced</div>
+        <div class="card-sub">HoF</div>
+      </div>
+      <div class="card-body">Attio Enhanced CRM API 技能，支持批量操作和增强查询</div>
+      <div class="tags"><span class="tag p">CRM</span></div>
+    </div>
+
+    <!-- 9. Draft -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon pk">D</div>
+        <div class="card-title pk">AR Filter Gen</div>
+        <div class="card-sub">Draft</div>
+      </div>
+      <div class="card-body">AR Filter Generation 使用 Sense AI 生成 AR 滤镜和人脸效果</div>
+      <div class="tags">
+        <span class="tag pk">AR滤镜</span>
+        <span class="tag pk">Sense AI</span>
+      </div>
+    </div>
+
+    <!-- 10. Top 5 Plays -->
+    <div class="card h6">
+      <div class="accent-bar left o"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon o">P</div>
+        <div class="card-title o">编码</div>
+        <div class="card-sub">Top 5 Plays · Apr 4</div>
+      </div>
+      <div class="card-body">Autonomous Coding OpenClaw 核心编码 Agent，支持多文件编辑和调试</div>
+      <div class="stats"><div class="stat o">[*] 多文件</div></div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    clawhub.ai · ClawHub · OpenClaw Skills · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

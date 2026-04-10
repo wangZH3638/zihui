@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中东局势 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsn,wght@0,3..960;1,3..960&family=Geist:wght@300;400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --bg:   #080810;
+  --navy: #0d1525;
+  --red:  #c83025;
+  --amber:#d4920a;
+  --paper:#f0ebe0;
+  --muted:#7a7a8a;
+  --rule: #1e2a40;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Geist', 'Noto Sans SC', sans-serif;
+}
+
+.card {
+  width: 900px;
+  aspect-ratio: 3/4;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ══ HEADER 14% ══ */
+.header {
+  height: 14%;
+  background: var(--navy);
+  border-bottom: 3px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+}
+
+.header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.header-year {
+  font-family: 'Newsreader', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.header-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--paper);
+  letter-spacing: 0.06em;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-date {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.header-tag {
+  font-size: 8px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ══ HERO 30% ══ */
+.hero {
+  height: 30%;
+  background: linear-gradient(135deg, #0d1a30 0%, #080810 100%);
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  position: relative;
+  padding: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+}
+
+.v-rule {
+  background: var(--rule);
+}
+
+.hero-zone {
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.hero-rank {
+  font-size: 8px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.hero-headline {
+  font-family: 'Newsreader', 'Noto Sans SC', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+
+.hl-red { color: var(--red); }
+
+.hero-body {
+  font-size: 11px;
+  color: rgba(240,235,224,0.5);
+  line-height: 1.6;
+  font-weight: 300;
+  border-top: 1px solid var(--rule);
+  padding-top: 6px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.h-tag {
+  font-size: 7px;
+  padding: 1px 6px;
+  border: 1px solid rgba(200,48,37,0.35);
+  color: var(--red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.side-zone {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-item {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+}
+
+.side-item:last-child { border-bottom: none; }
+
+.side-rank {
+  font-family: 'Newsreader', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.side-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.3;
+}
+
+.side-meta {
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.side-stat {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-top: 2px;
+}
+
+/* ══ GRID 42% ══ */
+.grid {
+  height: 42%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+}
+
+.cell {
+  background: var(--bg);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+}
+
+.cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+}
+
+.cell-rank {
+  font-size: 8px;
+  font-weight: 900;
+  opacity: 0.25;
+  letter-spacing: 0.1em;
+  color: var(--paper);
+}
+
+.cell-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.25;
+  flex: 1;
+}
+
+.cell-body {
+  font-size: 9px;
+  color: rgba(240,235,224,0.45);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.cell-stat {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.c-r::before { background: var(--red); }
+.c-r .cell-stat { color: var(--red); }
+
+.c-a::before { background: var(--amber); }
+.c-a .cell-stat { color: var(--amber); }
+
+.c-bl::before { background: #3a5a7a; }
+.c-bl .cell-stat { color: #5a8aaa; }
+
+.bl-6 { grid-column: span 6; }
+.bl-4 { grid-column: span 4; }
+.bl-3 { grid-column: span 3; }
+.bl-2 { grid-column: span 2; }
+
+/* ══ ANALYSIS 14% ══ */
+.analysis {
+  height: 14%;
+  background: var(--red);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.analysis::after {
+  content: 'J.A.R.V.I.S.';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-family: 'Newsreader', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.08);
+  letter-spacing: 0.15em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.a-item {
+  padding: 8px 14px;
+  border-right: 1px solid rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.a-item:last-child { border-right: none; }
+
+.a-label {
+  font-size: 7px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.4);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.a-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #1a0a08;
+  line-height: 1.3;
+}
+
+.a-text {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 8px;
+  color: rgba(0,0,0,0.5);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.a-badge {
+  display: inline-block;
+  font-size: 7px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+  margin-top: 2px;
+}
+.b-h { background: rgba(0,0,0,0.12); color: #1a0a08; }
+.b-m { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.5); }
+.b-l { background: rgba(0,0,0,0.15); color: #1a0a08; }
+
+/* waterark */
+.watermark {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  font-family: 'Newsreader', serif;
+  font-size: 120px;
+  font-weight: 900;
+  color: var(--red);
+  opacity: 0.04;
+  letter-spacing: 0.2em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="watermark">JARVIS</div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-year">2026</div>
+      <div class="header-title">中东局势</div>
+    </div>
+    <div class="header-right">
+      <div class="header-date">Apr 06 2026</div>
+      <div class="header-tag">Live Updates</div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-zone">
+      <div class="hero-rank">01 · Breaking</div>
+      <div class="hero-headline">
+        美以联合空袭<br>
+        伊朗<span class="hl-red">导弹能力</span><br>
+        严重受损
+      </div>
+      <div class="hero-body">
+        美以联合空袭伊朗军事目标，伊朗中程导弹能力严重受损。伊朗对以导弹发射从战争初期大幅下降，现每轮仅发射数枚。美军F-15E被击落，为开战以来首次。
+      </div>
+      <div class="hero-tags">
+        <span class="h-tag">美以联合</span>
+        <span class="h-tag">导弹荒</span>
+        <span class="h-tag">战机被击落</span>
+      </div>
+    </div>
+    <div class="v-rule"></div>
+    <div class="side-zone">
+      <div class="side-item">
+        <div class="side-rank">02</div>
+        <div class="side-title">美F-15E被击落 两名飞行员跳伞</div>
+        <div class="side-meta">Reuters · Apr 03</div>
+        <div class="side-stat">1人获救 1人搜救中</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">03</div>
+        <div class="side-title">以色列取消对伊打击计划</div>
+        <div class="side-meta">Axios · Apr 03</div>
+        <div class="side-stat">专注美军救援</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">04</div>
+        <div class="side-title">45天停火提案已提交双方</div>
+        <div class="side-meta">NBC News · Apr 06</div>
+        <div class="side-stat">谈判进行中</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">05</div>
+        <div class="side-title">特朗普：两到三周内结束战争</div>
+        <div class="side-meta">CBS News</div>
+        <div class="side-stat">终战在望？</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid">
+    <div class="cell c-r bl-4">
+      <div class="cell-rank">06</div>
+      <div class="cell-title">鲁比奥称看到"战争终点线"</div>
+      <div class="cell-body">美国务卿鲁比奥表示已能看到终战迹象，同时质疑北约未来</div>
+      <div class="cell-stat">外交曙光</div>
+    </div>
+    <div class="cell c-a bl-2">
+      <div class="cell-rank">07</div>
+      <div class="cell-title">伊拉克港口油库遭无人机袭击</div>
+      <div class="cell-stat">能源受阻</div>
+    </div>
+    <div class="cell c-bl bl-3">
+      <div class="cell-rank">08</div>
+      <div class="cell-title">贝鲁特再遭以军打击 4死39伤</div>
+      <div class="cell-body">以色列继续在黎巴嫩打击真主党设施</div>
+      <div class="cell-stat">黎以冲突延续</div>
+    </div>
+    <div class="cell c-r bl-3">
+      <div class="cell-rank">09</div>
+      <div class="cell-title">伊朗民兵袭击伊拉克美外交设施</div>
+      <div class="cell-body">亲伊朗武装回应地区冲突</div>
+      <div class="cell-stat">地区扩大</div>
+    </div>
+    <div class="cell c-a bl-6">
+      <div class="cell-rank">10</div>
+      <div class="cell-title" style="font-size:12px;">霍尔木兹海峡：伊拉克感谢伊朗允许油轮通行</div>
+      <div class="cell-body" style="font-size:10px;">能源命脉牵动全球，油价持续波动。特朗普呼吁各国共同守卫霍尔木兹海峡</div>
+      <div class="cell-stat" style="font-size:11px;">能源咽喉</div>
+    </div>
+  </div>
+
+  <!-- Analysis -->
+  <div class="analysis">
+    <div class="a-item">
+      <div class="a-label">军事</div>
+      <div class="a-title">伊朗导弹能力大幅削弱</div>
+      <div class="a-text">每轮仅数枚发射，防御工业基地被炸毁，重建需数年</div>
+      <div class="a-badge b-h">高风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">外交</div>
+      <div class="a-title">45天停火提案谈判中</div>
+      <div class="a-text">鲁比奥称看到终点，特朗普称两到三周内结束</div>
+      <div class="a-badge b-m">中风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">能源</div>
+      <div class="a-title">霍尔木兹命脉受威胁</div>
+      <div class="a-text">伊拉克港口油库被炸，油价波动，全球能源市场紧张</div>
+      <div class="a-badge b-h">高风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">地区</div>
+      <div class="a-title">黎以/伊科持续冲突</div>
+      <div class="a-text">贝鲁特打击+伊拉克亲伊朗武装袭击，中东战线多点蔓延</div>
+      <div class="a-badge b-l">高风险</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

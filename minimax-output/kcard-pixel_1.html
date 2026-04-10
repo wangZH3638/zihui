@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Retro Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow: hidden;
+}
+
+/* 扫描线叠加 */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: #0d0d2a;
+  position: relative;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+/* 像素边框 */
+.pixel-border {
+  position: absolute;
+  inset: 0;
+  border: 4px solid #00FFFF;
+  box-shadow:
+    inset 0 0 0 2px #0d0d2a,
+    inset 0 0 0 4px #FF00FF,
+    0 0 30px rgba(0,255,255,0.3),
+    0 0 60px rgba(255,0,255,0.2);
+  pointer-events: none;
+}
+
+/* 背景像素网格 */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 顶部标题区 */
+.header {
+  padding: 36px 40px 24px;
+  position: relative;
+  border-bottom: 3px solid #00FFFF;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF00FF, #00FFFF, #FFFF00);
+}
+
+.badge {
+  display: inline-block;
+  background: #FF00FF;
+  color: #0d0d2a;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 4px 10px;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: 4px 4px 0 #00FFFF;
+}
+
+.title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  color: #00FFFF;
+  line-height: 1.6;
+  text-shadow:
+    3px 3px 0 #FF00FF,
+    0 0 20px #00FFFF;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+/* 像素装饰块 */
+.pixel-deco {
+  position: absolute;
+  top: 24px;
+  right: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 8px);
+  grid-template-rows: repeat(4, 8px);
+  gap: 2px;
+}
+
+.pixel-deco span {
+  background: #FFFF00;
+  box-shadow: 0 0 6px #FFFF00;
+  animation: blink 1.5s infinite;
+}
+.pixel-deco span:nth-child(2n) { animation-delay: 0.3s; background: #FF00FF; box-shadow: 0 0 6px #FF00FF; }
+.pixel-deco span:nth-child(3n) { animation-delay: 0.7s; background: #00FFFF; box-shadow: 0 0 6px #00FFFF; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* 内容区 */
+.content {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.item {
+  background: rgba(0,255,255,0.04);
+  border: 2px solid rgba(0,255,255,0.3);
+  padding: 14px 18px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 4px;
+  height: calc(100% + 4px);
+  background: #00FFFF;
+  box-shadow: 0 0 8px #00FFFF;
+}
+
+.item-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #FFFF00;
+  text-shadow: 2px 2px 0 #FF00FF;
+  line-height: 1;
+}
+
+.item-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.item-text {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.03em;
+}
+
+.item-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  background: #FF00FF;
+  color: #0d0d2a;
+  padding: 4px 8px;
+  box-shadow: 2px 2px 0 #00FFFF;
+  white-space: nowrap;
+}
+
+/* 底部统计区 */
+.stats-bar {
+  margin: 0 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  border-top: 2px solid rgba(255,255,0,0.3);
+  padding-top: 16px;
+}
+
+.stat-box {
+  background: rgba(255,255,0,0.06);
+  border: 2px solid rgba(255,255,0,0.3);
+  padding: 12px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #FFFF00;
+  box-shadow: 0 0 8px #FFFF00;
+}
+
+.stat-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  color: #FFFF00;
+  text-shadow: 2px 2px 0 #FF00FF;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 9px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* 底部 */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(90deg, #FF00FF, #00FFFF, #FFFF00);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.footer-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #0d0d2a;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.footer-pixel {
+  display: flex;
+  gap: 4px;
+}
+
+.px {
+  width: 8px;
+  height: 8px;
+  background: #0d0d2a;
+}
+
+/* 角落装饰 */
+.corner-tl {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #00FFFF;
+  border-left: 3px solid #00FFFF;
+}
+
+.corner-tr {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #FF00FF;
+  border-right: 3px solid #FF00FF;
+}
+
+.corner-bl {
+  position: absolute;
+  bottom: 44px;
+  left: 8px;
+  width: 12px;
+  height: 12px;
+  border-bottom: 3px solid #FFFF00;
+  border-left: 3px solid #FFFF00;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="pixel-border"></div>
+  <div class="bg-grid"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-tr"></div>
+  <div class="corner-bl"></div>
+
+  <!-- 标题 -->
+  <div class="header">
+    <div class="badge">RETRO TECH</div>
+    <div class="pixel-deco">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="title">AI<br>知识工作<br>生存指南</div>
+    <div class="subtitle">不是AI取代你，而是会用AI的人取代你。<br>像素风 · 复古未来 · Y2K回归</div>
+  </div>
+
+  <!-- 内容 -->
+  <div class="content">
+
+    <div class="item">
+      <div class="item-num">01</div>
+      <div>
+        <div class="item-title">认知重建</div>
+        <div class="item-text">把AI当作超级助理，而不是威胁</div>
+      </div>
+      <div class="item-tag">MIND</div>
+    </div>
+
+    <div class="item">
+      <div class="item-num">02</div>
+      <div>
+        <div class="item-title">能力杠杆</div>
+        <div class="item-text">Prompt是新时代的编程语言</div>
+      </div>
+      <div class="item-tag">SKILL</div>
+    </div>
+
+    <div class="item">
+      <div class="item-num">03</div>
+      <div>
+        <div class="item-title">工作流重构</div>
+        <div class="item-text">用AI批量生产，人脑判断质量</div>
+      </div>
+      <div class="item-tag">FLOW</div>
+    </div>
+
+    <div class="item">
+      <div class="item-num">04</div>
+      <div>
+        <div class="item-title">内容规模化</div>
+        <div class="item-text">从一篇到日产百篇的效率跃升</div>
+      </div>
+      <div class="item-tag">SCALE</div>
+    </div>
+
+  </div>
+
+  <!-- 统计 -->
+  <div class="stats-bar">
+    <div class="stat-box">
+      <div class="stat-num">10x</div>
+      <div class="stat-label">效率提升</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">风格模板</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">3:4</div>
+      <div class="stat-label">竖版比例</div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-text">JARVIS CARD SYSTEM v1.0</div>
+    <div class="footer-pixel">
+      <div class="px"></div><div class="px"></div><div class="px"></div>
+      <div class="px"></div><div class="px"></div>
+    </div>
+    <div class="footer-text">2026.04</div>
+  </div>
+
+</div>
+</body>
+</html>

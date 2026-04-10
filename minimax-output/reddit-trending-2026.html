@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reddit Trending 2026</title>
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #ff4500;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #080810;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0a0a14;
+  background-image:
+    radial-gradient(ellipse at 15% 5%, rgba(255,69,0,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 95%, rgba(0,212,255,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(255,140,0,0.06) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 14px;
+}
+
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+}
+.year {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff4500 0%, #ff6a00 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.title-block p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.badge {
+  margin-left: auto;
+  padding: 5px 14px;
+  border: 1px solid rgba(255,69,0,0.5);
+  border-radius: 16px;
+  font-size: 11px;
+  color: #ff4500;
+  letter-spacing: 0.08em;
+}
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+/* ── Card base ── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+.accent-bar {
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+.rank {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 20px;
+  font-weight: 900;
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.card-icon {
+  width: 30px; height: 30px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.card-sub {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.4);
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.card-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  flex: 1;
+}
+.stats {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.stat-icon {
+  font-size: 11px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+.tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 9.5px;
+  font-weight: 500;
+}
+
+/* colors — Reddit brand */
+.orangered { --c: #ff4500; --c-bg: rgba(255,69,0,0.15); }
+.blue      { --c: #0079d3; --c-bg: rgba(0,121,211,0.15); }
+.purple    { --c: #b06aff; --c-bg: rgba(176,106,255,0.15); }
+.teal      { --c: #00d4aa; --c-bg: rgba(0,212,170,0.15); }
+.yellow    { --c: #ffd700; --c-bg: rgba(255,215,0,0.15); }
+.pink      { --c: #ff50a0; --c-bg: rgba(255,80,160,0.15); }
+.cyan      { --c: #00d4ff; --c-bg: rgba(0,212,255,0.15); }
+.green     { --c: #50ffa0; --c-bg: rgba(80,255,160,0.15); }
+.orange    { --c: #ff9040; --c-bg: rgba(255,144,64,0.15); }
+.gray      { --c: #9ca3af; --c-bg: rgba(156,163,175,0.15); }
+
+.accent-bar.orangered { background: #ff4500; box-shadow: 0 0 10px rgba(255,69,0,0.5); }
+.accent-bar.blue      { background: #0079d3; box-shadow: 0 0 10px rgba(0,121,211,0.5); }
+.accent-bar.purple    { background: #b06aff; box-shadow: 0 0 10px rgba(176,106,255,0.5); }
+.accent-bar.teal      { background: #00d4aa; box-shadow: 0 0 10px rgba(0,212,170,0.5); }
+.accent-bar.yellow    { background: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+.accent-bar.pink      { background: #ff50a0; box-shadow: 0 0 10px rgba(255,80,160,0.5); }
+.accent-bar.cyan      { background: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.5); }
+.accent-bar.green     { background: #50ffa0; box-shadow: 0 0 10px rgba(80,255,160,0.5); }
+.accent-bar.orange    { background: #ff9040; box-shadow: 0 0 10px rgba(255,144,64,0.5); }
+.accent-bar.gray      { background: #9ca3af; box-shadow: 0 0 10px rgba(156,163,175,0.5); }
+
+.card-icon.orangered { background: var(--c-bg); color: var(--c); }
+.card-icon.blue      { background: var(--c-bg); color: var(--c); }
+.card-icon.purple    { background: var(--c-bg); color: var(--c); }
+.card-icon.teal      { background: var(--c-bg); color: var(--c); }
+.card-icon.yellow    { background: var(--c-bg); color: var(--c); }
+.card-icon.pink      { background: var(--c-bg); color: var(--c); }
+.card-icon.cyan      { background: var(--c-bg); color: var(--c); }
+.card-icon.green     { background: var(--c-bg); color: var(--c); }
+.card-icon.orange    { background: var(--c-bg); color: var(--c); }
+.card-icon.gray      { background: var(--c-bg); color: var(--c); }
+
+.card-title.orangered { color: #ff4500; }
+.card-title.blue      { color: #0079d3; }
+.card-title.purple    { color: #b06aff; }
+.card-title.teal      { color: #00d4aa; }
+.card-title.yellow    { color: #ffd700; }
+.card-title.pink      { color: #ff50a0; }
+.card-title.cyan      { color: #00d4ff; }
+.card-title.green     { color: #50ffa0; }
+.card-title.orange    { color: #ff9040; }
+.card-title.gray      { color: #9ca3af; }
+
+.stat.orangered { color: #ff4500; }
+.stat.blue      { color: #0079d3; }
+.stat.purple    { color: #b06aff; }
+.stat.teal      { color: #00d4aa; }
+.stat.yellow    { color: #ffd700; }
+.stat.pink      { color: #ff50a0; }
+.stat.cyan      { color: #00d4ff; }
+.stat.green     { color: #50ffa0; }
+.stat.orange    { color: #ff9040; }
+.stat.gray      { color: #9ca3af; }
+
+.tag.orangered { background: rgba(255,69,0,0.1); color: #ff4500; border: 1px solid rgba(255,69,0,0.18); }
+.tag.blue      { background: rgba(0,121,211,0.1); color: #0079d3; border: 1px solid rgba(0,121,211,0.18); }
+.tag.purple    { background: rgba(176,106,255,0.1); color: #b06aff; border: 1px solid rgba(176,106,255,0.18); }
+.tag.teal      { background: rgba(0,212,170,0.1); color: #00d4aa; border: 1px solid rgba(0,212,170,0.18); }
+.tag.yellow    { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.18); }
+.tag.pink      { background: rgba(255,80,160,0.1); color: #ff50a0; border: 1px solid rgba(255,80,160,0.18); }
+.tag.cyan      { background: rgba(0,212,255,0.1); color: #00d4ff; border: 1px solid rgba(0,212,255,0.18); }
+.tag.green     { background: rgba(80,255,160,0.1); color: #50ffa0; border: 1px solid rgba(80,255,160,0.18); }
+.tag.orange    { background: rgba(255,144,64,0.1); color: #ff9040; border: 1px solid rgba(255,144,64,0.18); }
+.tag.gray      { background: rgba(156,163,175,0.1); color: #9ca3af; border: 1px solid rgba(156,163,175,0.18); }
+
+/* grid spans */
+.c-3 { grid-column: span 3; }
+
+.footer {
+  text-align: center;
+  font-size: 9px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.08em;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="year">2026</div>
+    <div class="title-block">
+      <h1>Reddit 热门话题</h1>
+      <p>Reddit Trending · April</p>
+    </div>
+    <span class="badge">★ r/popular</span>
+  </div>
+
+  <!-- Main: 6 col x 4 row grid -->
+  <div class="main">
+
+    <!-- 1. SipsTea — 74.4k ups -->
+    <div class="card c-3">
+      <div class="accent-bar orangered"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon orangered">[R]</div>
+        <div class="card-title orangered">r/SipsTea</div>
+        <div class="card-sub">meme</div>
+      </div>
+      <div class="card-body">Insert hot fuzz "Shame" meme — 经典羞耻梗图再现</div>
+      <div class="stats">
+        <div class="stat orangered">[^] 74.4k</div>
+        <div class="stat orangered">[>] 3.7k</div>
+      </div>
+      <div class="tags">
+        <span class="tag orangered">meme</span>
+        <span class="tag orangered">viral</span>
+      </div>
+    </div>
+
+    <!-- 2. me_irl — 26k ups -->
+    <div class="card c-3">
+      <div class="accent-bar blue"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon blue">[R]</div>
+        <div class="card-title blue">r/me_irl</div>
+        <div class="card-sub">meme</div>
+      </div>
+      <div class="card-body">Meirl — 精准戳中现代人生活的共鸣瞬间</div>
+      <div class="stats">
+        <div class="stat blue">[^] 26.1k</div>
+        <div class="stat blue">[>] 316</div>
+      </div>
+      <div class="tags">
+        <span class="tag blue">relatable</span>
+        <span class="tag blue">lifestyle</span>
+      </div>
+    </div>
+
+    <!-- 3. interestingasfuck — 20.4k ups -->
+    <div class="card c-3">
+      <div class="accent-bar teal"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon teal">[R]</div>
+        <div class="card-title teal">r/interestingasfuck</div>
+        <div class="card-sub">facts</div>
+      </div>
+      <div class="card-body">An almost flat sink — 几乎纯平的水槽，物理奇观</div>
+      <div class="stats">
+        <div class="stat teal">[^] 20.4k</div>
+        <div class="stat teal">[>] 1.9k</div>
+      </div>
+      <div class="tags">
+        <span class="tag teal">physics</span>
+        <span class="tag teal">design</span>
+      </div>
+    </div>
+
+    <!-- 4. worldnews — 19.2k ups -->
+    <div class="card c-3">
+      <div class="accent-bar purple"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon purple">[R]</div>
+        <div class="card-title purple">r/worldnews</div>
+        <div class="card-sub">news</div>
+      </div>
+      <div class="card-body">U.S. forces rescue second crew member from F-15 downed in Iran</div>
+      <div class="stats">
+        <div class="stat purple">[^] 19.2k</div>
+        <div class="stat purple">[>] 5.4k</div>
+      </div>
+      <div class="tags">
+        <span class="tag purple">military</span>
+        <span class="tag purple">iran</span>
+      </div>
+    </div>
+
+    <!-- 5. interesting — 16k ups -->
+    <div class="card c-3">
+      <div class="accent-bar yellow"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon yellow">[R]</div>
+        <div class="card-title yellow">r/interesting</div>
+        <div class="card-sub">video</div>
+      </div>
+      <div class="card-body">Cop gets bear sprayed — 警察被熊喷喷雾名场面</div>
+      <div class="stats">
+        <div class="stat yellow">[^] 16.1k</div>
+        <div class="stat yellow">[>] 4.2k</div>
+      </div>
+      <div class="tags">
+        <span class="tag yellow">viral</span>
+        <span class="tag yellow">funny</span>
+      </div>
+    </div>
+
+    <!-- 6. funny — 16k ups -->
+    <div class="card c-3">
+      <div class="accent-bar pink"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon pink">[R]</div>
+        <div class="card-title pink">r/funny</div>
+        <div class="card-sub">OC</div>
+      </div>
+      <div class="card-body">[OC] Gap in resume — 简历上的空白，HR破防瞬间</div>
+      <div class="stats">
+        <div class="stat pink">[^] 16.1k</div>
+        <div class="stat pink">[>] 68</div>
+      </div>
+      <div class="tags">
+        <span class="tag pink">work</span>
+        <span class="tag pink">OC</span>
+      </div>
+    </div>
+
+    <!-- 7. me_irl 2 — 13.8k ups -->
+    <div class="card c-3">
+      <div class="accent-bar cyan"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon cyan">[R]</div>
+        <div class="card-title cyan">r/me_irl</div>
+        <div class="card-sub">meme</div>
+      </div>
+      <div class="card-body">Me_irl — 又一条引发全网共鸣的经典自我调侃</div>
+      <div class="stats">
+        <div class="stat cyan">[^] 13.9k</div>
+        <div class="stat cyan">[>] 420</div>
+      </div>
+      <div class="tags">
+        <span class="tag cyan">relatable</span>
+        <span class="tag cyan">meme</span>
+      </div>
+    </div>
+
+    <!-- 8. MadeMeSmile — 7.8k ups -->
+    <div class="card c-3">
+      <div class="accent-bar green"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon green">[R]</div>
+        <div class="card-title green">r/MadeMeSmile</div>
+        <div class="card-sub">animals</div>
+      </div>
+      <div class="card-body">Cat helps with his brother rehab — 猫咪陪伴兄弟康复暖心瞬间</div>
+      <div class="stats">
+        <div class="stat green">[^] 7.8k</div>
+        <div class="stat green">[>] 88</div>
+      </div>
+      <div class="tags">
+        <span class="tag green">animals</span>
+        <span class="tag green">heartwarming</span>
+      </div>
+    </div>
+
+    <!-- 9. SipsTea — 22k ups -->
+    <div class="card c-3">
+      <div class="accent-bar orange"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon orange">[R]</div>
+        <div class="card-title orange">r/SipsTea</div>
+        <div class="card-sub">japan</div>
+      </div>
+      <div class="card-body">In Japan — 在日本的见闻，异国文化碰撞之旅</div>
+      <div class="stats">
+        <div class="stat orange">[^] 22.1k</div>
+        <div class="stat orange">[>] 1.9k</div>
+      </div>
+      <div class="tags">
+        <span class="tag orange">japan</span>
+        <span class="tag orange">culture</span>
+      </div>
+    </div>
+
+    <!-- 10. AskReddit — 6k comments -->
+    <div class="card c-3">
+      <div class="accent-bar gray"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon gray">[R]</div>
+        <div class="card-title gray">r/AskReddit</div>
+        <div class="card-sub">discussion</div>
+      </div>
+      <div class="card-body">What's the worst physical pain you've ever experienced?</div>
+      <div class="stats">
+        <div class="stat gray">[^] 2.4k</div>
+        <div class="stat gray">[>] 5.9k</div>
+      </div>
+      <div class="tags">
+        <span class="tag gray">discussion</span>
+        <span class="tag gray">personal</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    DATA: reddit.com/r/popular · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

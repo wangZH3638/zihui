@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球热点 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --black: #171717;
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #ebebeb;
+  --gray-400: #808080;
+  --gray-500: #666666;
+  --gray-600: #4d4d4d;
+  --red: #ff5b4f;
+  --blue: #0a72ef;
+  --pink: #de1d8d;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Geist', 'NotoSansSC', sans-serif;
+  background: #111;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 900px;
+  aspect-ratio: 3/4;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── HEADER 10% ── */
+.header {
+  height: 10%;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.header-year {
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.header-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-date {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray-400);
+  letter-spacing: 0.15em;
+}
+
+.header-source {
+  font-size: 8px;
+  color: var(--gray-500);
+  margin-top: 2px;
+}
+
+/* ── HERO 28% ── */
+.hero {
+  height: 28%;
+  background: var(--black);
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+}
+
+.v-rule {
+  background: rgba(255,255,255,0.06);
+}
+
+.hero-main {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-label {
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--red);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  flex: 1;
+}
+
+.hero-title .hl {
+  color: var(--red);
+}
+
+.hero-body {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 6px;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.hero-tag {
+  font-size: 8px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(255,91,79,0.1);
+  color: var(--red);
+}
+
+.hero-side {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-item {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.side-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.side-rank {
+  font-size: 7px;
+  font-weight: 500;
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+  margin-bottom: 1px;
+}
+
+.side-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.side-meta {
+  font-size: 7px;
+  color: var(--gray-500);
+  margin-top: 1px;
+}
+
+.side-stat {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--red);
+  margin-top: 1px;
+}
+
+/* ── GRID 50% ── */
+.grid {
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--gray-100);
+}
+
+.cell {
+  background: var(--white);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cell-rank {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gray-100);
+  letter-spacing: -0.02em;
+}
+
+.cell-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.cell-num {
+  font-size: 7px;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cell-num.r { background: rgba(255,91,79,0.1); color: var(--red); }
+.cell-num.b { background: rgba(10,114,239,0.1); color: var(--blue); }
+.cell-num.p { background: rgba(222,29,141,0.1); color: var(--pink); }
+.cell-num.g { background: rgba(0,0,0,0.05); color: var(--gray-600); }
+
+.cell-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  line-height: 1.25;
+  flex: 1;
+}
+
+.cell-body {
+  font-size: 10px;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+
+.cell-stat {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.cell-stat.r { color: var(--red); }
+.cell-stat.b { color: var(--blue); }
+.cell-stat.p { color: var(--pink); }
+.cell-stat.g { color: var(--gray-600); }
+
+.bl-6 { grid-column: span 6; }
+.bl-4 { grid-column: span 4; }
+.bl-3 { grid-column: span 3; }
+.bl-2 { grid-column: span 2; }
+
+/* ── ANALYSIS 10% ── */
+.analysis {
+  height: 10%;
+  background: var(--black);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.a-item {
+  padding: 8px 14px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.a-item:last-child {
+  border-right: none;
+}
+
+.a-label {
+  font-size: 6px;
+  font-weight: 500;
+  color: var(--gray-500);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.a-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.a-text {
+  font-size: 8px;
+  color: var(--gray-400);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.a-badge {
+  display: inline-block;
+  font-size: 6px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+.a-badge.h { background: rgba(255,91,79,0.15); color: var(--red); }
+.a-badge.m { background: rgba(10,114,239,0.15); color: var(--blue); }
+
+/* ── FOOTER 2% ── */
+.footer {
+  height: 2%;
+  background: var(--gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: var(--gray-400);
+  letter-spacing: 0.08em;
+  border-top: 1px solid var(--gray-100);
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="header">
+    <div class="header-year">2026</div>
+    <div class="header-title">全球热点</div>
+    <div class="header-right">
+      <div class="header-date">Apr 06</div>
+      <div class="header-source">Reuters · AP News · WSJ</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-label">01 · Breaking</div>
+      <div class="hero-title">美伊战争持续<br><span class="hl">谈判与冲突并行</span></div>
+      <div class="hero-body">美以联合空袭伊朗，导弹能力严重受损。45天停火提案谈判中，F-15E被击落。鲁比奥称看到终战终点线。</div>
+      <div class="hero-tags">
+        <span class="hero-tag">美伊战争</span>
+        <span class="hero-tag">停火谈判</span>
+        <span class="hero-tag">导弹荒</span>
+      </div>
+    </div>
+    <div class="v-rule"></div>
+    <div class="hero-side">
+      <div class="side-item">
+        <div class="side-rank">02 · NASA</div>
+        <div class="side-title">NASA 50年首次载人登月</div>
+        <div class="side-meta">Apr 02 · Artemis</div>
+        <div class="side-stat">人类重返月球</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">03 · AI</div>
+        <div class="side-title">Anthropic核心代码泄密</div>
+        <div class="side-meta">Apr 04 · WSJ</div>
+        <div class="side-stat">AI安全漏洞</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">04 · Myanmar</div>
+        <div class="side-title">敏昂莱当选缅甸总统</div>
+        <div class="side-meta">Apr 03 · Reuters</div>
+        <div class="side-stat">军政府连任</div>
+      </div>
+      <div class="side-item">
+        <div class="side-rank">05 · Russia</div>
+        <div class="side-title">俄军无人机袭哈尔科夫</div>
+        <div class="side-meta">Reuters</div>
+        <div class="side-stat">俄乌战争持续</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="cell bl-4" style="position:relative;">
+      <div class="cell-rank">06</div>
+      <div class="cell-head">
+        <div class="cell-num b">[*]</div>
+        <div class="cell-title">特朗普机场安检私有化提案</div>
+      </div>
+      <div class="cell-body">TSA安检私有化，最高法院审理出生公民权案</div>
+      <div class="cell-stat b">政策争议</div>
+    </div>
+
+    <div class="cell bl-2" style="position:relative;">
+      <div class="cell-rank">07</div>
+      <div class="cell-head">
+        <div class="cell-num p">[$]</div>
+        <div class="cell-title">华为增长2.2%</div>
+      </div>
+      <div class="cell-body">基础设施+消费者增长，云计算下降</div>
+      <div class="cell-stat p">商业分化</div>
+    </div>
+
+    <div class="cell bl-3" style="position:relative;">
+      <div class="cell-rank">08</div>
+      <div class="cell-head">
+        <div class="cell-num p">[!]</div>
+        <div class="cell-title">Nike销售预警 股价大跌</div>
+      </div>
+      <div class="cell-body">Nike销量下滑预警，特斯拉欧洲飙升</div>
+      <div class="cell-stat p">零售挑战</div>
+    </div>
+
+    <div class="cell bl-3" style="position:relative;">
+      <div class="cell-rank">09</div>
+      <div class="cell-head">
+        <div class="cell-num r">[!]</div>
+        <div class="cell-title">俄军连续袭击哈尔科夫</div>
+      </div>
+      <div class="cell-body">无人机袭击，酒店起火，平民伤亡</div>
+      <div class="cell-stat r">俄乌持续</div>
+    </div>
+
+    <div class="cell bl-6" style="position:relative; flex-direction:row; align-items:center; gap:12px; padding:8px 12px;">
+      <div class="cell-rank" style="position:static; font-size:28px;">10</div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:2px;">
+        <div class="cell-head">
+          <div class="cell-num g">[*]</div>
+          <div class="cell-title">德国动物园喜迎稀有马来貘宝宝</div>
+        </div>
+        <div class="cell-body">纽伦堡动物园马来貘幼崽出生，状况良好</div>
+      </div>
+      <div class="cell-stat g">正面</div>
+    </div>
+
+  </div>
+
+  <div class="analysis">
+    <div class="a-item">
+      <div class="a-label">中东</div>
+      <div class="a-title">战争收尾 谈判开始</div>
+      <div class="a-text">军事+外交双轨，45天停火提案成关键</div>
+      <div class="a-badge h">高风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">科技</div>
+      <div class="a-title">AI竞争白热化</div>
+      <div class="a-text">Anthropic泄密+NASA登月，技术冷战升级</div>
+      <div class="a-badge m">中风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">政治</div>
+      <div class="a-title">特朗普密集出招</div>
+      <div class="a-text">TSA私有化+最高法院，多线作战</div>
+      <div class="a-badge m">中风险</div>
+    </div>
+    <div class="a-item">
+      <div class="a-label">趋势</div>
+      <div class="a-title">2026四大主线</div>
+      <div class="a-text">战争收尾+AI爆发+太空竞赛+商业分化</div>
+      <div class="a-badge h">高关注</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    SOURCES: Reuters · AP News · WSJ · NASA · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

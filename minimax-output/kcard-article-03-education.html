@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>击剑升学 · 教育系统特长生详解</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+:root {
+  --black:  #141414;
+  --white:  #FAFAF8;
+  --accent: #E8C547;
+  --gray-light: #E2DFD6;
+  --gray-mid:  #C4BEA0;
+  --gray-dark: #888888;
+  --text-main: #1a1a1a;
+  --tag-bg: #F0EDE6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #e8e5de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.10);
+}
+
+/* ── 顶部：深黑底 ── */
+.hero {
+  height: 32%;
+  background: var(--black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 72px 40px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 60px, transparent 60px);
+}
+
+.kicker {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.kicker-year {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 160px;
+  overflow: visible;
+}
+
+.kicker-year-bg {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--black);
+  opacity: 0.85;
+}
+
+.kicker-year-num {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.07);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  z-index: 1;
+}
+
+.kicker-year-text {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: rgba(232, 197, 71, 0.55);
+  letter-spacing: 0.18em;
+  z-index: 2;
+  line-height: 1;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 75px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--white) 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: rgba(255,255,255,0.50);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  max-width: 560px;
+}
+
+/* ── 中部：三栏 ── */
+.body {
+  height: 52%;
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: stretch;
+}
+
+.col {
+  padding: 0 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.col + .col {
+  border-left: 1px solid var(--gray-light);
+}
+
+.col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.col-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--black);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.col-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.col-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.06);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.col-item {
+  margin-bottom: 12px;
+}
+
+.item-title {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+.item-value {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.item-value.small {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.highlight-box {
+  background: var(--tag-bg);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: auto;
+}
+
+.highlight-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.highlight-text {
+  font-size: 12px;
+  color: var(--text-main);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ── 底部：金色引言条 ── */
+.quote-bar {
+  height: 16%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  padding: 0 72px;
+  gap: 24px;
+}
+
+.quote-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.quote-from {
+  margin-left: auto;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 10px;
+  color: rgba(0,0,0,0.38);
+  font-style: normal;
+  font-weight: 400;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部 -->
+  <div class="hero">
+    <div class="kicker">详解 A · 教育系统</div>
+    <div class="hero-title">特长生<br>升学通道</div>
+    <div class="hero-sub">西安市中小学生击剑比赛 · 前6名 · 降分录取</div>
+    <div class="kicker-year">
+      <div class="kicker-year-bg"></div>
+      <div class="kicker-year-num">2026</div>
+      <div class="kicker-year-text">陕西杰森</div>
+    </div>
+  </div>
+
+  <!-- 中部三栏 -->
+  <div class="body">
+
+    <!-- 栏1：比赛信息 -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-icon">01</div>
+        <div class="col-title">比赛信息</div>
+      </div>
+      <div class="col-num">01</div>
+
+      <div class="col-item">
+        <div class="item-title">比赛名称</div>
+        <div class="item-value">西安市中小学生<br>击剑比赛</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">主办方</div>
+        <div class="item-value">西安市教育局<br>西安市体育局</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">参赛年级</div>
+        <div class="item-value">小学、初中、高中<br>各年级组别</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">比赛项目</div>
+        <div class="item-value">花剑、重剑、佩剑<br>个人赛及团体赛</div>
+      </div>
+    </div>
+
+    <!-- 栏2：资格要求 -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-icon">02</div>
+        <div class="col-title">资格要求</div>
+      </div>
+      <div class="col-num">02</div>
+
+      <div class="col-item">
+        <div class="item-title">获得资格</div>
+        <div class="item-value">市级比赛<br>个人赛前 6 名</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">证书颁发</div>
+        <div class="item-value">由西安市教育局<br>统一颁发证书</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">有效期</div>
+        <div class="item-value small">获得后三年内有效<br>小升初/初升高均可使用</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">适用对象</div>
+        <div class="item-value">西安户籍或在西安<br>就读的学生</div>
+      </div>
+
+    </div>
+
+    <!-- 栏3：升学用途 -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-icon">03</div>
+        <div class="col-title">升学用途</div>
+      </div>
+      <div class="col-num">03</div>
+
+      <div class="col-item">
+        <div class="item-title">小升初</div>
+        <div class="item-value">特长生可报考<br>西安重点初中</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">初升高</div>
+        <div class="item-value">特长生可报考<br>西安重点高中</div>
+      </div>
+
+      <div class="col-item">
+        <div class="item-title">降分幅度</div>
+        <div class="item-value">最低只需达到<br>普高线的 60%</div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-label">核心优势</div>
+        <div class="highlight-text">无需放弃学业训练<br>文体兼顾，两不耽误</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部金色引言 -->
+  <div class="quote-bar">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">前6名 ≠ 难以企及，普通孩子一样可以</div>
+    <div class="quote-from">— 陕西杰森击剑</div>
+  </div>
+
+</div>
+</body>
+</html>

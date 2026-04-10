@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Politics & Economy 2026</title>
+<style>
+:root {
+  --black:  #0a0a0a;
+  --white:  #fafafa;
+  --accent: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #080810;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0a0a10;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(192,57,43,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(52,73,94,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(26,26,46,0.5) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(192,57,43,0.6);
+  letter-spacing: 0.03em;
+}
+.title-block {
+  display: flex;
+  flex-direction: column;
+}
+.year {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.header-right {
+  margin-left: auto;
+  text-align: right;
+}
+.header-right .date {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.header-right .tagline {
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 2px;
+}
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3px;
+}
+.accent-bar.left  { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px;
+  font-weight: 900;
+  opacity: 0.08;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+}
+.card-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.card-sub {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  margin-left: auto;
+  white-space: nowrap;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+}
+.card-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+  flex: 1;
+}
+.stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+}
+.stat {
+  font-size: 18px;
+  font-weight: 700;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+.tag {
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 9.5px;
+  font-weight: 600;
+}
+
+/* diagonal accent on card */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+/* colors */
+.r  { --c: #c0392b; --c-bg: rgba(192,57,43,0.15); }
+.bl { --c: #34495e; --c-bg: rgba(52,73,94,0.20); }
+.g  { --c: #27ae60; --c-bg: rgba(39,174,96,0.15); }
+.p  { --c: #8e44ad; --c-bg: rgba(142,68,173,0.15); }
+.y  { --c: #f39c12; --c-bg: rgba(243,156,18,0.15); }
+.b  { --c: #2980b9; --c-bg: rgba(41,128,185,0.15); }
+.pk { --c: #e74c3c; --c-bg: rgba(231,76,60,0.15); }
+
+.accent-bar.r  { background: #c0392b; box-shadow: 2px 0 14px rgba(192,57,43,0.5); }
+.accent-bar.bl { background: #34495e; box-shadow: 2px 0 14px rgba(52,73,94,0.5); }
+.accent-bar.g  { background: #27ae60; box-shadow: 2px 0 14px rgba(39,174,96,0.5); }
+.accent-bar.p  { background: #8e44ad; box-shadow: 2px 0 14px rgba(142,68,173,0.5); }
+.accent-bar.y  { background: #f39c12; box-shadow: 2px 0 14px rgba(243,156,18,0.5); }
+.accent-bar.b  { background: #2980b9; box-shadow: 2px 0 14px rgba(41,128,185,0.5); }
+.accent-bar.pk { background: #e74c3c; box-shadow: 2px 0 14px rgba(231,76,60,0.5); }
+
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.p  { background: var(--c-bg); color: var(--c); }
+.card-icon.y  { background: var(--c-bg); color: var(--c); }
+.card-icon.b  { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+
+.card-title.r  { color: #e74c3c; }
+.card-title.bl { color: #5d7a94; }
+.card-title.g  { color: #27ae60; }
+.card-title.p  { color: #8e44ad; }
+.card-title.y  { color: #f39c12; }
+.card-title.b  { color: #2980b9; }
+.card-title.pk { color: #e74c3c; }
+
+.stat.r  { color: #c0392b; }
+.stat.bl { color: #5d7a94; }
+.stat.g  { color: #27ae60; }
+.stat.p  { color: #8e44ad; }
+.stat.y  { color: #f39c12; }
+.stat.b  { color: #2980b9; }
+.stat.pk { color: #e74c3c; }
+
+.tag.r  { background: rgba(192,57,43,0.1); color: #e74c3c; border: 1px solid rgba(192,57,43,0.2); }
+.tag.bl { background: rgba(52,73,94,0.2); color: #5d7a94; border: 1px solid rgba(52,73,94,0.2); }
+.tag.g  { background: rgba(39,174,96,0.1); color: #27ae60; border: 1px solid rgba(39,174,96,0.2); }
+.tag.p  { background: rgba(142,68,173,0.1); color: #8e44ad; border: 1px solid rgba(142,68,173,0.2); }
+.tag.y  { background: rgba(243,156,18,0.1); color: #f39c12; border: 1px solid rgba(243,156,18,0.2); }
+.tag.b  { background: rgba(41,128,185,0.1); color: #2980b9; border: 1px solid rgba(41,128,185,0.2); }
+.tag.pk { background: rgba(231,76,60,0.1); color: #e74c3c; border: 1px solid rgba(231,76,60,0.2); }
+
+/* grid spans */
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+/* hero card */
+.hero {
+  background: linear-gradient(135deg, rgba(192,57,43,0.14) 0%, rgba(52,73,94,0.18) 100%);
+  border-color: rgba(192,57,43,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 40px;
+  background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body {
+  font-size: 17px;
+}
+.hero .stat {
+  font-size: 22px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 8px;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em;
+  padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">WORLD</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>Global Dispatch</h1>
+      <p>Politics · Economy · Geopolitics</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 05</div>
+      <div class="tagline">Global Headlines</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- 1. HERO — Trump Iran deal possible -->
+    <div class="card hero h6">
+      <div class="accent-bar left r"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">Trump: 伊美协议有望周一达成</div>
+        <div class="card-sub">BREAKING</div>
+      </div>
+      <div class="card-body">特朗普接受福克斯采访称：伊朗谈判进行中，周一前或达成协议，霍尔木兹海峡局势暂缓</div>
+      <div class="stats">
+        <div class="stat r">[*] 1小时前</div>
+        <div class="stat r">[/] Reuters</div>
+      </div>
+      <div class="tags">
+        <span class="tag r">伊朗</span>
+        <span class="tag r">Trump</span>
+        <span class="tag r">中东</span>
+      </div>
+    </div>
+
+    <!-- 2. Iran war + gas prices -->
+    <div class="card h4">
+      <div class="accent-bar left r"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon r">[$]</div>
+        <div class="card-title r">油价飙升</div>
+        <div class="card-sub">Economy</div>
+      </div>
+      <div class="card-body">美伊战争持续，多国紧急寻求重启霍尔木兹海峡能源运输，油价持续攀升</div>
+      <div class="stats">
+        <div class="stat r">[*] 能源危机</div>
+      </div>
+      <div class="tags">
+        <span class="tag r">油价</span>
+        <span class="tag r">制裁</span>
+      </div>
+    </div>
+
+    <!-- 3. Lebanon humanitarian crisis -->
+    <div class="card h2">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!!]</div>
+        <div class="card-title pk">黎巴嫩</div>
+        <div class="card-sub">NPR</div>
+      </div>
+      <div class="card-body">以色列入侵已造成超1400人死亡，含54名医护人员</div>
+      <div class="tags">
+        <span class="tag pk">人道危机</span>
+      </div>
+    </div>
+
+    <!-- 4. Tariffs one year later -->
+    <div class="card h3">
+      <div class="accent-bar left y"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon y">[^]</div>
+        <div class="card-title y">关税一周年</div>
+        <div class="card-sub">Economy</div>
+      </div>
+      <div class="card-body">特朗普"解放日"关税一周年，新一轮药品关税出台，企业成本压力加剧</div>
+      <div class="stats">
+        <div class="stat y">[*] 通胀</div>
+      </div>
+      <div class="tags">
+        <span class="tag y">关税战</span>
+        <span class="tag y">贸易</span>
+      </div>
+    </div>
+
+    <!-- 5. Iran war economic toll -->
+    <div class="card h3">
+      <div class="accent-bar left b"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon b">[$]</div>
+        <div class="card-title b">消费感受</div>
+        <div class="card-sub">Economy</div>
+      </div>
+      <div class="card-body">美国消费者开始感受到伊朗战争的经济冲击，汽油和商品价格上涨</div>
+      <div class="tags">
+        <span class="tag b">经济</span>
+        <span class="tag b">CPI</span>
+      </div>
+    </div>
+
+    <!-- 6. Cabinet shake-up -->
+    <div class="card h3">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon bl">[~]</div>
+        <div class="card-title bl">内阁动荡</div>
+        <div class="card-sub">US Politics</div>
+      </div>
+      <div class="card-body">伊朗战争压力下，特朗普考虑重组内阁，多名高官面临下课风险</div>
+      <div class="stats">
+        <div class="stat bl">[*] 白宫</div>
+      </div>
+      <div class="tags">
+        <span class="tag bl">Trump</span>
+        <span class="tag bl">内阁</span>
+      </div>
+    </div>
+
+    <!-- 7. Aid groups warning -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!!]</div>
+        <div class="card-title pk">援助警告</div>
+        <div class="card-sub">Humanitarian</div>
+      </div>
+      <div class="card-body">中东战争摧毁医疗和食品运输线，数百万平民面临人道灾难，援助机构发出最强烈呼吁</div>
+      <div class="tags">
+        <span class="tag pk">人道</span>
+        <span class="tag pk">中东</span>
+      </div>
+    </div>
+
+    <!-- 8. China rift -->
+    <div class="card h4">
+      <div class="accent-bar left g"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon g">[>]</div>
+        <div class="card-title g">中美分歧</div>
+        <div class="card-sub">Geopolitics</div>
+      </div>
+      <div class="card-body">对伊制裁威胁重新撕裂中美关系，北京为伊朗最大贸易伙伴，25%关税威胁再现</div>
+      <div class="stats">
+        <div class="stat g">[*] 贸易战</div>
+      </div>
+      <div class="tags">
+        <span class="tag g">中国</span>
+        <span class="tag g">伊朗</span>
+      </div>
+    </div>
+
+    <!-- 9. Trump midterm pressure -->
+    <div class="card h2">
+      <div class="accent-bar left p"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon p">[^]</div>
+        <div class="card-title p">中期压力</div>
+        <div class="card-sub">US Politics</div>
+      </div>
+      <div class="card-body">战争+通胀双重压力，特朗普面临中期选举考验</div>
+      <div class="tags">
+        <span class="tag p">选举</span>
+      </div>
+    </div>
+
+    <!-- 10. Oil Hormuz -->
+    <div class="card h6">
+      <div class="accent-bar left y"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon y">[$]</div>
+        <div class="card-title y">霍尔木兹困局</div>
+        <div class="card-sub">Energy · Geopolitics</div>
+      </div>
+      <div class="card-body">全球焦虑等待霍尔木兹海峡重新开放，特朗普对伊强硬立场与能源安全之间的博弈持续</div>
+      <div class="stats">
+        <div class="stat y">[*] 能源命脉</div>
+        <div class="stat y">[*] 全球联动</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: Reuters · NPR · AP News · CBS · FT · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

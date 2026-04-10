@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球热点 2026</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/home/node/.fonts/custom/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/home/node/.fonts/custom/Inter-Bold.ttf') format('truetype');
+}
+
+:root {
+  --accent: #dc2626;
+  --gold: #d97706;
+  --blue: #1d4ed8;
+  --green: #059669;
+  --purple: #7c3aed;
+  --pink: #db2777;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'NotoSansSC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #09090a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(220,38,38,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(217,119,6,0.18) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900;
+  color: #fff; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(220,38,38,0.5);
+}
+.title-block { display: flex; flex-direction: column; }
+.year {
+  font-size: 80px; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.04em;
+}
+.title-block h1 {
+  font-size: 48px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; margin-top: -4px;
+}
+.title-block p {
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;
+}
+.header-right { margin-left: auto; text-align: right; }
+.header-right .date { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.05em; }
+.header-right .tagline { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar { position: absolute; top: 0; bottom: 0; width: 3px; }
+.accent-bar.left { left: 0; border-radius: 12px 0 0 12px; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px; font-weight: 900;
+  opacity: 0.08; line-height: 1; color: var(--accent);
+}
+
+.card-head { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.card-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.card-title { font-size: 21px; font-weight: 800; line-height: 1.2; }
+.card-sub {
+  font-size: 9px; color: rgba(255,255,255,0.4);
+  margin-left: auto; padding: 2px 7px; border-radius: 6px;
+  background: rgba(255,255,255,0.05); white-space: nowrap;
+}
+.card-body { font-size: 19px; color: rgba(255,255,255,0.5); line-height: 1.5; flex: 1; }
+.stats { display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.stat { font-size: 20px; font-weight: 700; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+.tag { padding: 2px 7px; border-radius: 5px; font-size: 9.5px; font-weight: 600; }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+.i  { --c: #dc2626; --c-bg: rgba(220,38,38,0.15); }
+.o  { --c: #d97706; --c-bg: rgba(217,119,6,0.15); }
+.g  { --c: #059669; --c-bg: rgba(5,150,105,0.15); }
+.r  { --c: #dc2626; --c-bg: rgba(220,38,38,0.15); }
+.bl { --c: #1d4ed8; --c-bg: rgba(29,78,216,0.15); }
+.pk { --c: #db2777; --c-bg: rgba(219,39,119,0.15); }
+.ai { --c: #7c3aed; --c-bg: rgba(124,58,237,0.15); }
+
+.accent-bar.i  { background: #dc2626; box-shadow: 2px 0 12px rgba(220,38,38,0.5); }
+.accent-bar.o  { background: #d97706; box-shadow: 2px 0 12px rgba(217,119,6,0.5); }
+.accent-bar.g  { background: #059669; box-shadow: 2px 0 12px rgba(5,150,105,0.5); }
+.accent-bar.r  { background: #dc2626; box-shadow: 2px 0 12px rgba(220,38,38,0.5); }
+.accent-bar.bl { background: #1d4ed8; box-shadow: 2px 0 12px rgba(29,78,216,0.5); }
+.accent-bar.pk { background: #db2777; box-shadow: 2px 0 12px rgba(219,39,119,0.5); }
+.accent-bar.ai { background: #7c3aed; box-shadow: 2px 0 12px rgba(124,58,237,0.5); }
+
+.card-icon.i  { background: var(--c-bg); color: var(--c); }
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+.card-icon.ai { background: var(--c-bg); color: var(--c); }
+
+.card-title.i  { color: #dc2626; }
+.card-title.o  { color: #d97706; }
+.card-title.g  { color: #059669; }
+.card-title.r  { color: #dc2626; }
+.card-title.bl { color: #1d4ed8; }
+.card-title.pk { color: #db2777; }
+.card-title.ai { color: #7c3aed; }
+
+.stat.i  { color: #dc2626; }
+.stat.o  { color: #d97706; }
+.stat.g  { color: #059669; }
+.stat.r  { color: #dc2626; }
+.stat.bl { color: #1d4ed8; }
+.stat.pk { color: #db2777; }
+.stat.ai { color: #7c3aed; }
+
+.tag.i  { background: rgba(220,38,38,0.1); color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
+.tag.o  { background: rgba(217,119,6,0.1); color: #d97706; border: 1px solid rgba(217,119,6,0.2); }
+.tag.g  { background: rgba(5,150,105,0.1); color: #059669; border: 1px solid rgba(5,150,105,0.2); }
+.tag.r  { background: rgba(220,38,38,0.1); color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
+.tag.bl { background: rgba(29,78,216,0.1); color: #1d4ed8; border: 1px solid rgba(29,78,216,0.2); }
+.tag.pk { background: rgba(219,39,119,0.1); color: #db2777; border: 1px solid rgba(219,39,119,0.2); }
+.tag.ai { background: rgba(124,58,237,0.1); color: #7c3aed; border: 1px solid rgba(124,58,237,0.2); }
+
+.h6 { grid-column: span 6; }
+.h4 { grid-column: span 4; }
+.h3 { grid-column: span 3; }
+.h2 { grid-column: span 2; }
+
+.hero {
+  background: linear-gradient(135deg, rgba(220,38,38,0.16) 0%, rgba(153,27,27,0.12) 100%);
+  border-color: rgba(220,38,38,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 38px;
+  background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body { font-size: 19px; }
+.hero .stat { font-size: 22px; }
+
+.analysis-card {
+  background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(220,38,38,0.06) 100%);
+  border-color: rgba(124,58,237,0.2);
+}
+.analysis-card .card-title.ai {
+  background: linear-gradient(135deg, #7c3aed 0%, #dc2626 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.analysis-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.analysis-label { font-weight: 700; color: #7c3aed; white-space: nowrap; }
+.analysis-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+.analysis-score {
+  display: inline-block; font-size: 15px; font-weight: 800;
+  padding: 1px 6px; border-radius: 4px; margin-left: 4px;
+}
+.score-h { background: rgba(5,150,105,0.2); color: #059669; }
+.score-m { background: rgba(217,119,6,0.2); color: #d97706; }
+.score-l { background: rgba(220,38,38,0.2); color: #dc2626; }
+
+.footer {
+  text-align: center;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em; padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo">[!]</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>全球热点</h1>
+      <p>World · Global · Hot Topics</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 06</div>
+      <div class="tagline">Reuters · AP · WSJ</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 1. HERO: 美伊战争 -->
+    <div class="card hero h6">
+      <div class="accent-bar left i"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon i">[!]</div>
+        <div class="card-title i">美伊战争持续 谈判与冲突并行</div>
+        <div class="card-sub">Reuters</div>
+      </div>
+      <div class="card-body">美以联合空袭伊朗，伊朗导弹能力严重受损。45天停火提案谈判中，美F-15E被击落，1飞行员获救。鲁比奥称看到终战终点线。</div>
+      <div class="stats"><div class="stat i">[!] 战争+谈判并行</div></div>
+      <div class="tags">
+        <span class="tag i">美伊战争</span>
+        <span class="tag i">停火谈判</span>
+        <span class="tag i">导弹荒</span>
+      </div>
+    </div>
+
+    <!-- 2. NASA登月 -->
+    <div class="card h3">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon bl">[*]</div>
+        <div class="card-title bl">NASA 50年来首次载人登月</div>
+        <div class="card-sub">NASA Apr 02</div>
+      </div>
+      <div class="card-body">Artemis任务发射，4名宇航员飞往月球，50多年来首次人类重返月球轨道。</div>
+      <div class="stats"><div class="stat bl">[*] 人类重返月球</div></div>
+      <div class="tags">
+        <span class="tag bl">NASA</span>
+        <span class="tag bl">Artemis</span>
+        <span class="tag bl">登月</span>
+      </div>
+    </div>
+
+    <!-- 3. Anthropic泄密 -->
+    <div class="card h3">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">Anthropic AI代码泄密</div>
+        <div class="card-sub">WSJ Apr 04</div>
+      </div>
+      <div class="card-body">Anthropic意外泄露核心AI智能体代码，竞争对手争相研究，行业竞争加剧。</div>
+      <div class="stats"><div class="stat ai">[AI] 代码泄密</div></div>
+      <div class="tags">
+        <span class="tag ai">Anthropic</span>
+        <span class="tag ai">AI安全</span>
+      </div>
+    </div>
+
+    <!-- 4. 缅甸 -->
+    <div class="card h4">
+      <div class="accent-bar left o"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon o">[*]</div>
+        <div class="card-title o">敏昂莱当选缅甸总统</div>
+        <div class="card-sub">Reuters Apr 03</div>
+      </div>
+      <div class="card-body">缅甸军政府领袖敏昂莱大将经议会投票正式当选总统，距政变夺权已五年，战火纷飞的缅甸正式巩固军政府统治。</div>
+      <div class="stats"><div class="stat o">[*] 军政府连任</div></div>
+      <div class="tags">
+        <span class="tag o">缅甸</span>
+        <span class="tag o">敏昂莱</span>
+        <span class="tag o">军政府</span>
+      </div>
+    </div>
+
+    <!-- 5. 俄乌 -->
+    <div class="card h2">
+      <div class="accent-bar left r"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon r">[!]</div>
+        <div class="card-title r">俄军袭哈尔科夫</div>
+        <div class="card-sub">Reuters</div>
+      </div>
+      <div class="card-body">俄军无人机连续袭击哈尔科夫，酒店起火，平民伤亡</div>
+      <div class="tags">
+        <span class="tag r">俄乌战争</span>
+        <span class="tag r">哈尔科夫</span>
+      </div>
+    </div>
+
+    <!-- 6. 特朗普政策 -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon pk">[!]</div>
+        <div class="card-title pk">特朗普机场安检私有化</div>
+        <div class="card-sub">Reuters Apr 03</div>
+      </div>
+      <div class="card-body">特朗普提议将TSA机场安检私有化以节省开支。最高法院审理出生公民权案。</div>
+      <div class="stats"><div class="stat pk">[!] 政策争议</div></div>
+      <div class="tags">
+        <span class="tag pk">特朗普</span>
+        <span class="tag pk">TSA</span>
+      </div>
+    </div>
+
+    <!-- 7. 商业 -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon g">[$]</div>
+        <div class="card-title g">华为增长2.2% Nike预警</div>
+        <div class="card-sub">Reuters</div>
+      </div>
+      <div class="card-body">华为2025年收入增长2.2%，Nike因销售预警股价大跌。特斯拉欧洲注册量飙升。</div>
+      <div class="stats"><div class="stat g">[$] 商业分化</div></div>
+      <div class="tags">
+        <span class="tag g">华为</span>
+        <span class="tag g">Nike</span>
+        <span class="tag g">特斯拉</span>
+      </div>
+    </div>
+
+    <!-- 8. Jarvis 分析 -->
+    <div class="card analysis-card h6">
+      <div class="accent-bar left ai"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon ai">[AI]</div>
+        <div class="card-title ai">贾维斯分析</div>
+        <div class="card-sub">Jarvis</div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-item">
+          <span class="analysis-label">中东</span>
+          <span class="analysis-text">美伊战争烈度下降但未停火，谈判+军事压力并行，战争或进入收尾阶段<span class="analysis-score score-h">高风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">科技</span>
+          <span class="analysis-text">Anthropic泄密+AI竞争白热化，太空竞争重燃（NASA登月），技术冷战升级<span class="analysis-score score-m">中风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">政治</span>
+          <span class="analysis-text">特朗普内政动作频繁（TSA私有化、出生权、最高法院），注意力分散<span class="analysis-score score-m">中风险</span></span>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-label">趋势</span>
+          <span class="analysis-text">战争收尾 + AI爆发 + 太空竞赛 = 2026四大主线：战争/AI/太空/商业<span class="analysis-score score-h">高关注</span></span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag ai">战争收尾</span>
+        <span class="tag ai">AI爆发</span>
+        <span class="tag ai">太空竞赛</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SOURCES: Reuters · AP News · WSJ · NASA · 2026-04-06 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>

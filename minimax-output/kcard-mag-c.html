@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Card C</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 800px;
+  aspect-ratio: 3/4;
+  background: #FAFAF8;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+}
+
+/* ── LAYOUT C: 极简引言 + 网格信息 ── */
+
+/* 顶部1/3：大字标题 */
+.c-top {
+  height: 40%;
+  background: #1a1a1a;
+  position: relative;
+  padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c-num-bg {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 220px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.c-kicker {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.c-maintitle {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #FAFAF8;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  position: relative;
+  z-index: 1;
+}
+
+.c-maintitle span {
+  color: #C9A84C;
+}
+
+.c-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  position: relative;
+  z-index: 1;
+}
+
+.c-rule {
+  position: absolute;
+  bottom: 0;
+  left: 56px;
+  right: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A84C, transparent);
+}
+
+/* ── 中部四大模块 ── */
+.c-body {
+  height: 44%;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  grid-template-rows: 1fr 1px 1fr;
+  background: #E8E4DC;
+}
+
+.c-body > *:not(div) {}
+
+.c-rule-h { background: #D4CFC4; }
+.c-rule-v { background: #D4CFC4; }
+
+.c-cell {
+  background: #FAFAF8;
+  padding: 24px 32px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.c-cell-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #C9A84C;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.c-cell-body {}
+
+.c-cell-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.c-cell-text {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.c-cell-tag {
+  display: inline-block;
+  font-size: 8px;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 2px 7px;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+}
+
+/* ── 底部引言 ── */
+.c-bottom {
+  height: 16%;
+  background: #C9A84C;
+  display: flex;
+  align-items: center;
+  padding: 0 56px;
+  gap: 20px;
+}
+
+.c-bottom-icon {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.15);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.c-bottom-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.c-bottom-from {
+  margin-left: auto;
+  font-size: 10px;
+  color: rgba(0,0,0,0.4);
+  font-style: normal;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 顶部大字 -->
+  <div class="c-top">
+    <div class="c-num-bg">01</div>
+    <div class="c-kicker">Intelligence Series · 2026</div>
+    <div class="c-maintitle">AI时代<br>知识工作<span>·</span><br>生存指南</div>
+    <div class="c-tagline">不是AI取代你，而是会用AI的人取代你</div>
+    <div class="c-rule"></div>
+  </div>
+
+  <!-- 中部4格 -->
+  <div class="c-body">
+    <!-- 横排1 -->
+    <div class="c-cell">
+      <div class="c-cell-num">01</div>
+      <div class="c-cell-body">
+        <div class="c-cell-title">把AI当作超级助理</div>
+        <div class="c-cell-text">它能做什么 · 边界在哪里 · 如何协作</div>
+        <span class="c-cell-tag">认知重建</span>
+      </div>
+    </div>
+    <div class="c-rule-v"></div>
+    <div class="c-cell">
+      <div class="c-cell-num">02</div>
+      <div class="c-cell-body">
+        <div class="c-cell-title">Prompt是编程语言</div>
+        <div class="c-cell-text">结构化指令 · 上下文管理 · 迭代优化</div>
+        <span class="c-cell-tag">能力杠杆</span>
+      </div>
+    </div>
+    <div class="c-rule-h"></div>
+    <!-- 横排2 -->
+    <div class="c-cell">
+      <div class="c-cell-num">03</div>
+      <div class="c-cell-body">
+        <div class="c-cell-title">用AI批量生产</div>
+        <div class="c-cell-text">自动化初稿 · 人工审核 · 持续迭代</div>
+        <span class="c-cell-tag">工作流重构</span>
+      </div>
+    </div>
+    <div class="c-rule-v"></div>
+    <div class="c-cell">
+      <div class="c-cell-num">04</div>
+      <div class="c-cell-body">
+        <div class="c-cell-title">从一篇到日产百篇</div>
+        <div class="c-cell-text">规模化生产 · 质量把控 · 持续输出</div>
+        <span class="c-cell-tag">内容规模化</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部引言 -->
+  <div class="c-bottom">
+    <div class="c-bottom-icon">"</div>
+    <div class="c-bottom-text">未来属于善用AI的人，而不是与AI竞争的人。</div>
+    <div class="c-bottom-from">— Jarvis · 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你也懂点心理学 - 分裂样人格障碍</title>
+<style>
+@font-face {
+  font-family: 'NotoSansSC';
+  src: url('file:///home/node/.openclaw/workspace/minimax-output/wqy-microhei.ttc');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'NotoSansSC';
+  src: url('file:///home/node/.openclaw/workspace/minimax-output/wqy-microhei.ttc');
+  font-weight: 700;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'NotoSansSC', 'DejaVu Sans', sans-serif;
+  width: 800px;
+  height: 1067px;
+  background: #f4f7fb;
+  color: #1a2a3a;
+  overflow: hidden;
+  position: relative;
+}
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,180,220,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,220,0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  pointer-events: none;
+}
+.top-section {
+  height: 326px;
+  background: linear-gradient(160deg, #f0f0f0 0%, #e0e0e0 40%, #d0d0d0 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 55px 29px;
+}
+.top-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #78909c, #90a4ae, #78909c);
+}
+.top-section::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 368px;
+  height: 368px;
+  background: radial-gradient(circle, rgba(120,144,156,0.12) 0%, transparent 70%);
+}
+.author {
+  position: absolute;
+  top: 29px;
+  right: 46px;
+  text-align: right;
+  z-index: 2;
+}
+.author-year {
+  font-size: 84px;
+  font-weight: 900;
+  color: rgba(120,144,156,0.06);
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.author-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #607d8b;
+  position: absolute;
+  top: 84px;
+  right: 0;
+  letter-spacing: 1px;
+}
+.series-index {
+  position: absolute;
+  top: 25px;
+  left: 46px;
+  z-index: 2;
+}
+.series-index-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(26,42,58,0.4);
+  letter-spacing: 2px;
+}
+.series-name-wrap {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 19px;
+}
+.series-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(120,144,156,0.15);
+  border: 1.5px solid rgba(120,144,156,0.35);
+  color: #607d8b;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+.main-eyebrow {
+  font-size: 14px;
+  color: rgba(120,144,156,0.7);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 11px;
+}
+.main-title {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #1a2a3a;
+  margin-bottom: 11px;
+}
+.main-title .accent { color: #78909c; }
+.main-title .pd-wrap { display: inline-flex; align-items: baseline; gap: 6px; }
+.main-title .pd-main { color: #78909c; }
+.main-title .pd-sub { font-size: 15px; font-weight: 400; color: rgba(26,42,58,0.45); }
+.sub-title { font-size: 21px; color: rgba(26,42,58,0.45); font-weight: 400; line-height: 1.4; }
+.divider { height: 1px; background: linear-gradient(90deg, rgba(120,144,156,0.25), transparent); margin: 15px 55px; }
+.content { padding: 0 55px; position: relative; z-index: 1; }
+
+.dsm-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.dsm-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #78909c, #90a4ae);
+  padding: 4px 12px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+.dsm-sub { font-size: 12px; color: rgba(26,42,58,0.4); font-weight: 400; }
+
+.signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.signal-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(120,144,156,0.15);
+  border-left: 3px solid #78909c;
+  box-shadow: 0 2px 8px rgba(120,144,156,0.06);
+}
+.signal-num { font-size: 10px; font-weight: 700; color: rgba(120,144,156,0.5); letter-spacing: 2px; margin-bottom: 5px; }
+.signal-title { font-size: 14px; font-weight: 700; color: #1a2a3a; margin-bottom: 5px; line-height: 1.3; }
+.signal-desc { font-size: 12px; color: rgba(26,42,58,0.55); line-height: 1.6; margin-bottom: 7px; }
+.signal-dsm { font-size: 10px; color: rgba(120,144,156,0.7); background: rgba(120,144,156,0.08); padding: 3px 8px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; }
+
+.movie-box {
+  background: rgba(120,144,156,0.06);
+  border: 1px solid rgba(120,144,156,0.15);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.movie-icon {
+  width: 36px; height: 36px;
+  background: rgba(120,144,156,0.12);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #78909c;
+  flex-shrink: 0;
+}
+.movie-content { flex: 1; }
+.movie-label { font-size: 10px; font-weight: 700; color: #607d8b; letter-spacing: 2px; margin-bottom: 5px; }
+.movie-title { font-size: 14px; font-weight: 700; color: #1a2a3a; margin-bottom: 4px; }
+.movie-symptom { font-size: 12px; color: rgba(26,42,58,0.55); line-height: 1.65; }
+
+.relate-section { margin-bottom: 12px; }
+.relate-title { font-size: 11px; font-weight: 700; color: rgba(26,42,58,0.4); letter-spacing: 2px; margin-bottom: 8px; }
+.relate-grid { display: flex; gap: 8px; }
+.relate-pill { flex: 1; background: #fff; border: 1px solid rgba(120,144,156,0.12); border-radius: 10px; padding: 9px 12px; text-align: center; }
+.relate-pill-icon { font-size: 14px; font-weight: 900; color: #78909c; margin-bottom: 3px; }
+.relate-pill-label { font-size: 11px; color: rgba(26,42,58,0.5); line-height: 1.4; }
+
+.quote-box {
+  background: linear-gradient(135deg, rgba(120,144,156,0.08), rgba(144,164,174,0.05));
+  border: 1px solid rgba(120,144,156,0.15);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.quote-icon { width: 28px; height: 28px; background: rgba(120,144,156,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #78909c; flex-shrink: 0; }
+.quote-text { font-size: 13px; color: rgba(26,42,58,0.65); line-height: 1.75; }
+.quote-text strong { color: #607d8b; }
+
+.cta-box { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: rgba(120,144,156,0.08); border-radius: 12px; border: 1px solid rgba(120,144,156,0.15); }
+.cta-icon { width: 28px; height: 28px; background: rgba(120,144,156,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #78909c; flex-shrink: 0; }
+.cta-text { font-size: 12.5px; color: rgba(26,42,58,0.6); line-height: 1.75; }
+.cta-text strong { color: #607d8b; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="top-section">
+  <div class="author">
+    <div class="author-year">2026</div>
+    <div class="author-name">辉常心理</div>
+  </div>
+  <div class="series-index">
+    <div class="series-index-text">系列卡片 · 03</div>
+  </div>
+  <div class="series-name-wrap">
+    <div class="series-badge">你也懂点心理学</div>
+    <div class="main-eyebrow">DSM-5 人格障碍 · A 簇</div>
+    <div class="main-title"><span class="pd-wrap"><span class="pd-main">分裂样</span></span> 人格障碍：<br>情感冷冻的本质</div>
+    <div class="sub-title">汉尼拔式距离感：不是冷漠，是无法感受</div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="content">
+
+  <div class="dsm-label">
+    <div class="dsm-badge">分裂样 PD</div>
+    <div class="dsm-sub"> Schizoid Personality Disorder — 持续到成年早期</div>
+  </div>
+
+  <div class="signals-grid">
+    <div class="signal-card">
+      <div class="signal-num">信号 01</div>
+      <div class="signal-title">对社交毫无兴趣甚至主动回避</div>
+      <div class="signal-desc">能不去的聚会就不去，被动社交也感到疲惫</div>
+      <div class="signal-dsm">DSM-5：社会隔离首选</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 02</div>
+      <div class="signal-title">几乎没有密友或亲密关系</div>
+      <div class="signal-desc">不需要深度关系，泛泛之交就够了</div>
+      <div class="signal-dsm">DSM-5：亲密关系匮乏</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 03</div>
+      <div class="signal-title">情感表达极度受限或缺失</div>
+      <div class="signal-desc">很少笑、很少表达情感，看起来总是"淡淡的"</div>
+      <div class="signal-dsm">DSM-5：情感表达受限</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">信号 04</div>
+      <div class="signal-title">只对抽象/冷事物有强烈兴趣</div>
+      <div class="signal-desc">数据、机械、理论……而不是人或关系</div>
+      <div class="signal-dsm">DSM-5：淡漠，缺乏兴趣爱好</div>
+    </div>
+  </div>
+
+  <div class="movie-box">
+    <div class="movie-icon">影视</div>
+    <div class="movie-content">
+      <div class="movie-label">影视原型对照</div>
+      <div class="movie-title">《沉默的羔羊》Hannibal Lecter</div>
+      <div class="movie-symptom">监狱里独自读书，面对审讯毫无情绪波动，与外界的唯一交流是优雅地评论食物。对人没有渴望，对关系没有兴趣——不是选择孤独，是根本感受不到孤独。周围人只是"有趣的标本"。</div>
+    </div>
+  </div>
+
+  <div class="relate-section">
+    <div class="relate-title">亲密关系中的表现</div>
+    <div class="relate-grid">
+      <div class="relate-pill">
+        <div class="relate-pill-icon">01</div>
+        <div class="relate-pill-label">你发消息 Ta 很久才回，不觉得需要解释</div>
+      </div>
+      <div class="relate-pill">
+        <div class="relate-pill-icon">02</div>
+        <div class="relate-pill-label">从不主动联系你，你不找 Ta 也不会找</div>
+      </div>
+      <div class="relate-pill">
+        <div class="relate-pill-icon">03</div>
+        <div class="relate-pill-label">身体接触（拥抱、牵手）Ta 都觉得是负担</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <div class="quote-icon">"</div>
+    <div class="quote-text">
+      分裂样的核心不是"享受独处"，而是<strong>对他人的情感需求本身就很低</strong>——他们不觉得需要被理解，也不觉得需要理解别人。
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-icon">QA</div>
+    <div class="cta-text">
+      <strong>互动时刻：</strong>你觉得身边"高冷"的人是分裂样还是内向性格？下期讲<strong>分裂型人格障碍</strong>——它和分裂样的核心区别是什么？
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

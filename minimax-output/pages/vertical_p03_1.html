@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>全球热点</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.top-bar {
+  height: 12px;
+  background: linear-gradient(90deg, #ff375f, #ff9f0a, #bf984b, #34c759);
+  flex-shrink: 0;
+}
+.header {
+  padding: 20px 24px 12px;
+  flex-shrink: 0;
+}
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.section-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+}
+.card-red { background: linear-gradient(145deg, #fff0f2, #fff); border: 1px solid rgba(255,55,95,0.15); }
+.card-blue { background: linear-gradient(145deg, #ebf5ff, #fff); border: 1px solid rgba(0,122,255,0.12); }
+.card-purple { background: linear-gradient(145deg, #f5eeff, #fff); border: 1px solid rgba(175,82,222,0.12); }
+.card-orange { background: linear-gradient(145deg, #fff8ed, #fff); border: 1px solid rgba(255,159,10,0.12); }
+.badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0,0,0,0.05);
+  color: #666;
+  margin-bottom: 12px;
+}
+.badge-red { background: rgba(255,55,95,0.15); color: #ff375f; }
+.badge-blue { background: rgba(0,122,255,0.12); color: #007aff; }
+.badge-purple { background: rgba(175,82,222,0.12); color: #af52de; }
+.title-xl {
+  font-size: 42px;
+  font-weight: 900;
+  color: #ff375f;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.title-lg {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.title-md {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.text-body {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  flex: 1;
+}
+.text-sm {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+}
+.stat {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  text-align: right;
+}
+.stat-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: #ff375f;
+  letter-spacing: -0.02em;
+}
+.stat-num-blue { color: #007aff; }
+.stat-label {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.list-item:last-child { border-bottom: none; }
+.rank {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.rank-1 { background: rgba(191,152,75,0.15); color: #bf984b; }
+.rank-2 { background: rgba(52,201,137,0.15); color: #34c759; }
+.rank-3 { background: rgba(255,159,10,0.15); color: #ff9f0a; }
+.rank-n { background: rgba(0,0,0,0.06); color: #999; }
+.list-content { flex: 1; }
+.list-title { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 3px; }
+.list-desc { font-size: 12px; color: #777; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"></div>
+  
+  <div class="header">
+    <div class="section-label">2026年4月5日</div>
+    <div class="section-title">全球热点</div>
+  </div>
+  
+  <div class="content">
+    <!-- 卡片1：美伊48小时 -->
+    <div class="card card-red">
+      <span class="badge badge-red">#1 最高警报</span>
+      <div class="title-xl">美伊 48小时</div>
+      <div class="text-body">特朗普发出最后通牒：48小时内达成协议，否则"伊朗将承受一切后果"。霍尔木兹海峡封锁，全球20%石油运输受阻。</div>
+      <div class="stat">
+        <div class="stat-num">$140+</div>
+        <div class="stat-label">原油美元/桶</div>
+      </div>
+    </div>
+    
+    <!-- 卡片2：北约 -->
+    <div class="card card-purple">
+      <span class="badge badge-purple">#2 地缘政治</span>
+      <div class="title-md">美国考虑退出北约？</div>
+      <div class="text-body">特朗普"认真考虑"退出北约。英国首相："这不是我们的战争。"马克龙批评特朗普对伊朗的立场。</div>
+      <div class="stat">
+        <div class="stat-num" style="font-size:24px;">X</div>
+        <div class="stat-label">英/法/德均反对</div>
+      </div>
+    </div>
+    
+    <!-- 卡片3：NASA -->
+    <div class="card card-blue">
+      <span class="badge badge-blue">#3 太空</span>
+      <div class="title-md">Artemis II 成功发射</div>
+      <div class="text-body">NASA阿尔忒弥斯二号成功发射。50多年来首次载人绕月任务，4名宇航员正在途中。</div>
+      <div class="stat">
+        <div class="stat-num stat-num-blue">50+</div>
+        <div class="stat-label">年未载人探月</div>
+      </div>
+    </div>
+    
+    <!-- 卡片4：核电站 -->
+    <div class="card card-red">
+      <span class="badge badge-red">核警报</span>
+      <div class="title-md">布什尔核电站第4次被击中</div>
+      <div class="text-body">1名安全人员死亡。俄罗斯撤出核电站198名工作人员。伊朗外长警告：一旦泄漏，整个地区都将受到影响。</div>
+    </div>
+    
+    <!-- 卡片5：热点4-10 -->
+    <div class="card">
+      <span class="badge">热点 4-10</span>
+      <div class="list">
+        <div class="list-item"><div class="rank rank-1">4</div><div class="list-content"><div class="list-title">全球股市暴涨</div><div class="list-desc">日经+5.24%、韩国综合+8.44%、道指+1100点</div></div></div>
+        <div class="list-item"><div class="rank rank-2">5</div><div class="list-content"><div class="list-title">原油剧烈震荡</div><div class="list-desc">盘中触及112美元/桶，霍尔木兹通行量-95%</div></div></div>
+        <div class="list-item"><div class="rank rank-3">6</div><div class="list-content"><div class="list-title">黄金守住4759美元</div><div class="list-desc">高盛目标4900美元/盎司</div></div></div>
+        <div class="list-item"><div class="rank rank-n">7</div><div class="list-content"><div class="list-title">百度无人驾驶停车</div><div class="list-desc">武汉Apollo无人车致拥堵</div></div></div>
+        <div class="list-item"><div class="rank rank-n">8</div><div class="list-content"><div class="list-title">乌克兰战争</div><div class="list-desc">俄称控制卢甘斯克</div></div></div>
+        <div class="list-item"><div class="rank rank-n">9</div><div class="list-content"><div class="list-title">伊朗革命卫队指挥官遇袭</div><div class="list-desc">高级指挥官被击杀</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

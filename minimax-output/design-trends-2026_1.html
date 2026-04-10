@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 设计趋势 · 信息图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card-bg: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.1);
+  --text: #f0f0f5;
+  --muted: rgba(240,240,245,0.5);
+  --accent-pink: #ff6b9d;
+  --accent-cyan: #00d4ff;
+  --accent-yellow: #ffd93d;
+  --accent-purple: #b06aff;
+  --accent-green: #6bffb8;
+  --accent-orange: #ff9f43;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(176,106,255,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,212,255,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255,107,157,0.05) 0%, transparent 70%);
+}
+
+/* noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+.header::before {
+  content: '2026';
+  font-size: clamp(80px, 15vw, 160px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.15;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.header h1 {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+.header p {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.header .badge {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 6px 18px;
+  border: 1px solid var(--accent-cyan);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.1em;
+}
+
+/* ── Section ── */
+.section-title {
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Bento Grid ── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.card .icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* card sizes */
+.c-4 { grid-column: span 4; }
+.c-6 { grid-column: span 6; }
+.c-8 { grid-column: span 8; }
+.c-12 { grid-column: span 12; }
+
+@media (max-width: 900px) {
+  .c-4, .c-6, .c-8 { grid-column: span 12; }
+}
+
+/* glass card variants */
+.glass-pink .icon { background: rgba(255,107,157,0.2); }
+.glass-pink h3 { color: var(--accent-pink); }
+.glass-pink .tag { background: rgba(255,107,157,0.15); color: var(--accent-pink); }
+
+.glass-cyan .icon { background: rgba(0,212,255,0.2); }
+.glass-cyan h3 { color: var(--accent-cyan); }
+.glass-cyan .tag { background: rgba(0,212,255,0.15); color: var(--accent-cyan); }
+
+.glass-purple .icon { background: rgba(176,106,255,0.2); }
+.glass-purple h3 { color: var(--accent-purple); }
+.glass-purple .tag { background: rgba(176,106,255,0.15); color: var(--accent-purple); }
+
+.glass-yellow .icon { background: rgba(255,217,61,0.2); }
+.glass-yellow h3 { color: var(--accent-yellow); }
+.glass-yellow .tag { background: rgba(255,217,61,0.15); color: var(--accent-yellow); }
+
+.glass-green .icon { background: rgba(107,255,184,0.2); }
+.glass-green h3 { color: var(--accent-green); }
+.glass-green .tag { background: rgba(107,255,184,0.15); color: var(--accent-green); }
+
+.glass-orange .icon { background: rgba(255,159,67,0.2); }
+.glass-orange h3 { color: var(--accent-orange); }
+.glass-orange .tag { background: rgba(255,159,67,0.15); color: var(--accent-orange); }
+
+/* feature list inside cards */
+.feat-list {
+  list-style: none;
+  margin-top: 12px;
+}
+.feat-list li {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.feat-list li::before {
+  content: '→';
+  color: var(--accent-cyan);
+  font-size: 10px;
+}
+
+/* ── CSS Tech Grid ── */
+.css-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 50px;
+}
+.css-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.2s;
+}
+.css-item:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0,212,255,0.1);
+}
+.css-item code {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--accent-cyan);
+  display: block;
+  margin-bottom: 8px;
+}
+.css-item span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── Color Swatches ── */
+.color-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.swatch {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.swatch-lg {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>2026 设计趋势全景</h1>
+    <p>Design Trends 2026 · Full Spectrum</p>
+    <span class="badge">★ 精选收录</span>
+  </div>
+
+  <!-- ══ Design Styles ══ -->
+  <div class="section-title">设计风格</div>
+  <div class="bento">
+
+    <div class="card glass-cyan c-4">
+      <div class="icon">◐</div>
+      <h3>Glassmorphism</h3>
+      <p>毛玻璃透明效果，backdrop-filter 模糊核心，半透明卡片叠加层次感</p>
+      <ul class="feat-list">
+        <li>backdrop-filter: blur()</li>
+        <li>半透明背景 + 边框</li>
+        <li>深度层次 + 渐变</li>
+      </ul>
+      <span class="tag">现代感 Dashboard</span>
+    </div>
+
+    <div class="card glass-purple c-4">
+      <div class="icon">◇</div>
+      <h3>Neumorphism</h3>
+      <p>柔和阴影营造浮雕感，拟物触感，控件与背景融为一体又有层次</p>
+      <ul class="feat-list">
+        <li>双层柔和阴影</li>
+        <li>浅色高光 + 暗色投影</li>
+        <li>触觉反馈感</li>
+      </ul>
+      <span class="tag">控件 · 按钮 · 表单</span>
+    </div>
+
+    <div class="card glass-pink c-4">
+      <div class="icon">▣</div>
+      <h3>Neo-Brutalism</h3>
+      <p>大胆撞色、粗边框、原始美感，不完美的设计语言，张扬反叛</p>
+      <ul class="feat-list">
+        <li>高对比撞色</li>
+        <li>粗黑边框 2-4px</li>
+        <li>原始几何形状</li>
+      </ul>
+      <span class="tag">创意品牌 · 年轻用户</span>
+    </div>
+
+    <div class="card glass-yellow c-6">
+      <div class="icon">▤</div>
+      <h3>Tactile Maximalism</h3>
+      <p>层叠质感、3D 深度、物理存在感，让每个元素都"可触摸"，极致质感落地页首选</p>
+      <ul class="feat-list">
+        <li>多重图层叠加</li>
+        <li>3D 变换与阴影</li>
+        <li>噪点纹理增加真实感</li>
+      </ul>
+      <span class="tag">质感落地页 · 强调感知</span>
+    </div>
+
+    <div class="card glass-green c-6">
+      <div class="icon">◈</div>
+      <h3>Anti-Grid 逆网格</h3>
+      <p>故意打破网格秩序感，不对称布局，曲线形状主导，让界面"活"起来</p>
+      <ul class="feat-list">
+        <li>倾斜与旋转元素</li>
+        <li>有机曲线形状</li>
+        <li>不规则留白</li>
+      </ul>
+      <span class="tag">创意网站 · 品牌展示</span>
+    </div>
+
+  </div>
+
+  <!-- ══ CSS New Tech ══ -->
+  <div class="section-title">CSS 新技术（2026 实用）</div>
+  <div class="css-grid">
+
+    <div class="css-item">
+      <code>backdrop-filter: blur()</code>
+      <span>毛玻璃核心，背景模糊</span>
+    </div>
+    <div class="css-item">
+      <code>scroll-driven animations</code>
+      <span>滚动驱动动画，无 JS</span>
+    </div>
+    <div class="css-item">
+      <code>:has() selector</code>
+      <span>父选择器，条件样式</span>
+    </div>
+    <div class="css-item">
+      <code>oklch()</code>
+      <span>更自然的渐变颜色空间</span>
+    </div>
+    <div class="css-item">
+      <code>CSS Nesting</code>
+      <span>原生嵌套，告别预处理器</span>
+    </div>
+    <div class="css-item">
+      <code>container queries</code>
+      <span>组件级响应式</span>
+    </div>
+    <div class="css-item">
+      <code>scroll-timeline</code>
+      <span>无 JS 的滚动动画</span>
+    </div>
+    <div class="css-item">
+      <code>anchor positioning</code>
+      <span>锚点定位，浮动元素对齐</span>
+    </div>
+
+  </div>
+
+  <!-- ══ Typography & Layout ══ -->
+  <div class="section-title">排版 & 布局趋势</div>
+  <div class="bento">
+
+    <div class="card glass-orange c-4">
+      <div class="icon">✦</div>
+      <h3>Kinetic Typography</h3>
+      <p>文字动效抢眼球，字母位移、缩放、颜色变化制造视觉焦点</p>
+      <span class="tag">首屏 · 品牌</span>
+    </div>
+
+    <div class="card glass-pink c-4">
+      <div class="icon">Aa</div>
+      <h3>Variable Fonts</h3>
+      <p>动态字重变化，一字体文件中包含所有字重，响应式字重动画</p>
+      <span class="tag">可交互文字 · 品牌</span>
+    </div>
+
+    <div class="card glass-cyan c-4">
+      <div class="icon">⊞</div>
+      <h3>Bento Grid</h3>
+      <p>豆腐块网格，模块化卡片拼接，比例精确控制，简洁高效</p>
+      <span class="tag">Dashboard · 信息展示</span>
+    </div>
+
+    <div class="card glass-purple c-6">
+      <div class="icon">○</div>
+      <h3>Organic Shapes</h3>
+      <p>曲线和不对称布局，blob 形状、有机曲线背景，打破直角生硬感，营造自然流动感</p>
+      <span class="tag">插图背景 · 品牌首页</span>
+    </div>
+
+    <div class="card glass-yellow c-6">
+      <div class="icon">⊠</div>
+      <h3>Dark Mode 深度界面</h3>
+      <p>数据类产品标配，深色背景降低眼疲劳，突出内容本身，配合玻璃拟态效果更佳</p>
+      <span class="tag">数据产品 · 专业工具</span>
+    </div>
+
+  </div>
+
+  <!-- ══ Color & Texture ══ -->
+  <div class="section-title">色彩 & 质感趋势</div>
+  <div class="bento">
+
+    <div class="card glass-pink c-4">
+      <div class="icon">🎨</div>
+      <h3>Dopamine Colors</h3>
+      <p>多巴胺配色：高饱和亮色，粉、蓝、黄、紫撞色，激发正向情绪</p>
+      <div class="color-row">
+        <div class="swatch" style="background:#ff6b9d"></div>
+        <div class="swatch" style="background:#00d4ff"></div>
+        <div class="swatch" style="background:#ffd93d"></div>
+        <div class="swatch" style="background:#b06aff"></div>
+        <div class="swatch" style="background:#6bffb8"></div>
+      </div>
+      <span class="tag">年轻 · 活力 · 创意</span>
+    </div>
+
+    <div class="card glass-purple c-4">
+      <div class="icon">✺</div>
+      <h3>80s Excess</h3>
+      <p>霓虹复古，荧光色、渐变光晕、网格背景，重返赛博黄金年代</p>
+      <div class="color-row">
+        <div class="swatch" style="background:linear-gradient(135deg,#ff0080,#00ffff)"></div>
+        <div class="swatch" style="background:linear-gradient(135deg,#7b2dff,#ff0080)"></div>
+        <div class="swatch" style="background:linear-gradient(135deg,#00ffff,#00ff88)"></div>
+      </div>
+      <span class="tag">复古 · 赛博 · 音乐节</span>
+    </div>
+
+    <div class="card glass-cyan c-4">
+      <div class="icon">▤</div>
+      <h3>纹理 & 噪点</h3>
+      <p>叠加噪点纹理增加真实感，颗粒感、薄膜质感，让数字界面更"有温度"</p>
+      <div class="color-row">
+        <div class="swatch swatch-lg" style="background:rgba(255,255,255,0.05); border-style: dashed"></div>
+      </div>
+      <span class="tag">质感增强 · 真实感</span>
+    </div>
+
+    <div class="card glass-green c-12">
+      <div class="icon">◐</div>
+      <h3>Glassmorphism 核心要素</h3>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 16px;">
+        <div>
+          <h4 style="font-size:13px; color: var(--accent-cyan); margin-bottom: 6px;">backdrop-filter: blur(20px)</h4>
+          <p style="font-size:12px; color: var(--muted);">背景模糊，透出底层内容</p>
+        </div>
+        <div>
+          <h4 style="font-size:13px; color: var(--accent-pink); margin-bottom: 6px;">background: rgba(255,255,255,0.06)</h4>
+          <p style="font-size:12px; color: var(--muted);">半透明背景色</p>
+        </div>
+        <div>
+          <h4 style="font-size:13px; color: var(--accent-purple); margin-bottom: 6px;">border: 1px solid rgba(255,255,255,0.1)</h4>
+          <p style="font-size:12px; color: var(--muted);">细微边框反光</p>
+        </div>
+        <div>
+          <h4 style="font-size:13px; color: var(--accent-yellow); margin-bottom: 6px;">box-shadow: inset 0 1px 0 rgba(255,255,255,0.2)</h4>
+          <p style="font-size:12px; color: var(--muted);">顶部高光模拟玻璃边缘</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    2026 DESIGN TRENDS · Generated by Jarvis · Sources: Design Community Research
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBA Hot Topics 2026</title>
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --accent: #f58426;
+  --nba-blue: #1d428a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #0a0a0f;
+  color: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3/4;
+  background: #0d0d1a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 12px;
+}
+
+/* diagonal bg stripes */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -20%;
+  width: 60%; height: 160%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(245,132,38,0.03) 40px,
+    rgba(245,132,38,0.03) 42px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(29,66,138,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(245,132,38,0.18) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper > * { position: relative; z-index: 1; flex-shrink: 0; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--nba-orange);
+  margin-bottom: 10px;
+}
+.logo {
+  width: 36px; height: 36px;
+  background: var(--nba-orange);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(245,132,38,0.5);
+}
+.title-block h1 {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--white) 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.title-block p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.year {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #fafafa 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+}
+.header-right {
+  margin-left: auto;
+  text-align: right;
+}
+.header-right .date {
+  font-size: 11px;
+  color: var(--nba-orange);
+  font-weight: 700;
+}
+.header-right .tagline {
+  font-size: 9px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 2px;
+}
+
+/* ── Main Grid ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.accent-bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3px;
+}
+.accent-bar.left  { left: 0; border-radius: 12px 0 0 12px; }
+.accent-bar.right { right: 0; border-radius: 0 12px 12px 0; }
+
+.rank {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 28px;
+  font-weight: 900;
+  opacity: 0.08;
+  line-height: 1;
+  color: var(--nba-orange);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+.card-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.card-title {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.card-sub {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  margin-left: auto;
+  white-space: nowrap;
+}
+.card-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+  flex: 1;
+}
+.stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.stat {
+  font-size: 18px;
+  font-weight: 700;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+.tag {
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* diagonal accent stripe on card */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.04) 50%);
+  pointer-events: none;
+}
+
+/* colors */
+.o  { --c: #f58426; --c-bg: rgba(245,132,38,0.15); }
+.b  { --c: #1d428a; --c-bg: rgba(29,66,138,0.2); }
+.r  { --c: #e84025; --c-bg: rgba(232,64,37,0.15); }
+.g  { --c: #4ade80; --c-bg: rgba(74,222,128,0.12); }
+.p  { --c: #a855f7; --c-bg: rgba(168,85,247,0.12); }
+.bl { --c: #3b82f6; --c-bg: rgba(59,130,246,0.12); }
+.pk { --c: #f472b6; --c-bg: rgba(244,114,182,0.12); }
+
+.accent-bar.o  { background: #f58426; box-shadow: 2px 0 12px rgba(245,132,38,0.4); }
+.accent-bar.b  { background: #1d428a; box-shadow: 2px 0 12px rgba(29,66,138,0.5); }
+.accent-bar.r  { background: #e84025; box-shadow: 2px 0 12px rgba(232,64,37,0.4); }
+.accent-bar.g  { background: #4ade80; box-shadow: 2px 0 12px rgba(74,222,128,0.4); }
+.accent-bar.p  { background: #a855f7; box-shadow: 2px 0 12px rgba(168,85,247,0.4); }
+.accent-bar.bl { background: #3b82f6; box-shadow: 2px 0 12px rgba(59,130,246,0.4); }
+.accent-bar.pk { background: #f472b6; box-shadow: 2px 0 12px rgba(244,114,182,0.4); }
+
+.card-icon.o  { background: var(--c-bg); color: var(--c); }
+.card-icon.b  { background: var(--c-bg); color: var(--c); }
+.card-icon.r  { background: var(--c-bg); color: var(--c); }
+.card-icon.g  { background: var(--c-bg); color: var(--c); }
+.card-icon.p  { background: var(--c-bg); color: var(--c); }
+.card-icon.bl { background: var(--c-bg); color: var(--c); }
+.card-icon.pk { background: var(--c-bg); color: var(--c); }
+
+.card-title.o  { color: #f58426; }
+.card-title.b  { color: #6b9fff; }
+.card-title.r  { color: #e84025; }
+.card-title.g  { color: #4ade80; }
+.card-title.p  { color: #a855f7; }
+.card-title.bl { color: #3b82f6; }
+.card-title.pk { color: #f472b6; }
+
+.stat.o  { color: #f58426; }
+.stat.b  { color: #6b9fff; }
+.stat.r  { color: #e84025; }
+.stat.g  { color: #4ade80; }
+.stat.p  { color: #a855f7; }
+.stat.bl { color: #3b82f6; }
+.stat.pk { color: #f472b6; }
+
+.tag.o  { background: rgba(245,132,38,0.1); color: #f58426; border: 1px solid rgba(245,132,38,0.2); }
+.tag.b  { background: rgba(29,66,138,0.2); color: #6b9fff; border: 1px solid rgba(59,130,246,0.2); }
+.tag.r  { background: rgba(232,64,37,0.1); color: #e84025; border: 1px solid rgba(232,64,37,0.2); }
+.tag.g  { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+.tag.p  { background: rgba(168,85,247,0.1); color: #a855f7; border: 1px solid rgba(168,85,247,0.2); }
+.tag.bl { background: rgba(59,130,246,0.1); color: #3b82f6; border: 1px solid rgba(59,130,246,0.2); }
+.tag.pk { background: rgba(244,114,182,0.1); color: #f472b6; border: 1px solid rgba(244,114,182,0.2); }
+
+/* grid spans */
+.h6 { grid-column: span 6; } /* full width hero */
+.h4 { grid-column: span 4; } /* 2/3 width */
+.h3 { grid-column: span 3; } /* half */
+.h2 { grid-column: span 2; } /* 1/3 width */
+
+/* special: hero card */
+.hero {
+  background: linear-gradient(135deg, rgba(245,132,38,0.12) 0%, rgba(29,66,138,0.15) 100%);
+  border-color: rgba(245,132,38,0.25);
+  padding: 16px 18px;
+}
+.hero .card-title {
+  font-size: 40px;
+  background: linear-gradient(135deg, var(--accent) 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .card-body {
+  font-size: 17px;
+}
+.hero .stat {
+  font-size: 24px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 8px;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.08em;
+  padding: 5px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">NBA</div>
+    <div class="title-block">
+      <div class="year">2026</div>
+      <h1>Hot Topics</h1>
+      <p>Playoffs Race · Latest</p>
+    </div>
+    <div class="header-right">
+      <div class="date">APR 05</div>
+      <div class="tagline">Daily Digest</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- 1. HERO — full width -->
+    <div class="card hero h6">
+      <div class="accent-bar left o"></div>
+      <div class="rank">01</div>
+      <div class="card-head">
+        <div class="card-icon o">B</div>
+        <div class="card-title o">Cooper Flagg 50分</div>
+        <div class="card-sub">史上首位单场50分青少年</div>
+      </div>
+      <div class="card-body">Flagg 轰下 NBA 史上首位青少年球员 50 分表演，刷新历史！全场沸腾</div>
+      <div class="stats">
+        <div class="stat o">[/] 50 PTS</div>
+        <div class="stat o">[*] 历史级</div>
+      </div>
+      <div class="tags">
+        <span class="tag o">50分</span>
+        <span class="tag o">历史一刻</span>
+        <span class="tag o">新人王</span>
+      </div>
+    </div>
+
+    <!-- 2. Jokic MVP -->
+    <div class="card h3">
+      <div class="accent-bar left b"></div>
+      <div class="rank">02</div>
+      <div class="card-head">
+        <div class="card-icon b">M</div>
+        <div class="card-title b">MVP竞争激烈</div>
+        <div class="card-sub">Nikola Jokic</div>
+      </div>
+      <div class="card-body">Jokic 领跑 Kia MVP 排行榜，赛季最终归属悬而未决</div>
+      <div class="stats">
+        <div class="stat b">[*] 榜首</div>
+      </div>
+      <div class="tags">
+        <span class="tag b">MVP</span>
+        <span class="tag b">Jokic</span>
+      </div>
+    </div>
+
+    <!-- 3. Trade Deadline -->
+    <div class="card h3">
+      <div class="accent-bar left r"></div>
+      <div class="rank">03</div>
+      <div class="card-head">
+        <div class="card-icon r">T</div>
+        <div class="card-title r">交易截止日</div>
+        <div class="card-sub">Deadline</div>
+      </div>
+      <div class="card-body">2026交易大戏：Harden、Anthony Davis领衔多队换血</div>
+      <div class="stats">
+        <div class="stat r">[!] 重磅</div>
+      </div>
+      <div class="tags">
+        <span class="tag r">交易</span>
+        <span class="tag r">Harden</span>
+      </div>
+    </div>
+
+    <!-- 4. Warriors trade -->
+    <div class="card h3">
+      <div class="accent-bar left o"></div>
+      <div class="rank">04</div>
+      <div class="card-head">
+        <div class="card-icon o">W</div>
+        <div class="card-title o">勇士换血</div>
+        <div class="card-sub">Warriors</div>
+      </div>
+      <div class="card-body">勇士送出 Kuminga + Buddy Hield，换来 Kristaps Porzingis</div>
+      <div class="stats">
+        <div class="stat o">[*] 交易</div>
+      </div>
+      <div class="tags">
+        <span class="tag o">勇士</span>
+        <span class="tag o">Porzingis</span>
+      </div>
+    </div>
+
+    <!-- 5. Pacers deal -->
+    <div class="card h3">
+      <div class="accent-bar left g"></div>
+      <div class="rank">05</div>
+      <div class="card-head">
+        <div class="card-icon g">P</div>
+        <div class="card-title g">步行者补强</div>
+        <div class="card-sub">Pacers</div>
+      </div>
+      <div class="card-body">Pacers 获 Ivica Zubac，Clippers 得 Ben Mathurin + 选秀权</div>
+      <div class="stats">
+        <div class="stat g">[*] 东部格局</div>
+      </div>
+      <div class="tags">
+        <span class="tag g">步行者</span>
+        <span class="tag g">Zubac</span>
+      </div>
+    </div>
+
+    <!-- 6. Bulls trade -->
+    <div class="card h4">
+      <div class="accent-bar left bl"></div>
+      <div class="rank">06</div>
+      <div class="card-head">
+        <div class="card-icon bl">C</div>
+        <div class="card-title bl">公牛活塞交易</div>
+        <div class="card-sub">Bulls</div>
+      </div>
+      <div class="card-body">Jaden Ivey + Mike Conley Jr. 加盟公牛，Kevin Huerter + Dario Saric 赴活塞</div>
+      <div class="stats">
+        <div class="stat bl">[*] 重建</div>
+      </div>
+      <div class="tags">
+        <span class="tag bl">公牛</span>
+        <span class="tag bl">活塞</span>
+        <span class="tag bl">Ivey</span>
+      </div>
+    </div>
+
+    <!-- 7. Vucevic -->
+    <div class="card h2">
+      <div class="accent-bar left r"></div>
+      <div class="rank">07</div>
+      <div class="card-head">
+        <div class="card-icon r">V</div>
+        <div class="card-title r">Vucevic</div>
+        <div class="card-sub">回归</div>
+      </div>
+      <div class="card-body">手指骨折休战复出战猛龙</div>
+      <div class="tags">
+        <span class="tag r">复出</span>
+      </div>
+    </div>
+
+    <!-- 8. Hall of Fame -->
+    <div class="card h3">
+      <div class="accent-bar left p"></div>
+      <div class="rank">08</div>
+      <div class="card-head">
+        <div class="card-icon p">H</div>
+        <div class="card-title p">名人堂2026</div>
+        <div class="card-sub">HoF</div>
+      </div>
+      <div class="card-body">Naismith 篮球名人堂 2026 届名单正式公布</div>
+      <div class="tags">
+        <span class="tag p">名人堂</span>
+      </div>
+    </div>
+
+    <!-- 9. Draft -->
+    <div class="card h3">
+      <div class="accent-bar left pk"></div>
+      <div class="rank">09</div>
+      <div class="card-head">
+        <div class="card-icon pk">D</div>
+        <div class="card-title pk">2026选秀</div>
+        <div class="card-sub">Draft</div>
+      </div>
+      <div class="card-body">Keaton Wagler / Darius Acuff / Kingston Flemings 争夺选秀第5顺位</div>
+      <div class="tags">
+        <span class="tag pk">选秀</span>
+        <span class="tag pk">新星</span>
+      </div>
+    </div>
+
+    <!-- 10. Top 5 Plays -->
+    <div class="card h6">
+      <div class="accent-bar left o"></div>
+      <div class="rank">10</div>
+      <div class="card-head">
+        <div class="card-icon o">P</div>
+        <div class="card-title o">今日最佳球</div>
+        <div class="card-sub">Top 5 Plays · Apr 4</div>
+      </div>
+      <div class="card-body">Apr 4 日最佳进球出炉，Flagg/Jokic 等球星精彩集锦</div>
+      <div class="stats">
+        <div class="stat o">[*] 精彩回顾</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    NBA.com · reddit.com/r/nba · ESPN · 2026-04-05 · Jarvis
+  </div>
+
+</div>
+</body>
+</html>
